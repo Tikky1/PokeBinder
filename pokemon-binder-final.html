@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Pokémon Binder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: #0f0f17;
+  color: #eeeef8;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   TYPE COLORS
+═══════════════════════════════════════════ */
+:root {
+  --normal:   #8a8a6a; --fire:     #d4401a; --water:    #4070d0;
+  --electric: #c4a000; --grass:    #3a8030; --ice:      #4a9cac;
+  --fighting: #a02010; --poison:   #7030a0; --ground:   #a07818;
+  --flying:   #5868c0; --psychic:  #d02058; --bug:      #6c8808;
+  --rock:     #787828; --ghost:    #382860; --dragon:   #2818bc;
+  --dark:     #383020; --steel:    #687890; --fairy:    #c06090;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 4px; }
+
+/* ═══════════════════════════════════════════
+   LAYOUT — Desktop: sidebar + main | Mobile: stacked
+═══════════════════════════════════════════ */
+.app {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: 100vh;
+  height: 100vh;
+}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════ */
+.sidebar {
+  background: #13131e;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.sidebar-top {
+  padding: 18px 16px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: 'Nunito', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #f5c842;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.logo span { color: #e8564a; }
+.logo-sub {
+  font-size: 10px;
+  color: #55556a;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.search-box {
+  position: relative;
+  margin-top: 12px;
+}
+.search-icon {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: #55556a;
+  pointer-events: none;
+  font-size: 14px;
+}
+.search-input {
+  width: 100%;
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 10px 12px 10px 36px;
+  font-size: 14px;
+  color: #eeeef8;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s;
+}
+.search-input:focus { border-color: #f5c842; }
+.search-input::placeholder { color: #44445a; }
+
+/* View toggle */
+.view-toggle {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.vbtn {
+  flex: 1;
+  padding: 7px 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: transparent;
+  color: #55556a;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all .15s;
+  font-family: inherit;
+}
+.vbtn.active { background: #1c1c2a; color: #f5c842; border-color: #f5c842; }
+
+/* Pokemon scroll list */
+.poke-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* ── List mode ── */
+.list-mode { display: flex; flex-direction: column; gap: 7px; }
+
+.poke-row {
+  display: flex;
+  align-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 72px;
+  border: 2px solid transparent;
+  position: relative;
+  transition: transform .12s, border-color .15s;
+}
+.poke-row:active { transform: scale(.97); }
+.poke-row.active { border-color: rgba(255,255,255,.5); }
+.poke-row-bg {
+  position: absolute; inset: 0;
+  background: var(--row-color, #8a8a6a);
+  opacity: 1;
+}
+.poke-row-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 40%, rgba(0,0,0,.35) 100%);
+}
+.poke-row-num {
+  position: absolute;
+  right: 6px; bottom: -8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: rgba(0,0,0,.18);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -2px;
+  z-index: 1;
+}
+.poke-row img {
+  width: 74px; height: 74px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-left: -6px;
+  filter: drop-shadow(2px 4px 8px rgba(0,0,0,.5));
+  z-index: 2;
+  position: relative;
+}
+.poke-row-info {
+  flex: 1;
+  z-index: 2;
+  position: relative;
+  padding-right: 8px;
+}
+.poke-row-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,.4);
+  line-height: 1.1;
+}
+.type-tags { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.type-tag {
+  background: rgba(0,0,0,.28);
+  color: rgba(255,255,255,.9);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* ── Grid mode ── */
+.grid-mode {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.poke-grid {
+  border-radius: 13px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  transition: transform .12s, border-color .15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 4px 6px;
+}
+.poke-grid:active { transform: scale(.93); }
+.poke-grid.active { border-color: rgba(255,255,255,.5); }
+.poke-grid-bg {
+  position: absolute; inset: 0;
+  background: var(--row-color, #8a8a6a);
+}
+.poke-grid-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, transparent 30%, rgba(0,0,0,.4) 100%);
+}
+.poke-grid-num {
+  position: absolute;
+  right: -4px; bottom: -10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: rgba(0,0,0,.18);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 1;
+}
+.poke-grid img {
+  width: 64px; height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(1px 3px 6px rgba(0,0,0,.5));
+  z-index: 2;
+  position: relative;
+}
+.poke-grid-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  margin-top: 4px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  line-height: 1.2;
+}
+.poke-grid-id {
+  font-size: 9px;
+  color: rgba(255,255,255,.45);
+  z-index: 2;
+  position: relative;
+  font-weight: 700;
+}
+
+/* Load more */
+.load-more-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px;
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 13px;
+  color: #55556a;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s;
+}
+.load-more-btn:hover { color: #eeeef8; border-color: #f5c842; }
+
+/* ═══════════════════════════════════════════
+   MAIN PANEL
+═══════════════════════════════════════════ */
+.main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+  background: #0f0f17;
+}
+
+/* Empty state */
+.main-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #44445a;
+}
+.main-empty .ei { font-size: 52px; }
+.main-empty .et { font-size: 20px; font-weight: 700; color: #666688; }
+.main-empty .es { font-size: 14px; line-height: 1.6; text-align: center; max-width: 280px; }
+
+/* Pokemon header */
+.poke-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: #13131e;
+  flex-shrink: 0;
+}
+.poke-header-art {
+  width: 76px; height: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,.6));
+  transition: transform .3s;
+  cursor: pointer;
+}
+.poke-header-art:hover { transform: scale(1.1) rotate(-5deg); }
+.poke-header-info { flex: 1; }
+.poke-header-num { font-size: 11px; color: #55556a; letter-spacing: 1px; }
+.poke-header-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .5px;
+}
+.poke-header-count { font-size: 13px; color: #55556a; margin-top: 3px; }
+
+.owned-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(74,222,128,.08);
+  border: 1px solid rgba(74,222,128,.25);
+  border-radius: 12px;
+  padding: 8px 14px;
+  min-width: 64px;
+}
+.owned-chip-num {
+  font-family: 'Nunito', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #4ade80;
+  line-height: 1;
+}
+.owned-chip-lbl { font-size: 9px; color: #55556a; text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: #13131e;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.lang-pills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.lang-pill {
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: #55556a;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.lang-pill:hover { border-color: #f5c842; color: #eeeef8; }
+.lang-pill.active { background: #f5c842; border-color: #f5c842; color: #111; }
+
+.card-search {
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 7px 12px 7px 30px;
+  font-size: 13px;
+  color: #eeeef8;
+  font-family: inherit;
+  outline: none;
+  width: 180px;
+  transition: border-color .2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%2344445a' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.card-search:focus { border-color: #f5c842; }
+.card-search::placeholder { color: #44445a; }
+
+/* Hint */
+.hint-bar {
+  font-size: 11px;
+  color: #44445a;
+  padding: 5px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  background: #13131e;
+  flex-shrink: 0;
+}
+
+/* Cards area */
+.cards-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+/* TCG Card */
+.tcg-card {
+  position: relative;
+  border-radius: 11px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  aspect-ratio: 600/825;
+  background: #1c1c2a;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+}
+.tcg-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,.6); }
+.tcg-card.owned { border-color: #4ade80; box-shadow: 0 0 16px rgba(74,222,128,.22); }
+.tcg-card img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 9px; }
+.tcg-owned-dot {
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 20px; height: 20px;
+  background: #4ade80;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: #111;
+  z-index: 3;
+}
+.tcg-meta {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 22px 8px 8px;
+  background: linear-gradient(transparent, rgba(0,0,0,.9));
+  font-size: 10px;
+  color: rgba(255,255,255,.7);
+  opacity: 0;
+  transition: opacity .2s;
+  z-index: 2;
+}
+.tcg-card:hover .tcg-meta { opacity: 1; }
+.tcg-meta-set { font-size: 11px; font-weight: 700; color: #fff; }
+.tcg-meta-rar { color: #f5c842; font-size: 9px; }
+
+/* Shimmer */
+.shimmer {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, #1c1c2a 25%, #2a2a3c 50%, #1c1c2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s infinite;
+  border-radius: 9px;
+  z-index: 1;
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* States */
+.state-center {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; padding: 60px 20px;
+  color: #44445a; text-align: center;
+}
+.state-center .si { font-size: 44px; }
+.state-center .st { font-size: 17px; font-weight: 700; color: #666688; }
+.state-center .ss { font-size: 13px; line-height: 1.7; max-width: 260px; }
+
+.spinner {
+  width: 22px; height: 22px;
+  border: 2px solid #1c1c2a;
+  border-top-color: #f5c842;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block; vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-row { display: flex; align-items: center; gap: 10px; padding: 20px; color: #55556a; font-size: 14px; }
+
+/* ═══════════════════════════════════════════
+   COLLECTION TAB
+═══════════════════════════════════════════ */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: #13131e;
+  flex-shrink: 0;
+}
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: #55556a;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .15s;
+}
+.tab-btn.active { color: #f5c842; border-bottom-color: #f5c842; }
+
+/* Collection list */
+.coll-area { flex: 1; overflow-y: auto; padding: 16px; }
+
+.coll-summary {
+  background: linear-gradient(135deg, #1c1c2a, #16162a);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.coll-summary::before {
+  content: '📚';
+  position: absolute;
+  right: 16px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  opacity: .15;
+}
+.coll-num {
+  font-family: 'Nunito', sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #4ade80;
+  line-height: 1;
+}
+.coll-lbl { font-size: 13px; color: #55556a; margin-top: 4px; }
+
+.coll-actions { display: flex; gap: 8px; margin-bottom: 16px; }
+.coll-btn {
+  flex: 1;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #1c1c2a;
+  color: #eeeef8;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.coll-btn:hover { border-color: #f5c842; color: #f5c842; }
+.coll-btn.danger:hover { border-color: #e84c2a; color: #e84c2a; }
+
+.coll-card-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #1c1c2a;
+  border-radius: 11px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.coll-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+.coll-card-id { flex: 1; font-size: 13px; color: #aaaacc; font-weight: 500; }
+.coll-remove { background: none; border: none; color: #33334a; font-size: 16px; cursor: pointer; padding: 2px 6px; transition: color .15s; }
+.coll-remove:hover { color: #e84c2a; }
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body { overflow: auto; }
+
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    height: auto;
+    max-height: 50vh;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .poke-list { max-height: calc(50vh - 120px); }
+
+  .main { height: auto; min-height: 50vh; }
+
+  .poke-header { padding: 12px 14px; }
+  .poke-header-art { width: 56px; height: 56px; }
+  .poke-header-name { font-size: 26px; }
+
+  .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+  .toolbar { padding: 8px 12px; }
+  .card-search { width: 140px; }
+
+  .cards-area { padding: 10px; }
+}
+
+@media (max-width: 400px) {
+  .grid-mode { grid-template-columns: repeat(3, 1fr); }
+  .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .lang-pills { gap: 4px; }
+  .lang-pill { padding: 4px 8px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ══════════════════════════════
+       SIDEBAR
+  ══════════════════════════════ -->
+  <div class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo">Pokémon <span>Binder</span></div>
+      <div class="logo-sub">Card Collection</div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" id="pokeSearch" placeholder="İsim veya numara ara..." autocomplete="off">
+      </div>
+
+      <div class="view-toggle">
+        <button class="vbtn" id="btnList" onclick="setView('list')">☰ Liste</button>
+        <button class="vbtn active" id="btnGrid" onclick="setView('grid')">⊞ Grid</button>
+      </div>
+    </div>
+
+    <div class="poke-list" id="pokeList">
+      <div class="loading-row"><div class="spinner"></div>&nbsp; Pokémon yükleniyor...</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       MAIN
+  ══════════════════════════════ -->
+  <div class="main" id="mainPanel">
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tabCards" onclick="setTab('cards')">🃏 Kartlar</button>
+      <button class="tab-btn" id="tabColl" onclick="setTab('collection')">📚 Koleksiyonum</button>
+    </div>
+
+    <!-- ── CARDS TAB ── -->
+    <div id="cardsTab" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+
+      <!-- Empty state -->
+      <div id="mainEmpty" class="main-empty">
+        <div class="ei">👈</div>
+        <div class="et">Bir Pokémon seç</div>
+        <div class="es">Soldaki listeden bir Pokémon'a tıkla, tüm dillerdeki kartlarını gör</div>
+      </div>
+
+      <!-- Pokemon header (hidden until selected) -->
+      <div id="pokeHeader" style="display:none;">
+        <div class="poke-header">
+          <img class="poke-header-art" id="headerArt" src="" alt="">
+          <div class="poke-header-info">
+            <div class="poke-header-num" id="headerNum"></div>
+            <div class="poke-header-name" id="headerName"></div>
+            <div class="poke-header-count" id="headerCount"></div>
+          </div>
+          <div class="owned-chip">
+            <div class="owned-chip-num" id="ownedChipNum">0</div>
+            <div class="owned-chip-lbl">Sahip</div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="lang-pills" id="langPills"></div>
+          <input class="card-search" id="cardSearch" placeholder="Set, nadir..." autocomplete="off">
+        </div>
+
+        <div class="hint-bar">💡 Karta tıkla → koleksiyona ekle / çıkar</div>
+      </div>
+
+      <div class="cards-area" id="cardsArea" style="display:none;">
+        <div class="cards-grid" id="cardsGrid"></div>
+      </div>
+
+    </div>
+
+    <!-- ── COLLECTION TAB ── -->
+    <div id="collTab" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+      <div class="coll-area" id="collArea">
+        <!-- filled by renderCollection() -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   CONFIG
+═══════════════════════════════════════════ */
+const LANGS = [
+  {code:'en', label:'🇺🇸 EN'},
+  {code:'ja', label:'🇯🇵 JP'},
+  {code:'zh-Hant', label:'🇹🇼 ZH'},
+  {code:'ko', label:'🇰🇷 KO'},
+  {code:'fr', label:'🇫🇷 FR'},
+  {code:'de', label:'🇩🇪 DE'},
+  {code:'it', label:'🇮🇹 IT'},
+  {code:'es', label:'🇪🇸 ES'},
+  {code:'pt', label:'🇧🇷 PT'},
+];
+
+const TYPE_COLORS = {
+  normal:'#8a8a6a',fire:'#c43018',water:'#3868c0',electric:'#b49000',
+  grass:'#328028',ice:'#429caccc',fighting:'#902010',poison:'#602890',
+  ground:'#906818',flying:'#4858b0',psychic:'#c01850',bug:'#5c7808',
+  rock:'#686820',ghost:'#302050',dragon:'#2010ac',dark:'#302820',
+  steel:'#587080',fairy:'#b05080',
+};
+
+const PAGE = 50;
+
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let allPoke = [], offset = 0, totalPoke = 0;
+let viewMode = 'grid';
+let selectedPoke = null;
+let activeLang = 'en';
+let tcgCards = [], cardSearchVal = '';
+let typeCache = {};
+let collection = loadCol();
+let activeTab = 'cards';
+
+/* ═══════════════════════════════════════════
+   COLLECTION STORAGE
+═══════════════════════════════════════════ */
+function loadCol() {
+  try { return JSON.parse(localStorage.getItem('pkbinder') || '{}'); }
+  catch { return {}; }
+}
+function saveCol() { localStorage.setItem('pkbinder', JSON.stringify(collection)); }
+
+function toggleOwned(cardId) {
+  if (collection[cardId]) delete collection[cardId];
+  else collection[cardId] = true;
+  saveCol();
+  renderTCGCards();
+  updateOwnedChip();
+}
+
+function ownedCount() { return Object.keys(collection).length; }
+function updateOwnedChip() {
+  document.getElementById('ownedChipNum').textContent = ownedCount();
+}
+
+/* ═══════════════════════════════════════════
+   BACKUP / RESTORE
+═══════════════════════════════════════════ */
+function exportCollection() {
+  const data = JSON.stringify(collection, null, 2);
+  const blob = new Blob([data], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `pokemon-binder-backup-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importCollection() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        collection = data;
+        saveCol();
+        renderCollection();
+        updateOwnedChip();
+        if (selectedPoke) renderTCGCards();
+        alert(`✅ ${ownedCount()} kart başarıyla yüklendi!`);
+      } catch { alert('❌ Dosya okunamadı. Geçerli bir yedek dosyası seç.'); }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function clearCollection() {
+  if (!confirm(`Tüm koleksiyonu silmek istediğine emin misin? (${ownedCount()} kart)`)) return;
+  collection = {};
+  saveCol();
+  renderCollection();
+  updateOwnedChip();
+  if (selectedPoke) renderTCGCards();
+}
+
+/* ═══════════════════════════════════════════
+   POKEAPI
+═══════════════════════════════════════════ */
+const artUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+const sprUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+const cap = n => n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+
+async function fetchPokeList(off = 0) {
+  const r = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${off}&limit=${PAGE}`);
+  const d = await r.json();
+  totalPoke = d.count;
+  return d.results.map((p, i) => ({ id: off + i + 1, name: p.name, display: cap(p.name), types: [] }));
+}
+
+async function fetchTypes(id) {
+  if (typeCache[id]) return typeCache[id];
+  try {
+    const r = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const d = await r.json();
+    const t = d.types.map(t => t.type.name);
+    typeCache[id] = t;
+    return t;
+  } catch { return []; }
+}
+
+async function batchFetchTypes(list) {
+  for (let i = 0; i < Math.min(list.length, 200); i += 6) {
+    const batch = list.slice(i, i + 6).filter(p => !p.types.length);
+    if (!batch.length) continue;
+    await Promise.all(batch.map(async p => {
+      const types = await fetchTypes(p.id);
+      const idx = allPoke.findIndex(x => x.id === p.id);
+      if (idx !== -1) { allPoke[idx].types = types; typeCache[p.id] = types; }
+    }));
+    renderPokeList();
+    await new Promise(r => setTimeout(r, 60));
+  }
+}
+
+/* ═══════════════════════════════════════════
+   TCGDEX
+═══════════════════════════════════════════ */
+async function fetchTCG(name, lang) {
+  try {
+    const r = await fetch(`https://api.tcgdex.net/v2/${lang}/cards?name=${encodeURIComponent(name)}`);
+    if (!r.ok) return [];
+    const d = await r.json();
+    return Array.isArray(d) ? d : [];
+  } catch { return []; }
+}
+
+/* ═══════════════════════════════════════════
+   RENDER: POKEMON LIST
+═══════════════════════════════════════════ */
+function primaryColor(types) {
+  const t = (types && types[0]) || 'normal';
+  return TYPE_COLORS[t] || '#8a8a6a';
+}
+
+function setView(mode) {
+  viewMode = mode;
+  document.getElementById('btnList').classList.toggle('active', mode === 'list');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  renderPokeList();
+}
+
+function renderPokeList() {
+  const q = document.getElementById('pokeSearch').value.toLowerCase().trim();
+  const list = document.getElementById('pokeList');
+  const filtered = q
+    ? allPoke.filter(p => p.name.includes(q) || p.display.toLowerCase().includes(q) || String(p.id) === q)
+    : allPoke;
+
+  const items = filtered.map(p => {
+    const col = primaryColor(p.types);
+    const num = '#' + String(p.id).padStart(3, '0');
+    const active = selectedPoke?.id === p.id;
+
+    if (viewMode === 'list') {
+      return `<div class="poke-row ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
+        <div class="poke-row-bg" style="background:${col}"></div>
+        <div class="poke-row-num">${num}</div>
+        <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy" width="74" height="74">
+        <div class="poke-row-info">
+          <div class="poke-row-name">${p.display}</div>
+          <div class="type-tags">${p.types.map(t=>`<span class="type-tag">${t}</span>`).join('')}</div>
+        </div>
+      </div>`;
+    } else {
+      return `<div class="poke-grid ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
+        <div class="poke-grid-bg" style="background:${col}"></div>
+        <div class="poke-grid-num">${num}</div>
+        <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy" width="64" height="64">
+        <div class="poke-grid-name">${p.display}</div>
+        <div class="poke-grid-id">${num}</div>
+      </div>`;
+    }
+  }).join('');
+
+  const loadBtn = (!q && allPoke.length < totalPoke)
+    ? `<button class="load-more-btn" onclick="loadMore()">Daha fazla yükle (${allPoke.length}/${totalPoke}) ↓</button>`
+    : '';
+
+  if (viewMode === 'list') {
+    list.innerHTML = `<div class="list-mode">${items}</div>${loadBtn}`;
+  } else {
+    list.innerHTML = `<div class="grid-mode">${items}</div>${loadBtn}`;
+  }
+}
+
+async function loadMore() {
+  const btn = document.querySelector('.load-more-btn');
+  if (btn) { btn.textContent = 'Yükleniyor...'; btn.disabled = true; }
+  const next = await fetchPokeList(offset);
+  allPoke = [...allPoke, ...next];
+  offset += PAGE;
+  renderPokeList();
+  batchFetchTypes(next);
+}
+
+/* ═══════════════════════════════════════════
+   SELECT POKEMON
+═══════════════════════════════════════════ */
+async function selectPoke(id, name, display) {
+  selectedPoke = { id, name, display };
+  activeLang = 'en';
+  tcgCards = [];
+  cardSearchVal = '';
+  document.getElementById('cardSearch').value = '';
+
+  // Show header
+  document.getElementById('mainEmpty').style.display = 'none';
+  document.getElementById('pokeHeader').style.display = 'block';
+  document.getElementById('cardsArea').style.display = 'block';
+
+  document.getElementById('headerArt').src = artUrl(id);
+  document.getElementById('headerNum').textContent = '#' + String(id).padStart(4, '0');
+  document.getElementById('headerName').textContent = display;
+  document.getElementById('headerCount').textContent = 'Yükleniyor...';
+  updateOwnedChip();
+
+  renderLangPills();
+  renderPokeList();
+
+  // Switch to cards tab on mobile
+  if (window.innerWidth <= 768) setTab('cards');
+
+  await loadTCGCards();
+}
+
+/* ═══════════════════════════════════════════
+   RENDER: LANG PILLS
+═══════════════════════════════════════════ */
+function renderLangPills() {
+  document.getElementById('langPills').innerHTML = LANGS.map(l =>
+    `<button class="lang-pill ${activeLang === l.code ? 'active' : ''}" onclick="setLang('${l.code}')">${l.label}</button>`
+  ).join('');
+}
+
+function setLang(code) {
+  activeLang = code;
+  renderLangPills();
+  if (selectedPoke) loadTCGCards();
+}
+
+/* ═══════════════════════════════════════════
+   LOAD + RENDER: TCG CARDS
+═══════════════════════════════════════════ */
+async function loadTCGCards() {
+  document.getElementById('cardsGrid').innerHTML =
+    `<div class="loading-row" style="grid-column:1/-1"><div class="spinner"></div>&nbsp; ${activeLang.toUpperCase()} kartları yükleniyor...</div>`;
+
+  try {
+    tcgCards = await fetchTCG(selectedPoke.name, activeLang);
+  } catch { tcgCards = []; }
+
+  document.getElementById('headerCount').textContent = `${tcgCards.length} kart bulundu`;
+  renderTCGCards();
+}
+
+function renderTCGCards() {
+  const grid = document.getElementById('cardsGrid');
+  const q = cardSearchVal.toLowerCase().trim();
+  const filtered = q
+    ? tcgCards.filter(c =>
+        (c.name||'').toLowerCase().includes(q) ||
+        (c.set?.name||'').toLowerCase().includes(q) ||
+        (c.rarity||'').toLowerCase().includes(q) ||
+        (c.localId||'').toLowerCase().includes(q))
+    : tcgCards;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="state-center" style="grid-column:1/-1">
+      <div class="si">${tcgCards.length === 0 ? '🌐' : '🔍'}</div>
+      <div class="st">${tcgCards.length === 0 ? 'Bu dilde kart yok' : 'Sonuç bulunamadı'}</div>
+      <div class="ss">${tcgCards.length === 0
+        ? `<strong>${activeLang.toUpperCase()}</strong> dilinde <strong>${selectedPoke?.display}</strong> kartı bulunamadı. Başka bir dil dene.`
+        : 'Arama kriterini değiştir.'}</div>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(c => {
+    const imgUrl = c.image ? `${c.image}/low.webp` : null;
+    const owned = !!collection[c.id];
+    const sid = 'sk_' + c.id.replace(/[^a-z0-9]/gi, '_');
+    const setName = c.set?.name || '';
+    const rarity = c.rarity || '';
+    const localId = c.localId || '';
+
+    return `<div class="tcg-card ${owned ? 'owned' : ''}" onclick="toggleOwned('${c.id}')">
+      <div class="shimmer" id="${sid}"></div>
+      ${imgUrl
+        ? `<img src="${imgUrl}" alt="${c.name||''}" loading="lazy"
+               onload="this.previousElementSibling&&this.previousElementSibling.remove()"
+               onerror="const s=document.getElementById('${sid}');if(s){s.style.animation='none';s.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center\\'>${(c.name||c.id).replace(/'/g,'&#39;')}</div>'}">`
+        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center">${c.name||c.id}</div>`}
+      ${owned ? '<div class="tcg-owned-dot">✓</div>' : ''}
+      <div class="tcg-meta">
+        <div class="tcg-meta-set">${setName}</div>
+        <div>#${localId} ${rarity ? '· <span class="tcg-meta-rar">' + rarity + '</span>' : ''}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  updateOwnedChip();
+}
+
+/* ═══════════════════════════════════════════
+   RENDER: COLLECTION
+═══════════════════════════════════════════ */
+function renderCollection() {
+  const area = document.getElementById('collArea');
+  const ids = Object.keys(collection).filter(k => collection[k]);
+  const count = ids.length;
+
+  area.innerHTML = `
+    <div class="coll-summary">
+      <div class="coll-num">${count}</div>
+      <div class="coll-lbl">Sahip Olduğun Kart</div>
+    </div>
+
+    <div class="coll-actions">
+      <button class="coll-btn" onclick="exportCollection()">⬇️ Yedekle</button>
+      <button class="coll-btn" onclick="importCollection()">⬆️ Geri Yükle</button>
+      <button class="coll-btn danger" onclick="clearCollection()">🗑️ Sıfırla</button>
+    </div>
+
+    ${count === 0
+      ? `<div class="state-center">
+          <div class="si">📭</div>
+          <div class="st">Koleksiyonun boş</div>
+          <div class="ss">Kartlar sekmesinden bir Pokémon seç, kartlara tıkla ve koleksiyonunu oluştur</div>
+        </div>`
+      : ids.map(id => `
+          <div class="coll-card-row">
+            <div class="coll-dot"></div>
+            <div class="coll-card-id">${id}</div>
+            <button class="coll-remove" onclick="removeCard('${id}')">✕</button>
+          </div>`).join('')
+    }
+  `;
+}
+
+function removeCard(cardId) {
+  delete collection[cardId];
+  saveCol();
+  renderCollection();
+  updateOwnedChip();
+  if (selectedPoke) renderTCGCards();
+}
+
+/* ═══════════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════════ */
+function setTab(tab) {
+  activeTab = tab;
+  document.getElementById('tabCards').classList.toggle('active', tab === 'cards');
+  document.getElementById('tabColl').classList.toggle('active', tab === 'collection');
+  document.getElementById('cardsTab').style.display = tab === 'cards' ? 'flex' : 'none';
+  document.getElementById('collTab').style.display = tab === 'collection' ? 'flex' : 'none';
+  if (tab === 'collection') renderCollection();
+}
+
+/* ═══════════════════════════════════════════
+   SEARCH EVENTS
+═══════════════════════════════════════════ */
+document.getElementById('pokeSearch').addEventListener('input', renderPokeList);
+document.getElementById('cardSearch').addEventListener('input', e => {
+  cardSearchVal = e.target.value;
+  renderTCGCards();
+});
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+(async function init() {
+  try {
+    const first = await fetchPokeList(0);
+    allPoke = first;
+    offset = PAGE;
+    setView('grid');
+    batchFetchTypes(first);
+  } catch(e) {
+    document.getElementById('pokeList').innerHTML =
+      `<div style="padding:20px;color:#e84c2a;font-size:13px">⚠️ Yüklenemedi: ${e.message}</div>`;
+  }
+})();
+</script>
+</body>
+</html>

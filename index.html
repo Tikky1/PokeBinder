@@ -11,8 +11,7 @@
    RESET & ROOT
 ═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { height: 100%; }
-body {
+html, body {
   font-family: 'DM Sans', system-ui, sans-serif;
   background: #0f0f17;
   color: #eeeef8;
@@ -43,10 +42,11 @@ body {
    LAYOUT — Desktop: sidebar + main | Mobile: stacked
 ═══════════════════════════════════════════ */
 .app {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  grid-template-rows: 100vh;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 /* ═══════════════════════════════════════════
@@ -54,15 +54,17 @@ body {
 ═══════════════════════════════════════════ */
 .sidebar {
   background: #13131e;
-  border-right: 1px solid rgba(255,255,255,0.06);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 100vh;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .sidebar-top {
-  padding: 18px 16px 12px;
+  padding: 18px 20px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   flex-shrink: 0;
 }
@@ -136,52 +138,41 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 8px;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── List mode ── */
-.list-mode { display: flex; flex-direction: column; gap: 7px; }
+.list-mode { display: flex; flex-direction: column; gap: 10px; }
 
 .poke-row {
   display: flex;
   align-items: center;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  min-height: 72px;
+  min-height: 88px;
   border: 2px solid transparent;
   position: relative;
   transition: transform .12s, border-color .15s;
+  padding: 0 14px 0 0;
 }
-.poke-row:active { transform: scale(.97); }
-.poke-row.active { border-color: rgba(255,255,255,.5); }
+.poke-row:active { transform: scale(.98); }
+.poke-row.active { border-color: rgba(255,255,255,.6); }
 .poke-row-bg {
   position: absolute; inset: 0;
   background: var(--row-color, #8a8a6a);
-  opacity: 1;
 }
 .poke-row-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(90deg, transparent 40%, rgba(0,0,0,.35) 100%);
-}
-.poke-row-num {
-  position: absolute;
-  right: 6px; bottom: -8px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 56px;
-  font-weight: 900;
-  color: rgba(0,0,0,.18);
-  line-height: 1;
-  pointer-events: none;
-  letter-spacing: -2px;
-  z-index: 1;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.03) 100%);
 }
 .poke-row img {
-  width: 74px; height: 74px;
+  width: 88px; height: 88px;
   object-fit: contain;
   flex-shrink: 0;
-  margin-left: -6px;
-  filter: drop-shadow(2px 4px 8px rgba(0,0,0,.5));
+  filter: drop-shadow(1px 2px 6px rgba(0,0,0,.3));
   z-index: 2;
   position: relative;
 }
@@ -189,27 +180,51 @@ body {
   flex: 1;
   z-index: 2;
   position: relative;
-  padding-right: 8px;
+  padding: 0 8px;
 }
 .poke-row-name {
   font-family: 'Nunito', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,.4);
+  text-shadow: 0 1px 4px rgba(0,0,0,.25);
   line-height: 1.1;
 }
-.type-tags { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.type-tags { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; }
 .type-tag {
-  background: rgba(0,0,0,.28);
-  color: rgba(255,255,255,.9);
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: .5px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.22);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,.15);
 }
+.poke-row-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  z-index: 2;
+  position: relative;
+  flex-shrink: 0;
+}
+.poke-row-num {
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: rgba(0,0,0,.18);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.poke-row-heart {
+  font-size: 20px;
+  color: rgba(255,255,255,.3);
+  cursor: pointer;
+  transition: all .15s;
+  background: none; border: none; padding: 0;
+}
+.poke-row-heart.owned { color: #ff6b8a; }
 
 /* ── Grid mode ── */
 .grid-mode {
@@ -217,20 +232,22 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 7px;
 }
+@media (min-width: 768px) { .grid-mode { grid-template-columns: repeat(6, 1fr); } }
 
 .poke-grid {
   border-radius: 13px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 3/4;
   border: 2px solid transparent;
   transition: transform .12s, border-color .15s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 8px 4px 6px;
+  gap: 2px;
 }
 .poke-grid:active { transform: scale(.93); }
 .poke-grid.active { border-color: rgba(255,255,255,.5); }
@@ -241,13 +258,13 @@ body {
 .poke-grid-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(160deg, transparent 30%, rgba(0,0,0,.4) 100%);
+  background: linear-gradient(160deg, transparent 40%, rgba(0,0,0,.15) 100%);
 }
 .poke-grid-num {
   position: absolute;
-  right: -4px; bottom: -10px;
+  right: -4px; bottom: -6px;
   font-family: 'Nunito', sans-serif;
-  font-size: 42px;
+  font-size: clamp(28px, 8vw, 42px);
   font-weight: 900;
   color: rgba(0,0,0,.18);
   line-height: 1;
@@ -255,7 +272,9 @@ body {
   z-index: 1;
 }
 .poke-grid img {
-  width: 64px; height: 64px;
+  width: 65%;
+  max-width: 120px;
+  aspect-ratio: 1;
   object-fit: contain;
   filter: drop-shadow(1px 3px 6px rgba(0,0,0,.5));
   z-index: 2;
@@ -263,49 +282,78 @@ body {
 }
 .poke-grid-name {
   font-family: 'Nunito', sans-serif;
-  font-size: 11px;
+  font-size: clamp(10px, 2.5vw, 13px);
   font-weight: 800;
   color: #fff;
   text-align: center;
   z-index: 2;
   position: relative;
-  margin-top: 4px;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
   line-height: 1.2;
 }
-.poke-grid-id {
-  font-size: 9px;
-  color: rgba(255,255,255,.45);
+.poke-grid-types {
+  display: flex;
+  gap: 3px;
   z-index: 2;
   position: relative;
-  font-weight: 700;
+  margin-top: 1px;
+}
+.poke-grid-types .type-tag {
+  width: 22px; height: 22px;
+  font-size: 11px;
 }
 
-/* Load more */
-.load-more-btn {
-  width: 100%;
-  margin-top: 8px;
-  padding: 11px;
-  background: #1c1c2a;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 13px;
-  color: #55556a;
-  font-size: 13px;
-  font-family: inherit;
+/* ── Gen Section Header ── */
+.gen-section { margin-bottom: 4px; }
+
+.gen-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 6px;
   cursor: pointer;
-  transition: all .15s;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #13131e;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  transition: background .15s;
 }
-.load-more-btn:hover { color: #eeeef8; border-color: #f5c842; }
+.gen-header:hover { background: #1c1c2a; }
+
+.gen-badge {
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.gen-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  flex: 1;
+  color: #aaaacc;
+}
+.gen-count { font-size: 11px; color: #44445a; }
+.gen-arrow { font-size: 12px; color: #44445a; transition: transform .2s; }
+.gen-header.collapsed .gen-arrow { transform: rotate(-90deg); }
+
+.gen-body { overflow: hidden; }
+.gen-body.collapsed { display: none; }
+
+/* Load more - removed, full gen loads at once */
 
 /* ═══════════════════════════════════════════
    MAIN PANEL
 ═══════════════════════════════════════════ */
 .main {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100vh;
-  background: #0f0f17;
+  display: none;
 }
 
 /* Empty state */
@@ -449,7 +497,7 @@ body {
 .tcg-card {
   position: relative;
   border-radius: 11px;
-  overflow: hidden;
+  overflow: visible;
   border: 2px solid transparent;
   cursor: pointer;
   aspect-ratio: 600/825;
@@ -457,31 +505,72 @@ body {
   transition: transform .18s, border-color .18s, box-shadow .18s;
 }
 .tcg-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,.6); }
-.tcg-card.owned { border-color: #4ade80; box-shadow: 0 0 16px rgba(74,222,128,.22); }
-.tcg-card img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 9px; }
+.tcg-card.owned .tcg-card-img { border-color: #4ade80 !important; box-shadow: 0 0 16px rgba(74,222,128,.22); }
+.tcg-card-img { border-radius: 11px; overflow: hidden; aspect-ratio: 2/3; background: #1c1c2a; }
+.tcg-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.tcg-label { padding: 5px 2px 2px; font-size: 10px; color: #6666aa; line-height: 1.4; text-align: center; }
+.tcg-label-set { font-weight: 600; color: #8888bb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tcg-label-id { font-size: 9px; opacity: .7; }
 .tcg-owned-dot {
   position: absolute;
   top: 6px; right: 6px;
-  width: 20px; height: 20px;
   background: #4ade80;
-  border-radius: 50%;
+  border-radius: 10px;
+  padding: 2px 6px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 800; color: #111;
+  font-size: 10px; font-weight: 800; color: #111;
   z-index: 3;
+  white-space: nowrap;
 }
-.tcg-meta {
+.lang-pick-overlay {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 22px 8px 8px;
-  background: linear-gradient(transparent, rgba(0,0,0,.9));
-  font-size: 10px;
-  color: rgba(255,255,255,.7);
-  opacity: 0;
-  transition: opacity .2s;
-  z-index: 2;
+  inset: 0;
+  background: rgba(10,10,20,.92);
+  border-radius: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 6px;
 }
-.tcg-card:hover .tcg-meta { opacity: 1; }
-.tcg-meta-set { font-size: 11px; font-weight: 700; color: #fff; }
+.lang-pick-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #aaaacc;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.lang-pick-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+.lang-pick-btn {
+  background: rgba(99,102,241,.2);
+  border: 1px solid rgba(99,102,241,.4);
+  color: #a5b4fc;
+  border-radius: 6px;
+  padding: 4px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.lang-pick-btn:hover { background: rgba(99,102,241,.5); border-color: #818cf8; color: #fff; }
+.lang-pick-cancel {
+  background: none;
+  border: none;
+  color: #44445a;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+.lang-pick-cancel:hover { color: #aaaacc; }
+.tcg-card.pending .tcg-card-img { outline: 2px solid #6366f1; border-radius: 11px; }
+.tcg-card.owned .tcg-card-img { border: 2px solid #4ade80; box-shadow: 0 0 16px rgba(74,222,128,.22); }
 .tcg-meta-rar { color: #f5c842; font-size: 9px; }
 
 /* Shimmer */
@@ -520,26 +609,8 @@ body {
 /* ═══════════════════════════════════════════
    COLLECTION TAB
 ═══════════════════════════════════════════ */
-.tab-bar {
-  display: flex;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  background: #13131e;
-  flex-shrink: 0;
-}
-.tab-btn {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  background: transparent;
-  color: #55556a;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all .15s;
-}
-.tab-btn.active { color: #f5c842; border-bottom-color: #f5c842; }
+.tab-bar { display: none; }
+.tab-btn { display: none; }
 
 /* Collection list */
 .coll-area { flex: 1; overflow-y: auto; padding: 16px; }
@@ -600,7 +671,11 @@ body {
   border: 1px solid rgba(255,255,255,0.05);
 }
 .coll-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
-.coll-card-id { flex: 1; font-size: 13px; color: #aaaacc; font-weight: 500; }
+.coll-thumb { width: 44px; height: 62px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+.coll-info { flex: 1; min-width: 0; }
+.coll-card-name { font-size: 13px; color: #ccccee; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.coll-card-sub { font-size: 11px; color: #666688; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.coll-lang-badge { background: rgba(99,102,241,0.25); color: #a5b4fc; border-radius: 4px; padding: 1px 5px; font-size: 10px; font-weight: 700; }
 .coll-remove { background: none; border: none; color: #33334a; font-size: 16px; cursor: pointer; padding: 2px 6px; transition: color .15s; }
 .coll-remove:hover { color: #e84c2a; }
 
@@ -608,25 +683,27 @@ body {
    MOBILE RESPONSIVE
 ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  body { overflow: auto; }
+  body { overflow: hidden; }
 
   .app {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    height: auto;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
   }
 
   .sidebar {
-    height: auto;
-    max-height: 50vh;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
     border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: none;
   }
 
-  .poke-list { max-height: calc(50vh - 120px); }
+  
 
-  .main { height: auto; min-height: 50vh; }
+  .main { display: none; }
 
   .poke-header { padding: 12px 14px; }
   .poke-header-art { width: 56px; height: 56px; }
@@ -641,10 +718,195 @@ body {
 }
 
 @media (max-width: 400px) {
-  .grid-mode { grid-template-columns: repeat(3, 1fr); }
   .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .lang-pills { gap: 4px; }
   .lang-pill { padding: 4px 8px; font-size: 11px; }
+}
+
+/* ═══════════════════════════════════════════
+   SETTINGS
+═══════════════════════════════════════════ */
+.settings-section { padding: 16px; }
+.settings-section-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #eeeef8;
+  margin-bottom: 4px;
+}
+.settings-section-desc {
+  font-size: 12px;
+  color: #55556a;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.settings-lang-list { display: flex; flex-direction: column; gap: 6px; }
+.settings-lang-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 13px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  user-select: none;
+}
+.settings-lang-row:hover { border-color: rgba(255,255,255,0.12); background: #22223a; }
+.settings-lang-flag { font-size: 24px; flex-shrink: 0; }
+.settings-lang-info { flex: 1; }
+.settings-lang-name { font-size: 14px; font-weight: 600; color: #eeeef8; }
+.settings-lang-code { font-size: 11px; color: #55556a; margin-top: 1px; }
+
+.settings-toggle {
+  width: 44px;
+  height: 26px;
+  border-radius: 13px;
+  background: #2a2a3a;
+  position: relative;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.settings-toggle.on { background: #4ade80; }
+.settings-toggle-knob {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform .2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.settings-toggle.on .settings-toggle-knob { transform: translateX(18px); }
+
+/* ═══════════════════════════════════════════
+   MODAL POPUP
+═══════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn .15s ease;
+}
+.modal-overlay.open { display: flex; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+.modal-box {
+  background: #13131e;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp .2s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 24px 80px rgba(0,0,0,.8);
+}
+@keyframes slideUp { from{transform:translateY(24px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.modal-art {
+  width: 68px; height: 68px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.6));
+}
+.modal-info { flex: 1; }
+.modal-num { font-size: 11px; color: #55556a; letter-spacing: 1px; }
+.modal-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 28px; font-weight: 900; line-height: 1;
+}
+.modal-count { font-size: 12px; color: #55556a; margin-top: 2px; }
+
+.modal-owned-chip {
+  background: rgba(74,222,128,.08);
+  border: 1px solid rgba(74,222,128,.2);
+  border-radius: 10px;
+  padding: 6px 12px;
+  text-align: center;
+  min-width: 56px;
+}
+.moc-num { font-family:'Nunito',sans-serif; font-size:22px; font-weight:900; color:#4ade80; line-height:1; }
+.moc-lbl { font-size:9px; color:#55556a; text-transform:uppercase; letter-spacing:1px; }
+
+.modal-close {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.07);
+  color: #6a6a80;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.modal-close:hover { background: #e84c2a22; border-color: #e84c2a; color: #e84c2a; }
+
+.modal-langs {
+  display: flex;
+  gap: 5px;
+  padding: 8px 14px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  -webkit-overflow-scrolling: touch;
+}
+.modal-langs::-webkit-scrollbar { display: none; }
+
+.modal-search-wrap {
+  padding: 8px 14px 4px;
+  flex-shrink: 0;
+}
+.modal-search {
+  width: 100%;
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 8px 12px 8px 32px;
+  font-size: 13px;
+  color: #eeeef8;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%2344445a' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  box-sizing: border-box;
+}
+.modal-search:focus { border-color: #f5c842; }
+.modal-search::placeholder { color: #44445a; }
+
+.modal-hint { font-size: 11px; color: #44445a; padding: 3px 14px 6px; flex-shrink: 0; }
+
+.modal-cards-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px 20px;
+}
+
+@media (max-width: 500px) {
+  .modal-box { max-height: 95vh; border-radius: 16px; }
+  .modal-name { font-size: 22px; }
+  .modal-art { width: 52px; height: 52px; }
 }
 </style>
 </head>
@@ -668,6 +930,8 @@ body {
       <div class="view-toggle">
         <button class="vbtn" id="btnList" onclick="setView('list')">☰ Liste</button>
         <button class="vbtn active" id="btnGrid" onclick="setView('grid')">⊞ Grid</button>
+        <button class="vbtn" id="btnColl" onclick="openCollection()" title="Koleksiyonum">📚</button>
+        <button class="vbtn" onclick="openSettings()" title="Ayarlar">⚙️</button>
       </div>
     </div>
 
@@ -689,41 +953,11 @@ body {
 
     <!-- ── CARDS TAB ── -->
     <div id="cardsTab" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
-
-      <!-- Empty state -->
-      <div id="mainEmpty" class="main-empty">
-        <div class="ei">👈</div>
-        <div class="et">Bir Pokémon seç</div>
-        <div class="es">Soldaki listeden bir Pokémon'a tıkla, tüm dillerdeki kartlarını gör</div>
+      <div class="main-empty">
+        <div class="ei">🃏</div>
+        <div class="et">Pokédex'ten seç</div>
+        <div class="es">Soldaki listeden bir Pokémon'a tıkla, tüm kartlarını popup olarak gör</div>
       </div>
-
-      <!-- Pokemon header (hidden until selected) -->
-      <div id="pokeHeader" style="display:none;">
-        <div class="poke-header">
-          <img class="poke-header-art" id="headerArt" src="" alt="">
-          <div class="poke-header-info">
-            <div class="poke-header-num" id="headerNum"></div>
-            <div class="poke-header-name" id="headerName"></div>
-            <div class="poke-header-count" id="headerCount"></div>
-          </div>
-          <div class="owned-chip">
-            <div class="owned-chip-num" id="ownedChipNum">0</div>
-            <div class="owned-chip-lbl">Sahip</div>
-          </div>
-        </div>
-
-        <div class="toolbar">
-          <div class="lang-pills" id="langPills"></div>
-          <input class="card-search" id="cardSearch" placeholder="Set, nadir..." autocomplete="off">
-        </div>
-
-        <div class="hint-bar">💡 Karta tıkla → koleksiyona ekle / çıkar</div>
-      </div>
-
-      <div class="cards-area" id="cardsArea" style="display:none;">
-        <div class="cards-grid" id="cardsGrid"></div>
-      </div>
-
     </div>
 
     <!-- ── COLLECTION TAB ── -->
@@ -736,39 +970,87 @@ body {
   </div>
 </div>
 
+
+<!-- ══ CARD MODAL ══ -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <img class="modal-art" id="modalArt" src="" alt="">
+      <div class="modal-info">
+        <div class="modal-num" id="modalNum"></div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-count" id="modalCount"></div>
+      </div>
+      <div class="modal-owned-chip">
+        <div class="moc-num" id="modalOwnedNum">0</div>
+        <div class="moc-lbl">Sahip</div>
+      </div>
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div class="modal-langs" id="modalLangs" style="display:none"></div>
+    <div class="modal-search-wrap">
+      <input class="modal-search" id="modalCardSearch" placeholder="Set adı, nadir..." autocomplete="off">
+    </div>
+    <div class="modal-hint">💡 Karta tıkla → koleksiyona ekle / çıkar</div>
+    <div class="modal-cards-scroll">
+      <div class="cards-grid" id="cardsGrid"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ═══════════════════════════════════════════
    CONFIG
 ═══════════════════════════════════════════ */
 const LANGS = [
-  {code:'en', label:'🇺🇸 EN'},
-  {code:'ja', label:'🇯🇵 JP'},
-  {code:'zh-Hant', label:'🇹🇼 ZH'},
-  {code:'ko', label:'🇰🇷 KO'},
-  {code:'fr', label:'🇫🇷 FR'},
-  {code:'de', label:'🇩🇪 DE'},
-  {code:'it', label:'🇮🇹 IT'},
-  {code:'es', label:'🇪🇸 ES'},
-  {code:'pt', label:'🇧🇷 PT'},
+  {code:'en', label:'🇺🇸 EN', name:'İngilizce'},
+  {code:'ja', label:'🇯🇵 JP', name:'Japonca'},
+  {code:'zh-Hant', label:'🇹🇼 ZH', name:'Çince (Geleneksel)'},
+  {code:'ko', label:'🇰🇷 KO', name:'Korece'},
+  {code:'fr', label:'🇫🇷 FR', name:'Fransızca'},
+  {code:'de', label:'🇩🇪 DE', name:'Almanca'},
+  {code:'it', label:'🇮🇹 IT', name:'İtalyanca'},
+  {code:'es', label:'🇪🇸 ES', name:'İspanyolca'},
+  {code:'pt', label:'🇧🇷 PT', name:'Portekizce'},
 ];
 
+
+
+const TYPE_EMOJI = {
+  normal:'⚪',fire:'🔥',water:'💧',electric:'⚡',grass:'🍃',ice:'❄️',
+  fighting:'🥊',poison:'☠️',ground:'🌍',flying:'🌪️',psychic:'🔮',bug:'🐛',
+  rock:'🪨',ghost:'👻',dragon:'🐉',dark:'🌑',steel:'⚙️',fairy:'✨',
+};
 const TYPE_COLORS = {
-  normal:'#8a8a6a',fire:'#c43018',water:'#3868c0',electric:'#b49000',
-  grass:'#328028',ice:'#429caccc',fighting:'#902010',poison:'#602890',
-  ground:'#906818',flying:'#4858b0',psychic:'#c01850',bug:'#5c7808',
-  rock:'#686820',ghost:'#302050',dragon:'#2010ac',dark:'#302820',
-  steel:'#587080',fairy:'#b05080',
+  normal:'#a8a878',fire:'#d08030',water:'#6890f0',electric:'#c8a820',
+  grass:'#78c850',ice:'#98d8d8',fighting:'#c03028',poison:'#a050a0',
+  ground:'#c8a848',flying:'#a890f0',psychic:'#f05888',bug:'#a8b820',
+  rock:'#b8a038',ghost:'#705898',dragon:'#7038f8',dark:'#705848',
+  steel:'#b8b8d0',fairy:'#f0a0c0',
 };
 
-const PAGE = 50;
+// Gen aralıkları — id dahil her iki uç
+const GENS = [
+  { num:1, label:'Kanto',  color:'#e84c2a', from:1,   to:151  },
+  { num:2, label:'Johto',  color:'#d4a000', from:152, to:251  },
+  { num:3, label:'Hoenn',  color:'#3a9030', from:252, to:386  },
+  { num:4, label:'Sinnoh', color:'#4868d0', from:387, to:493  },
+  { num:5, label:'Unova',  color:'#888888', from:494, to:649  },
+  { num:6, label:'Kalos',  color:'#e07030', from:650, to:721  },
+  { num:7, label:'Alola',  color:'#20b090', from:722, to:809  },
+  { num:8, label:'Galar',  color:'#8040c0', from:810, to:905  },
+  { num:9, label:'Paldea', color:'#d04060', from:906, to:1025 },
+];
+
+// Her gen için: pokemon listesi ve durum
+let genData = GENS.map(g => ({ loaded: false, pokemon: [], expanded: g.num === 1, loading: false }));
 
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-let allPoke = [], offset = 0, totalPoke = 0;
 let viewMode = 'grid';
 let selectedPoke = null;
-let activeLang = 'en';
+let pendingCardId = null; // dil seçimi beklenen kartın ID'si
 let tcgCards = [], cardSearchVal = '';
 let typeCache = {};
 let collection = loadCol();
@@ -783,17 +1065,38 @@ function loadCol() {
 }
 function saveCol() { localStorage.setItem('pkbinder', JSON.stringify(collection)); }
 
-function toggleOwned(cardId) {
-  if (collection[cardId]) delete collection[cardId];
-  else collection[cardId] = true;
+function toggleOwned(cardId, cardData) {
+  if (collection[cardId]) {
+    delete collection[cardId];
+    pendingCardId = null;
+    saveCol();
+    renderTCGCards();
+    updateOwnedChip();
+  } else {
+    pendingCardId = cardId;
+    renderTCGCards(); // dil seçici overlay'i göster
+  }
+}
+
+function addWithLang(cardId, lang) {
+  const card = tcgCards.find(c => c.id === cardId);
+  if (!card) return;
+  collection[cardId] = { lang, name: card.name, image: card.image, set: card.set, localId: card.localId };
+  pendingCardId = null;
   saveCol();
   renderTCGCards();
   updateOwnedChip();
 }
 
+function cancelLangPick() {
+  pendingCardId = null;
+  renderTCGCards();
+}
+
 function ownedCount() { return Object.keys(collection).length; }
 function updateOwnedChip() {
-  document.getElementById('ownedChipNum').textContent = ownedCount();
+  const el = document.getElementById('modalOwnedNum');
+  if (el) el.textContent = ownedCount();
 }
 
 /* ═══════════════════════════════════════════
@@ -847,14 +1150,35 @@ function clearCollection() {
    POKEAPI
 ═══════════════════════════════════════════ */
 const artUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-const sprUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+const sprUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 const cap = n => n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
 
-async function fetchPokeList(off = 0) {
-  const r = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${off}&limit=${PAGE}`);
-  const d = await r.json();
-  totalPoke = d.count;
-  return d.results.map((p, i) => ({ id: off + i + 1, name: p.name, display: cap(p.name), types: [] }));
+function getGenIndex(id) {
+  return GENS.findIndex(g => id >= g.from && id <= g.to);
+}
+
+// Tüm 1025 pokemonu tek istekle yükle, gen'lere dağıt
+async function loadAllPokemon() {
+  try {
+    const r = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025');
+    const d = await r.json();
+    const allPokemon = d.results.map((p, i) => ({
+      id: i + 1, name: p.name, display: cap(p.name), types: [],
+    }));
+    GENS.forEach((gen, gi) => {
+      genData[gi].pokemon = allPokemon.filter(p => p.id >= gen.from && p.id <= gen.to);
+      genData[gi].loaded = true;
+    });
+    renderPokeList();
+    // Expanded gen'lerin type'larını önce yükle
+    const order = [
+      ...GENS.map((_,gi) => gi).filter(gi => genData[gi].expanded),
+      ...GENS.map((_,gi) => gi).filter(gi => !genData[gi].expanded),
+    ];
+    for (const gi of order) await batchFetchTypes(gi, genData[gi].pokemon);
+  } catch(e) {
+    console.error('Pokemon yükleme hatası:', e);
+  }
 }
 
 async function fetchTypes(id) {
@@ -868,29 +1192,28 @@ async function fetchTypes(id) {
   } catch { return []; }
 }
 
-async function batchFetchTypes(list) {
-  for (let i = 0; i < Math.min(list.length, 200); i += 6) {
-    const batch = list.slice(i, i + 6).filter(p => !p.types.length);
-    if (!batch.length) continue;
+async function batchFetchTypes(gi, list) {
+  const uncached = list.filter(p => !typeCache[p.id]);
+  for (let i = 0; i < uncached.length; i += 20) {
+    const batch = uncached.slice(i, i + 20);
     await Promise.all(batch.map(async p => {
       const types = await fetchTypes(p.id);
-      const idx = allPoke.findIndex(x => x.id === p.id);
-      if (idx !== -1) { allPoke[idx].types = types; typeCache[p.id] = types; }
+      const idx = genData[gi].pokemon.findIndex(x => x.id === p.id);
+      if (idx !== -1) genData[gi].pokemon[idx].types = types;
     }));
     renderPokeList();
-    await new Promise(r => setTimeout(r, 60));
   }
 }
 
 /* ═══════════════════════════════════════════
-   TCGDEX
+   TCGDEX — sadece İngilizce kart çekme
 ═══════════════════════════════════════════ */
-async function fetchTCG(name, lang) {
+async function fetchTCG(pokemonId) {
   try {
-    const r = await fetch(`https://api.tcgdex.net/v2/${lang}/cards?name=${encodeURIComponent(name)}`);
+    const r = await fetch(`https://api.tcgdex.net/v2/en/dex-ids/${pokemonId}`);
     if (!r.ok) return [];
     const d = await r.json();
-    return Array.isArray(d) ? d : [];
+    return Array.isArray(d.cards) ? d.cards : [];
   } catch { return []; }
 }
 
@@ -899,7 +1222,19 @@ async function fetchTCG(name, lang) {
 ═══════════════════════════════════════════ */
 function primaryColor(types) {
   const t = (types && types[0]) || 'normal';
-  return TYPE_COLORS[t] || '#8a8a6a';
+  return TYPE_COLORS[t] || '#a8a878';
+}
+
+// Converts a hex type color into a muted lavender/desaturated end for the row gradient
+function adjustToLavender(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  // Blend toward a soft lavender (180, 170, 200) with 55% weight
+  const lr = Math.round(r * 0.45 + 180 * 0.55);
+  const lg = Math.round(g * 0.45 + 170 * 0.55);
+  const lb = Math.round(b * 0.45 + 200 * 0.55);
+  return `rgb(${lr},${lg},${lb})`;
 }
 
 function setView(mode) {
@@ -909,58 +1244,100 @@ function setView(mode) {
   renderPokeList();
 }
 
+function toggleGen(gi) {
+  genData[gi].expanded = !genData[gi].expanded;
+  renderPokeList();
+}
+
+function getAllPokemon() {
+  return GENS.flatMap((_, gi) => genData[gi].pokemon).map(p => ({
+    ...p, types: typeCache[p.id] || p.types,
+  }));
+}
+
 function renderPokeList() {
   const q = document.getElementById('pokeSearch').value.toLowerCase().trim();
   const list = document.getElementById('pokeList');
-  const filtered = q
-    ? allPoke.filter(p => p.name.includes(q) || p.display.toLowerCase().includes(q) || String(p.id) === q)
-    : allPoke;
 
-  const items = filtered.map(p => {
-    const col = primaryColor(p.types);
-    const num = '#' + String(p.id).padStart(3, '0');
-    const active = selectedPoke?.id === p.id;
-
-    if (viewMode === 'list') {
-      return `<div class="poke-row ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
-        <div class="poke-row-bg" style="background:${col}"></div>
-        <div class="poke-row-num">${num}</div>
-        <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy" width="74" height="74">
-        <div class="poke-row-info">
-          <div class="poke-row-name">${p.display}</div>
-          <div class="type-tags">${p.types.map(t=>`<span class="type-tag">${t}</span>`).join('')}</div>
-        </div>
-      </div>`;
-    } else {
-      return `<div class="poke-grid ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
-        <div class="poke-grid-bg" style="background:${col}"></div>
-        <div class="poke-grid-num">${num}</div>
-        <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy" width="64" height="64">
-        <div class="poke-grid-name">${p.display}</div>
-        <div class="poke-grid-id">${num}</div>
-      </div>`;
+  // Arama modunda: tüm pokemon arasında ara
+  if (q) {
+    const all = getAllPokemon();
+    if (all.length === 0) {
+      list.innerHTML = `<div class="loading-row"><div class="spinner"></div>&nbsp; Pokémon yükleniyor...</div>`;
+      return;
     }
-  }).join('');
-
-  const loadBtn = (!q && allPoke.length < totalPoke)
-    ? `<button class="load-more-btn" onclick="loadMore()">Daha fazla yükle (${allPoke.length}/${totalPoke}) ↓</button>`
-    : '';
-
-  if (viewMode === 'list') {
-    list.innerHTML = `<div class="list-mode">${items}</div>${loadBtn}`;
-  } else {
-    list.innerHTML = `<div class="grid-mode">${items}</div>${loadBtn}`;
+    const filtered = all.filter(p =>
+      p.name.includes(q) || p.display.toLowerCase().includes(q) || String(p.id) === q
+    );
+    if (filtered.length === 0) {
+      list.innerHTML = `<div class="state-center"><div class="si">🔍</div><div class="st">Sonuç bulunamadı</div></div>`;
+      return;
+    }
+    const items = filtered.map(p => renderPokeItem(p)).join('');
+    list.innerHTML = viewMode === 'list'
+      ? `<div class="list-mode">${items}</div>`
+      : `<div class="grid-mode">${items}</div>`;
+    return;
   }
+
+  // Gen bazlı render
+  list.innerHTML = GENS.map((gen, gi) => {
+    const gd = genData[gi];
+    const collapsed = !gd.expanded;
+    const totalInGen = gen.to - gen.from + 1;
+
+    let bodyContent = '';
+    if (!gd.loaded) {
+      bodyContent = `<div class="loading-row"><div class="spinner"></div>&nbsp; Yükleniyor...</div>`;
+    } else if (gd.pokemon.length > 0) {
+      const items = gd.pokemon.map(p => renderPokeItem(p)).join('');
+      bodyContent = viewMode === 'list'
+        ? `<div class="list-mode">${items}</div>`
+        : `<div class="grid-mode">${items}</div>`;
+    }
+
+    return `<div class="gen-section">
+      <div class="gen-header ${collapsed ? 'collapsed' : ''}" onclick="toggleGen(${gi})">
+        <span class="gen-badge" style="background:${gen.color}22;color:${gen.color};border:1px solid ${gen.color}44">
+          Gen ${gen.num}
+        </span>
+        <span class="gen-title">${gen.label}</span>
+        <span class="gen-count">${totalInGen}</span>
+        <span class="gen-arrow">▾</span>
+      </div>
+      <div class="gen-body ${collapsed ? 'collapsed' : ''}">
+        ${bodyContent}
+      </div>
+    </div>`;
+  }).join('');
 }
 
-async function loadMore() {
-  const btn = document.querySelector('.load-more-btn');
-  if (btn) { btn.textContent = 'Yükleniyor...'; btn.disabled = true; }
-  const next = await fetchPokeList(offset);
-  allPoke = [...allPoke, ...next];
-  offset += PAGE;
-  renderPokeList();
-  batchFetchTypes(next);
+function renderPokeItem(p) {
+  const col = primaryColor(p.types);
+  const num = '#' + String(p.id).padStart(3, '0');
+  const active = selectedPoke?.id === p.id;
+  const typeTags = p.types.map(t => `<span class="type-tag" title="${t}">${TYPE_EMOJI[t]||'❓'}</span>`).join('');
+  if (viewMode === 'list') {
+    return `<div class="poke-row ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
+      <div class="poke-row-bg" style="background:linear-gradient(105deg,${col} 0%,${col}bb 35%,${adjustToLavender(col)} 100%)"></div>
+      <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy" width="88" height="88">
+      <div class="poke-row-info">
+        <div class="poke-row-name">${p.display}</div>
+        <div class="type-tags">${typeTags}</div>
+      </div>
+      <div class="poke-row-right">
+        <div class="poke-row-num">${num}</div>
+      </div>
+    </div>`;
+  } else {
+    return `<div class="poke-grid ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
+      <div class="poke-grid-bg" style="background:linear-gradient(160deg,${col} 0%,${adjustToLavender(col)} 100%)"></div>
+      <div class="poke-grid-num">${num}</div>
+      <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy">
+      <div class="poke-grid-name">${p.display}</div>
+      <div class="poke-grid-types">${typeTags}</div>
+    </div>`;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -968,58 +1345,66 @@ async function loadMore() {
 ═══════════════════════════════════════════ */
 async function selectPoke(id, name, display) {
   selectedPoke = { id, name, display };
-  activeLang = 'en';
   tcgCards = [];
   cardSearchVal = '';
-  document.getElementById('cardSearch').value = '';
+  document.getElementById('modalCardSearch').value = '';
 
-  // Show header
-  document.getElementById('mainEmpty').style.display = 'none';
-  document.getElementById('pokeHeader').style.display = 'block';
-  document.getElementById('cardsArea').style.display = 'block';
+  // Open modal
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 
-  document.getElementById('headerArt').src = artUrl(id);
-  document.getElementById('headerNum').textContent = '#' + String(id).padStart(4, '0');
-  document.getElementById('headerName').textContent = display;
-  document.getElementById('headerCount').textContent = 'Yükleniyor...';
+  document.getElementById('modalArt').src = artUrl(id);
+  document.getElementById('modalNum').textContent = '#' + String(id).padStart(4, '0');
+  document.getElementById('modalName').textContent = display;
+  document.getElementById('modalCount').textContent = 'Yükleniyor...';
   updateOwnedChip();
 
-  renderLangPills();
   renderPokeList();
 
-  // Switch to cards tab on mobile
-  if (window.innerWidth <= 768) setTab('cards');
-
   await loadTCGCards();
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+}
+
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  selectedPoke = null;
+  pendingCardId = null;
+  renderPokeList();
+}
+
+function openCollection() {
+  document.getElementById('collOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderCollection();
+}
+
+function closeCollection(e) {
+  if (!e || e.target === document.getElementById('collOverlay')) {
+    document.getElementById('collOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 }
 
 /* ═══════════════════════════════════════════
    RENDER: LANG PILLS
 ═══════════════════════════════════════════ */
-function renderLangPills() {
-  document.getElementById('langPills').innerHTML = LANGS.map(l =>
-    `<button class="lang-pill ${activeLang === l.code ? 'active' : ''}" onclick="setLang('${l.code}')">${l.label}</button>`
-  ).join('');
-}
-
-function setLang(code) {
-  activeLang = code;
-  renderLangPills();
-  if (selectedPoke) loadTCGCards();
-}
 
 /* ═══════════════════════════════════════════
    LOAD + RENDER: TCG CARDS
 ═══════════════════════════════════════════ */
 async function loadTCGCards() {
   document.getElementById('cardsGrid').innerHTML =
-    `<div class="loading-row" style="grid-column:1/-1"><div class="spinner"></div>&nbsp; ${activeLang.toUpperCase()} kartları yükleniyor...</div>`;
+    `<div class="loading-row" style="grid-column:1/-1"><div class="spinner"></div>&nbsp; Kartlar yükleniyor...</div>`;
 
   try {
-    tcgCards = await fetchTCG(selectedPoke.name, activeLang);
+    tcgCards = await fetchTCG(selectedPoke.id);
   } catch { tcgCards = []; }
 
-  document.getElementById('headerCount').textContent = `${tcgCards.length} kart bulundu`;
+  document.getElementById('modalCount').textContent = `${tcgCards.length} kart bulundu`;
   renderTCGCards();
 }
 
@@ -1039,7 +1424,7 @@ function renderTCGCards() {
       <div class="si">${tcgCards.length === 0 ? '🌐' : '🔍'}</div>
       <div class="st">${tcgCards.length === 0 ? 'Bu dilde kart yok' : 'Sonuç bulunamadı'}</div>
       <div class="ss">${tcgCards.length === 0
-        ? `<strong>${activeLang.toUpperCase()}</strong> dilinde <strong>${selectedPoke?.display}</strong> kartı bulunamadı. Başka bir dil dene.`
+        ? `<strong>${selectedPoke?.display}</strong> için kart bulunamadı.`
         : 'Arama kriterini değiştir.'}</div>
     </div>`;
     return;
@@ -1047,23 +1432,43 @@ function renderTCGCards() {
 
   grid.innerHTML = filtered.map(c => {
     const imgUrl = c.image ? `${c.image}/low.webp` : null;
-    const owned = !!collection[c.id];
+    const entry = collection[c.id];
+    const owned = !!entry;
+    const isPending = pendingCardId === c.id;
+    const ownedLang = owned ? (LANGS.find(l => l.code === entry.lang) || LANGS[0]) : null;
     const sid = 'sk_' + c.id.replace(/[^a-z0-9]/gi, '_');
-    const setName = c.set?.name || '';
+    // dex-ids endpoint set objesi dönmüyor — id'den set kodunu çıkar (swsh10.5-001 → swsh10.5)
+    const setId = c.id.replace(/-[^-]+$/, '');
+    const setName = c.set?.name || setId;
     const rarity = c.rarity || '';
     const localId = c.localId || '';
 
-    return `<div class="tcg-card ${owned ? 'owned' : ''}" onclick="toggleOwned('${c.id}')">
-      <div class="shimmer" id="${sid}"></div>
-      ${imgUrl
-        ? `<img src="${imgUrl}" alt="${c.name||''}" loading="lazy"
-               onload="this.previousElementSibling&&this.previousElementSibling.remove()"
-               onerror="const s=document.getElementById('${sid}');if(s){s.style.animation='none';s.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center\\'>${(c.name||c.id).replace(/'/g,'&#39;')}</div>'}">`
-        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center">${c.name||c.id}</div>`}
-      ${owned ? '<div class="tcg-owned-dot">✓</div>' : ''}
-      <div class="tcg-meta">
-        <div class="tcg-meta-set">${setName}</div>
-        <div>#${localId} ${rarity ? '· <span class="tcg-meta-rar">' + rarity + '</span>' : ''}</div>
+    const langOverlay = isPending ? `
+      <div class="lang-pick-overlay" onclick="event.stopPropagation()">
+        <div class="lang-pick-title">Hangi dil?</div>
+        <div class="lang-pick-btns">
+          ${LANGS.map(l => `<button class="lang-pick-btn" onclick="addWithLang('${c.id}','${l.code}')">${l.label}</button>`).join('')}
+        </div>
+        <button class="lang-pick-cancel" onclick="cancelLangPick()">İptal</button>
+      </div>` : '';
+
+    return `<div class="tcg-card ${owned ? 'owned' : ''} ${isPending ? 'pending' : ''}" onclick="toggleOwned('${c.id}')">
+      <div class="tcg-card-img">
+        ${imgUrl
+          ? `<div class="shimmer" id="${sid}"></div>
+             <img src="${imgUrl}" alt="${c.name||''}" loading="lazy"
+                 onload="this.previousElementSibling&&this.previousElementSibling.remove()"
+                 onerror="const s=document.getElementById('${sid}');if(s){s.style.animation='none';s.innerHTML='<div style=\\'display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;padding:8px\\'><div style=\\'font-size:24px;opacity:.3\\'>🃏</div><div style=\\'font-size:9px;color:#55556a;text-align:center\\'>Görsel mevcut değil</div></div>'}">`
+          : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;padding:8px">
+              <div style="font-size:28px;opacity:.3">🃏</div>
+              <div style="font-size:9px;color:#55556a;text-align:center">Görsel mevcut değil</div>
+             </div>`}
+        ${owned ? `<div class="tcg-owned-dot">${ownedLang.label}</div>` : ''}
+        ${langOverlay}
+      </div>
+      <div class="tcg-label">
+        <div class="tcg-label-set">${setName}</div>
+        <div class="tcg-label-id">#${localId}${rarity ? ' · ' + rarity : ''}</div>
       </div>
     </div>`;
   }).join('');
@@ -1076,7 +1481,7 @@ function renderTCGCards() {
 ═══════════════════════════════════════════ */
 function renderCollection() {
   const area = document.getElementById('collArea');
-  const ids = Object.keys(collection).filter(k => collection[k]);
+  const ids = Object.keys(collection).filter(k => collection[k] && typeof collection[k] === 'object');
   const count = ids.length;
 
   area.innerHTML = `
@@ -1097,12 +1502,20 @@ function renderCollection() {
           <div class="st">Koleksiyonun boş</div>
           <div class="ss">Kartlar sekmesinden bir Pokémon seç, kartlara tıkla ve koleksiyonunu oluştur</div>
         </div>`
-      : ids.map(id => `
+      : ids.map(id => {
+          const e = collection[id];
+          const lang = LANGS.find(l => l.code === e.lang) || LANGS[0];
+          const imgUrl = e.image ? `${e.image}/low.webp` : null;
+          return `
           <div class="coll-card-row">
-            <div class="coll-dot"></div>
-            <div class="coll-card-id">${id}</div>
+            ${imgUrl ? `<img class="coll-thumb" src="${imgUrl}" alt="${e.name||id}" loading="lazy">` : '<div class="coll-dot"></div>'}
+            <div class="coll-info">
+              <div class="coll-card-name">${e.name || id}</div>
+              <div class="coll-card-sub">${e.set?.name || ''} · #${e.localId || ''} · <span class="coll-lang-badge">${lang.label}</span></div>
+            </div>
             <button class="coll-remove" onclick="removeCard('${id}')">✕</button>
-          </div>`).join('')
+          </div>`;
+        }).join('')
     }
   `;
 }
@@ -1120,10 +1533,8 @@ function removeCard(cardId) {
 ═══════════════════════════════════════════ */
 function setTab(tab) {
   activeTab = tab;
-  document.getElementById('tabCards').classList.toggle('active', tab === 'cards');
-  document.getElementById('tabColl').classList.toggle('active', tab === 'collection');
-  document.getElementById('cardsTab').style.display = tab === 'cards' ? 'flex' : 'none';
-  document.getElementById('collTab').style.display = tab === 'collection' ? 'flex' : 'none';
+  const collTab = document.getElementById('collTab');
+  if (collTab) collTab.style.display = tab === 'collection' ? 'flex' : 'none';
   if (tab === 'collection') renderCollection();
 }
 
@@ -1131,26 +1542,90 @@ function setTab(tab) {
    SEARCH EVENTS
 ═══════════════════════════════════════════ */
 document.getElementById('pokeSearch').addEventListener('input', renderPokeList);
-document.getElementById('cardSearch').addEventListener('input', e => {
+document.getElementById('modalCardSearch').addEventListener('input', e => {
   cardSearchVal = e.target.value;
   renderTCGCards();
 });
+
+// Close modal on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModalBtn(); closeCollection(); closeSettings(); }
+});
+
+/* ═══════════════════════════════════════════
+   SETTINGS
+═══════════════════════════════════════════ */
+function openSettings() {
+  document.getElementById('settingsOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderSettings();
+}
+
+function closeSettings(e) {
+  if (!e || e.target === document.getElementById('settingsOverlay')) {
+    document.getElementById('settingsOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function renderSettings() {
+  const area = document.getElementById('settingsArea');
+  area.innerHTML = `
+    <div class="settings-section">
+      <div class="settings-section-title">Dil Versiyonları</div>
+      <div class="settings-section-desc">Kartları eklerken dil seçebilirsin. Kart görselleri her zaman İngilizce gösterilir.</div>
+      <div class="settings-lang-list">
+        ${LANGS.map(l => `
+          <div class="settings-lang-row" style="cursor:default">
+            <div class="settings-lang-flag">${l.label.split(' ')[0]}</div>
+            <div class="settings-lang-info">
+              <div class="settings-lang-name">${l.name}</div>
+              <div class="settings-lang-code">${l.code.toUpperCase()}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+}
 
 /* ═══════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════ */
 (async function init() {
-  try {
-    const first = await fetchPokeList(0);
-    allPoke = first;
-    offset = PAGE;
-    setView('grid');
-    batchFetchTypes(first);
-  } catch(e) {
-    document.getElementById('pokeList').innerHTML =
-      `<div style="padding:20px;color:#e84c2a;font-size:13px">⚠️ Yüklenemedi: ${e.message}</div>`;
-  }
+  setView('list');
+  renderPokeList();
+  await loadAllPokemon();
 })();
 </script>
+
+<!-- ══ COLLECTION MODAL ══ -->
+<div id="collOverlay" class="modal-overlay" onclick="closeCollection(event)">
+  <div class="modal-box" id="collBox">
+    <div class="modal-header" style="padding:12px 16px;">
+      <div class="modal-info">
+        <div class="modal-name">📚 Koleksiyonum</div>
+      </div>
+      <button class="modal-close" onclick="closeCollection()">✕</button>
+    </div>
+    <div class="modal-cards-scroll">
+      <div class="coll-area" id="collArea"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SETTINGS MODAL ══ -->
+<div id="settingsOverlay" class="modal-overlay" onclick="closeSettings(event)">
+  <div class="modal-box" style="max-width:480px;">
+    <div class="modal-header" style="padding:12px 16px;">
+      <div class="modal-info">
+        <div class="modal-name">⚙️ Ayarlar</div>
+      </div>
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="modal-cards-scroll">
+      <div id="settingsArea"></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

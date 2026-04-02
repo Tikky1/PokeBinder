@@ -1,0 +1,410 @@
+[
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/electabuzz-1",
+    "name": "Electabuzz #1 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/669aa5a17df35a9231263baa73fef51882703ec96b03761e1ea8fb5bc7fa88a1/240.jpg",
+    "prices": {
+      "$27.47 -$1.51": "$30.00 $0.00",
+      "volume:  2 sales per week": "volume:  1 sale per month",
+      "ungraded": "$27.47 -$1.51",
+      "grade_10": "$40.50 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Electabuzz #1 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/electabuzz-jumbo-1",
+    "name": "Electabuzz [Jumbo] #1 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/smj3bqhg6ck2tdqo/240.jpg",
+    "prices": {
+      "$94.95 $0.00": "-",
+      "volume:  1 sale per year": "volume:  rare",
+      "ungraded": "$94.95 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Electabuzz [Jumbo] #1 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/electabuzz-winner-1",
+    "name": "Electabuzz [Winner] #1 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/0bf1b62475ac8259510ace9ea184d5e4a6ce07e32240669a38b33a19b8488d3a/240.jpg",
+    "prices": {
+      "$39.99 $0.00": "$39.03 -$0.05",
+      "volume:  1 sale per week": "volume:  4 sales per year",
+      "ungraded": "$39.99 $0.00",
+      "grade_10": "$62.00 +$4.45"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Electabuzz [Winner] #1 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/hitmonchan-2",
+    "name": "Hitmonchan #2 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/3kktk3xdf75ex7xo/240.jpg",
+    "prices": {
+      "$30.58 +$0.76": "$36.00 $0.00",
+      "volume:  2 sales per week": "volume:  1 sale per month",
+      "ungraded": "$30.58 +$0.76",
+      "grade_10": "$42.99 +$0.01"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Hitmonchan #2 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/hitmonchan-jumbo-winner-2",
+    "name": "Hitmonchan [Jumbo Winner] #2 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/eazoaz73ibi7bgwh/240.jpg",
+    "prices": {
+      "$30.79 $0.00": "-",
+      "volume:  2 sales per year": "volume:  rare",
+      "ungraded": "$30.79 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Hitmonchan [Jumbo Winner] #2 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/hitmonchan-jumbo-2",
+    "name": "Hitmonchan [Jumbo] #2 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://www.pricecharting.com/images/no-image-available.png",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Hitmonchan [Jumbo] #2 Pokemon Best Of Game.png"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/hitmonchan-winner-2",
+    "name": "Hitmonchan [Winner] #2 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/6cf3b19676cf25f86ac08fdde66d51e665419612df12bb8b5f3a342552c8c135/240.jpg",
+    "prices": {
+      "$66.06 -$1.79": "$40.00 $0.00",
+      "volume:  1 sale per week": "volume:  1 sale per month",
+      "ungraded": "$66.06 -$1.79",
+      "grade_10": "$71.94 -$0.18"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Hitmonchan [Winner] #2 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/professor-elm-3",
+    "name": "Professor Elm #3 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/b1bd9e464c8483a6929b82dbf787734f7189cb8e4814f63e76253ebd1a8e394c/240.jpg",
+    "prices": {
+      "$20.57 -$3.24": "$15.73 -$0.07",
+      "volume:  1 sale per week": "volume:  1 sale per month",
+      "ungraded": "$20.57 -$3.24",
+      "grade_10": "$22.64 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Professor Elm #3 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-scizor-4",
+    "name": "Rocket'S Scizor #4 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/ca44d1d7bea40d5b72f11f46327b5f3b999521e4cee72ef8a4fe9bc5bd2cf1d5/240.jpg",
+    "prices": {
+      "$27.42 +$0.16": "$25.00 $0.00",
+      "volume:  2 sales per week": "volume:  1 sale per year",
+      "ungraded": "$27.42 +$0.16",
+      "grade_10": "$33.00 +$1.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Scizor #4 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-scizor-jumbo-4",
+    "name": "Rocket'S Scizor [Jumbo] #4 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/ef7mfsybrea33g72/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Scizor [Jumbo] #4 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-scizor-winner-4",
+    "name": "Rocket'S Scizor [Winner] #4 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/585df4a8d4a42faf662aa2f0cbfe27ce6b059ee12beb2032b5ead3e0f103daea/240.jpg",
+    "prices": {
+      "$54.00 -$0.12": "$35.21 +$0.04",
+      "volume:  1 sale per week": "volume:  2 sales per year",
+      "ungraded": "$54.00 -$0.12",
+      "grade_10": "$74.14 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Scizor [Winner] #4 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-sneasel-5",
+    "name": "Rocket'S Sneasel #5 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/7ccd2ff3b48a4a9e4a871c77bf6a5197e6f239c9b97a545568ad789aa6c9a30f/240.jpg",
+    "prices": {
+      "$16.00 $0.00": "$20.15 -$0.07",
+      "volume:  2 sales per week": "volume:  2 sales per year",
+      "ungraded": "$16.00 $0.00",
+      "grade_10": "$21.32 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Sneasel #5 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-sneasel-jumbo-5",
+    "name": "Rocket'S Sneasel [Jumbo] #5 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/j56t72sxe6uiao34/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Sneasel [Jumbo] #5 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-sneasel-winner-5",
+    "name": "Rocket'S Sneasel [Winner] #5 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/614ad53053021b73082e1e7985fc93f4062e96ee542618488d5d8c777f6ede23/240.jpg",
+    "prices": {
+      "$38.44 +$3.49": "-",
+      "volume:  1 sale per week": "volume:  rare",
+      "ungraded": "$38.44 +$3.49",
+      "grade_10": "$26.50 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Sneasel [Winner] #5 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/dark-ivysaur-6",
+    "name": "Dark Ivysaur #6 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/bmymyzb2qp3yoxiz/240.jpg",
+    "prices": {
+      "$34.42 $0.00": "$35.93 $0.00",
+      "volume:  3 sales per week": "volume:  4 sales per year",
+      "ungraded": "$34.42 $0.00",
+      "grade_10": "$45.00 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Dark Ivysaur #6 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/dark-ivysaur-jumbo-6",
+    "name": "Dark Ivysaur [Jumbo] #6 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/yhfdl6iiix6hkvyx/240.jpg",
+    "prices": {
+      "$48.50 $0.00": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$48.50 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Dark Ivysaur [Jumbo] #6 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/dark-ivysaur-winner-6",
+    "name": "Dark Ivysaur [Winner] #6 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/a7e5be84a7fe46038a846a462dc758d434284ae9249e52e3ada1b9181747e4b9/240.jpg",
+    "prices": {
+      "$72.50 $0.00": "$26.00 $0.00",
+      "volume:  1 sale per week": "volume:  1 sale per year",
+      "ungraded": "$72.50 $0.00",
+      "grade_10": "$32.50 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Dark Ivysaur [Winner] #6 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/dark-venusaur-7",
+    "name": "Dark Venusaur #7 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/4fe241f700ae7d81d00a77fa942545a8951d9eed021dc329638bbfff10dd96ec/240.jpg",
+    "prices": {
+      "$90.33 +$1.85": "$73.00 $0.00",
+      "volume:  2 sales per week": "volume:  2 sales per year",
+      "ungraded": "$90.33 +$1.85",
+      "grade_10": "$94.64 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Dark Venusaur #7 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/dark-venusaur-jumbo-7",
+    "name": "Dark Venusaur [Jumbo] #7 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/f22a6itimtpabtna/240.jpg",
+    "prices": {
+      "$65.45 +$5.45": "$69.99 $0.00",
+      "volume:  1 sale per month": "volume:  1 sale per year",
+      "ungraded": "$65.45 +$5.45",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Dark Venusaur [Jumbo] #7 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/dark-venusaur-winner-7",
+    "name": "Dark Venusaur [Winner] #7 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/f65cde3d09a7f601d5e76b27d35db1207563f6bd1332bcd9c176c4205f92fc17/240.jpg",
+    "prices": {
+      "$103.00 $0.00": "$68.41 $0.00",
+      "volume:  1 sale per week": "volume:  4 sales per year",
+      "ungraded": "$103.00 $0.00",
+      "grade_10": "$110.08 +$2.20"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Dark Venusaur [Winner] #7 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-mewtwo-jumbo-8",
+    "name": "Rocket'S Mewtwo [Jumbo] #8 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/corrigemkfupc2ydeabx/240.jpg",
+    "prices": {
+      "$276.62 $0.00": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$276.62 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Mewtwo [Jumbo] #8 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-mewtwo-winner-8",
+    "name": "Rocket'S Mewtwo [Winner] #8 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/7scsczwvhadmodvy/240.jpg",
+    "prices": {
+      "$369.05 -$13.00": "$390.00 $0.00",
+      "volume:  1 sale per week": "volume:  1 sale per month",
+      "ungraded": "$369.05 -$13.00",
+      "grade_10": "$534.00 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Mewtwo [Winner] #8 Pokemon Best Of Game.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-hitmonchan-jumbo-9",
+    "name": "Rocket'S Hitmonchan [Jumbo] #9 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://www.pricecharting.com/images/no-image-available.png",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Hitmonchan [Jumbo] #9 Pokemon Best Of Game.png"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-best-of-game/rocket%27s-hitmonchan-winner-9",
+    "name": "Rocket'S Hitmonchan [Winner] #9 Pokemon Best Of Game",
+    "number": "",
+    "set": "Pokemon Best Of Game",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/088fa54800d0ac17cdf96147f835bb4fb8288330164c4e6244b6a86ef137b726/240.jpg",
+    "prices": {
+      "$142.44 +$0.18": "$127.25 $0.00",
+      "volume:  1 sale per week": "volume:  4 sales per year",
+      "ungraded": "$142.44 +$0.18",
+      "grade_10": "$133.69 +$2.20"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Best of Game\\Rocket'S Hitmonchan [Winner] #9 Pokemon Best Of Game.jpg"
+  }
+]

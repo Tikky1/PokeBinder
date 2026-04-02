@@ -1,0 +1,87 @@
+[
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-chinese-csv8c/perrin-238",
+    "name": "Perrin #238 Pokemon Chinese CSV8C",
+    "number": "",
+    "set": "Pokemon Chinese Csv8C",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/u37oh3cmmvidwtmw/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Chinese CSV8C\\Perrin #238 Pokemon Chinese CSV8C.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-chinese-csv8c/carmine-240",
+    "name": "Carmine #240 Pokemon Chinese CSV8C",
+    "number": "",
+    "set": "Pokemon Chinese Csv8C",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/uadjlwmktzmw4tlg/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Chinese CSV8C\\Carmine #240 Pokemon Chinese CSV8C.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-chinese-csv8c/milotic-244",
+    "name": "Milotic #244 Pokemon Chinese CSV8C",
+    "number": "",
+    "set": "Pokemon Chinese Csv8C",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/pgt2khtresq6xkik/240.jpg",
+    "prices": {
+      "$56.99 -$2.00": "-",
+      "volume:  3 sales per week": "volume:  rare",
+      "ungraded": "$56.99 -$2.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Chinese CSV8C\\Milotic #244 Pokemon Chinese CSV8C.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-chinese-csv8c/perrin-253",
+    "name": "Perrin #253 Pokemon Chinese CSV8C",
+    "number": "",
+    "set": "Pokemon Chinese Csv8C",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/xk74lwmdmw3ctrcw/240.jpg",
+    "prices": {
+      "$29.14 -$3.27": "-",
+      "volume:  1 sale per day": "volume:  rare",
+      "ungraded": "$29.14 -$3.27",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Chinese CSV8C\\Perrin #253 Pokemon Chinese CSV8C.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-chinese-csv8c/carmine-255",
+    "name": "Carmine #255 Pokemon Chinese CSV8C",
+    "number": "",
+    "set": "Pokemon Chinese Csv8C",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/inbukwejsstzqsxh/240.jpg",
+    "prices": {
+      "$173.00 +$1.41": "-",
+      "volume:  2 sales per day": "volume:  rare",
+      "ungraded": "$173.00 +$1.41",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Chinese CSV8C\\Carmine #255 Pokemon Chinese CSV8C.jpg"
+  }
+]

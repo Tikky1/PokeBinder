@@ -1,0 +1,427 @@
+[
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/blastoise-1",
+    "name": "Blastoise #1 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/413146486d61d0e747401608131eedb7cef51db6f3f6c3888df214388fb6c8c5/240.jpg",
+    "prices": {
+      "$152.50 $0.00": "$159.22 +$26.22",
+      "volume:  1 sale per month": "volume:  1 sale per year",
+      "ungraded": "$152.50 $0.00",
+      "grade_10": "$166.28 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Blastoise #1 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/blastoise-holo-1",
+    "name": "Blastoise [Holo] #1 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/495478a3d99abd0c103956099f435cf035913146a625bc64eaa38bae24c77dbe/240.jpg",
+    "prices": {
+      "$127.50 +$16.92": "$850.00 $0.00",
+      "volume:  1 sale per week": "volume:  2 sales per year",
+      "ungraded": "$127.50 +$16.92",
+      "grade_10": "$1,225.15 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Blastoise [Holo] #1 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/flareon-2",
+    "name": "Flareon #2 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/06825e4153176c90c82d61df5fa8e71f568ff8d15b4f8bebadf7bb63a2bace2a/240.jpg",
+    "prices": {
+      "$15.00 +$2.29": "-",
+      "volume:  2 sales per month": "volume:  rare",
+      "ungraded": "$15.00 +$2.29",
+      "grade_10": "$34.96 +$0.55"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Flareon #2 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/flareon-holo-2",
+    "name": "Flareon [Holo] #2 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/6d45c19cc345d3101a18cc2394d11a3cab1601035acebfd74a61124143389c18/240.jpg",
+    "prices": {
+      "$14.71 +$0.51": "$35.61 +$1.61",
+      "volume:  3 sales per week": "volume:  1 sale per month",
+      "ungraded": "$14.71 +$0.51",
+      "grade_10": "$44.99 +$0.93"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Flareon [Holo] #2 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/jolteon-3",
+    "name": "Jolteon #3 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/097b8cf98dec504e380b9f405cfbe679873844dcea012aefbbba2f4054399086/240.jpg",
+    "prices": {
+      "$12.83 -$0.08": "$24.65 +$0.06",
+      "volume:  2 sales per month": "volume:  1 sale per year",
+      "ungraded": "$12.83 -$0.08",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Jolteon #3 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/jolteon-holo-3",
+    "name": "Jolteon [Holo] #3 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/9170ff2b729a6231d9b79703665b0e118e08c32b9b8b191c6d373b1da8a53f50/240.jpg",
+    "prices": {
+      "$13.27 +$1.27": "$37.97 -$6.15",
+      "volume:  2 sales per week": "volume:  1 sale per month",
+      "ungraded": "$13.27 +$1.27",
+      "grade_10": "$45.62 -$0.01"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Jolteon [Holo] #3 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/minun-4",
+    "name": "Minun #4 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/bebf99bf42d18214271a3191f38262f66b274dbe59f48ef06921c9d0426fe87b/240.jpg",
+    "prices": {
+      "$20.01 $0.00": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$20.01 $0.00",
+      "grade_10": "$22.30 +$0.03"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Minun #4 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/minun-holo-4",
+    "name": "Minun [Holo] #4 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/sz4fs6e73uwszp6e/240.jpg",
+    "prices": {
+      "$19.99 +$0.15": "$18.00 $0.00",
+      "volume:  2 sales per week": "volume:  2 sales per year",
+      "ungraded": "$19.99 +$0.15",
+      "grade_10": "$22.94 +$0.06"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Minun [Holo] #4 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/plusle-5",
+    "name": "Plusle #5 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/c36107942b8efd4fe4b04520740858b9d25df038b29cdc49e8a85c3a08a69bbc/240.jpg",
+    "prices": {
+      "$18.55 +$1.42": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$18.55 +$1.42",
+      "grade_10": "$30.00 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Plusle #5 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/plusle-holo-5",
+    "name": "Plusle [Holo] #5 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/da60271470383b151009f589615feb8ab30320ed2acd1638e3689c7f7356df3f/240.jpg",
+    "prices": {
+      "$16.63 $0.00": "$18.62 $0.00",
+      "volume:  2 sales per week": "volume:  3 sales per year",
+      "ungraded": "$16.63 $0.00",
+      "grade_10": "$27.51 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Plusle [Holo] #5 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/vaporeon-6",
+    "name": "Vaporeon #6 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/096095080cfbd525b306a31b0e515658aa45469afe8241cd158fe027b1d4474d/240.jpg",
+    "prices": {
+      "$15.68 $0.00": "$35.52 +$22.52",
+      "volume:  1 sale per week": "volume:  1 sale per year",
+      "ungraded": "$15.68 $0.00",
+      "grade_10": "$65.05 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Vaporeon #6 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/vaporeon-holo-6",
+    "name": "Vaporeon [Holo] #6 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/8e99543f5461d6203fddc34568693bc6bf2b21ce8724f1d15f8c1ed111424a31/240.jpg",
+    "prices": {
+      "$16.14 +$2.31": "$37.14 -$0.01",
+      "volume:  2 sales per week": "volume:  2 sales per month",
+      "ungraded": "$16.14 +$2.31",
+      "grade_10": "$67.00 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Vaporeon [Holo] #6 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/combusken-7",
+    "name": "Combusken #7 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/348e247d077974edb686c6e213f88d3a0fee96e2f20dd75527d54c838fb338e6/240.jpg",
+    "prices": {
+      "$10.43 +$0.48": "$5.00 $0.00",
+      "volume:  1 sale per month": "volume:  1 sale per year",
+      "ungraded": "$10.43 +$0.48",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Combusken #7 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/donphan-8",
+    "name": "Donphan #8 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/a7c5aa5f7acd4693928bbbfe9ae247e2835b9a0d2680830428c912a9a8398913/240.jpg",
+    "prices": {
+      "$15.50 $0.00": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$15.50 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Donphan #8 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/forretress-9",
+    "name": "Forretress #9 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/d2c99fe74ab2ee451f56b9d8c9dd9412d4a480d97141922b1212b14ee7b4343b/240.jpg",
+    "prices": {
+      "$9.23 +$0.33": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$9.23 +$0.33",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Forretress #9 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/high-pressure-system-10",
+    "name": "High Pressure System #10 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/a1d6e6053426c8a16b1d48139cee11f84aa651fc98affa87779342af84c87ceb/240.jpg",
+    "prices": {
+      "$4.47 +$0.97": "-",
+      "volume:  6 sales per year": "volume:  rare",
+      "ungraded": "$4.47 +$0.97",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\High Pressure System #10 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/low-pressure-system-11",
+    "name": "Low Pressure System #11 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/14f09ff6283e2030df629a1f7098cc9b8bbd361a542ccb3f27aebee4dbeedea8/240.jpg",
+    "prices": {
+      "$7.00 $0.00": "-",
+      "volume:  3 sales per year": "volume:  rare",
+      "ungraded": "$7.00 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Low Pressure System #11 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/ditto-12",
+    "name": "Ditto #12 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/b5f2d0cda1bce178ee932c0b407fe239de720584244c4de7b49ff1b281c284ce/240.jpg",
+    "prices": {
+      "$42.98 +$3.88": "$26.03 $0.00",
+      "volume:  2 sales per week": "volume:  3 sales per year",
+      "ungraded": "$42.98 +$3.88",
+      "grade_10": "$39.50 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Ditto #12 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/eevee-13",
+    "name": "Eevee #13 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/9e7d49c927d457817a772f0bbc551739f9e96b02c406b36710f49d0df42456c2/240.jpg",
+    "prices": {
+      "$18.98 +$1.48": "$14.39 $0.00",
+      "volume:  2 sales per week": "volume:  1 sale per year",
+      "ungraded": "$18.98 +$1.48",
+      "grade_10": "$29.49 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Eevee #13 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/ivysaur-14",
+    "name": "Ivysaur #14 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/8124d1f0baf3cac1733c760930d490fac896d3ac8ac72031ae111ffd901c769d/240.jpg",
+    "prices": {
+      "$10.04 +$0.66": "-",
+      "volume:  2 sales per week": "volume:  rare",
+      "ungraded": "$10.04 +$0.66",
+      "grade_10": "$19.53 +$0.02"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Ivysaur #14 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/marshtomp-15",
+    "name": "Marshtomp #15 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/fa1ecca9f4aa4c4e1a8ea4737334c6e6f2335e9aa42db5cbcbe35ba78feaadee/240.jpg",
+    "prices": {
+      "$5.12 -$1.11": "-",
+      "volume:  2 sales per month": "volume:  rare",
+      "ungraded": "$5.12 -$1.11",
+      "grade_10": "$8.54 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Marshtomp #15 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/pichu-bros-16",
+    "name": "Pichu Bros. #16 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/d197c00caabe3a5bd796795f669f74927aac9744e139c893e8639466b1e0d653/240.jpg",
+    "prices": {
+      "$45.22 +$0.11": "$35.00 -$9.44",
+      "volume:  2 sales per week": "volume:  3 sales per year",
+      "ungraded": "$45.22 +$0.11",
+      "grade_10": "$43.85 -$3.74"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Pichu Bros. #16 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/ho-oh-ex-17",
+    "name": "Ho-Oh EX #17 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/45btugrzcrfkaiwy/240.jpg",
+    "prices": {
+      "$47.35 +$0.08": "$74.00 $0.00",
+      "volume:  1 sale per week": "volume:  2 sales per year",
+      "ungraded": "$47.35 +$0.08",
+      "grade_10": "$92.40 +$0.02"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Ho-Oh EX #17 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/ho-oh-ex-holo-17",
+    "name": "Ho-Oh EX [Holo] #17 Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/b47f2db31fcb7dfd79e2be607b412fc682742cb180fd4139d5b8bf9234643bd9/240.jpg",
+    "prices": {
+      "$75.50 $0.00": "$142.00 $0.00",
+      "volume:  2 sales per week": "volume:  1 sale per month",
+      "ungraded": "$75.50 $0.00",
+      "grade_10": "$177.01 -$0.12"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Ho-Oh EX [Holo] #17 Pokemon POP Series 3.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-pop-series-3/booster-pack",
+    "name": "Booster Pack Pokemon POP Series 3",
+    "number": "",
+    "set": "Pokemon Pop Series 3",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/2ac588c68bf2340c5613d6696de66bfb102bc2393233aa003e3e1867c9e3d360/240.jpg",
+    "prices": {
+      "$124.83 $0.00": "-",
+      "volume:  2 sales per month": "volume:  rare",
+      "ungraded": "$124.83 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon POP Series 3\\Booster Pack Pokemon POP Series 3.jpg"
+  }
+]

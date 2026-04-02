@@ -492,85 +492,127 @@ html, body {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 14px;
 }
+.set-group-header {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f5c842;
+  padding: 10px 4px 6px;
+  border-bottom: 1px solid rgba(245,200,66,0.2);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.set-group-header:first-child { margin-top: 0; }
+.set-group-count {
+  font-size: 11px;
+  font-weight: 500;
+  color: #55556a;
+  background: rgba(255,255,255,0.06);
+  padding: 1px 7px;
+  border-radius: 10px;
+}
 
 /* TCG Card */
 .tcg-card {
   position: relative;
   border-radius: 11px;
-  overflow: visible;
   border: 2px solid transparent;
   cursor: pointer;
-  aspect-ratio: 600/825;
   background: #1c1c2a;
   transition: transform .18s, border-color .18s, box-shadow .18s;
+  display: flex;
+  flex-direction: column;
 }
 .tcg-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,.6); }
-.tcg-card.owned .tcg-card-img { border-color: #4ade80 !important; box-shadow: 0 0 16px rgba(74,222,128,.22); }
-.tcg-card-img { border-radius: 11px; overflow: hidden; aspect-ratio: 2/3; background: #1c1c2a; }
+.tcg-card.owned { border-color: #4ade80; box-shadow: 0 0 16px rgba(74,222,128,.22); }
+.tcg-card-img {
+  position: relative;
+  border-radius: 9px;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  background: #1c1c2a;
+  flex-shrink: 0;
+}
 .tcg-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.tcg-label { padding: 5px 2px 2px; font-size: 10px; color: #6666aa; line-height: 1.4; text-align: center; }
-.tcg-label-set { font-weight: 600; color: #8888bb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tcg-label-id { font-size: 9px; opacity: .7; }
+.tcg-label {
+  padding: 5px 4px 4px;
+  font-size: 10px;
+  color: #6666aa;
+  line-height: 1.4;
+  text-align: center;
+}
+.tcg-label-name {
+  font-size: 10px;
+  font-weight: 600;
+  color: #9999cc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tcg-card-controls {
+  position: absolute;
+  top: 5px; right: 5px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  z-index: 4;
+}
+.tcg-card-btn {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  transition: background .12s;
+}
+.tcg-card-btn:hover { background: #f5c842; color: #111; }
+.tcg-card-count {
+  min-width: 20px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4ade80;
+  background: rgba(0,0,0,0.72);
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+.coll-count-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4ade80;
+  white-space: nowrap;
+  margin-right: 4px;
+}
 .tcg-owned-dot {
   position: absolute;
   top: 6px; right: 6px;
+  width: 20px; height: 20px;
   background: #4ade80;
-  border-radius: 10px;
-  padding: 2px 6px;
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 800; color: #111;
+  font-size: 11px; font-weight: 800; color: #111;
   z-index: 3;
-  white-space: nowrap;
 }
-.lang-pick-overlay {
+.tcg-meta {
   position: absolute;
-  inset: 0;
-  background: rgba(10,10,20,.92);
-  border-radius: 10px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 6px;
+  bottom: 0; left: 0; right: 0;
+  padding: 22px 8px 8px;
+  background: linear-gradient(transparent, rgba(0,0,0,.9));
+  font-size: 10px;
+  color: rgba(255,255,255,.7);
+  opacity: 0;
+  transition: opacity .2s;
+  z-index: 2;
 }
-.lang-pick-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: #aaaacc;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-.lang-pick-btns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  justify-content: center;
-}
-.lang-pick-btn {
-  background: rgba(99,102,241,.2);
-  border: 1px solid rgba(99,102,241,.4);
-  color: #a5b4fc;
-  border-radius: 6px;
-  padding: 4px 7px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .15s, border-color .15s;
-}
-.lang-pick-btn:hover { background: rgba(99,102,241,.5); border-color: #818cf8; color: #fff; }
-.lang-pick-cancel {
-  background: none;
-  border: none;
-  color: #44445a;
-  font-size: 11px;
-  cursor: pointer;
-  padding: 2px 8px;
-}
-.lang-pick-cancel:hover { color: #aaaacc; }
-.tcg-card.pending .tcg-card-img { outline: 2px solid #6366f1; border-radius: 11px; }
-.tcg-card.owned .tcg-card-img { border: 2px solid #4ade80; box-shadow: 0 0 16px rgba(74,222,128,.22); }
+.tcg-card:hover .tcg-meta { opacity: 1; }
+.tcg-meta-set { font-size: 11px; font-weight: 700; color: #fff; }
 .tcg-meta-rar { color: #f5c842; font-size: 9px; }
 
 /* Shimmer */
@@ -673,9 +715,8 @@ html, body {
 .coll-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
 .coll-thumb { width: 44px; height: 62px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
 .coll-info { flex: 1; min-width: 0; }
-.coll-card-name { font-size: 13px; color: #ccccee; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.coll-card-sub { font-size: 11px; color: #666688; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.coll-lang-badge { background: rgba(99,102,241,0.25); color: #a5b4fc; border-radius: 4px; padding: 1px 5px; font-size: 10px; font-weight: 700; }
+.coll-card-name { font-size: 12px; color: #ccccee; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.coll-card-sub { font-size: 11px; color: #666688; margin-top: 2px; }
 .coll-remove { background: none; border: none; color: #33334a; font-size: 16px; cursor: pointer; padding: 2px 6px; transition: color .15s; }
 .coll-remove:hover { color: #e84c2a; }
 
@@ -908,6 +949,477 @@ html, body {
   .modal-name { font-size: 22px; }
   .modal-art { width: 52px; height: 52px; }
 }
+
+/* ═══════════════════════════════════════════
+   ÖZEL BİNDER SLOTS
+═══════════════════════════════════════════ */
+.cgrid-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.cgrid-label { font-size: 12px; color: #55556a; margin-right: 2px; }
+.cgrid-btn {
+  padding: 4px 11px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: #aaaacc;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: all .15s;
+}
+.cgrid-btn:hover { border-color: #f5c842; color: #f5c842; }
+.cgrid-btn.active { background: #f5c842; border-color: #f5c842; color: #111; }
+
+.empty-cslot {
+  background: #0e0e1a;
+  border: 1.5px dashed rgba(255,255,255,0.1);
+  cursor: default;
+}
+.cslot-add-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color: #aaaacc; font-size: 20px; line-height: 1;
+  cursor: pointer; transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.empty-cslot:hover .cslot-add-btn { border-color: #f5c842; color: #f5c842; background: rgba(245,200,66,.1); }
+.filled-cslot { cursor: grab; }
+.filled-cslot:active { cursor: grabbing; }
+.filled-cslot.dragging { opacity: .4; }
+.filled-cslot.drag-over { border-color: #f5c842 !important; box-shadow: 0 0 0 2px #f5c84255; }
+.empty-cslot.drag-over  { border-color: #f5c842 !important; border-style: solid; background: rgba(245,200,66,.07); }
+.cslot-remove-btn {
+  position: absolute; top: 3px; right: 3px;
+  width: 18px; height: 18px;
+  border-radius: 50%; border: none;
+  background: rgba(232,76,42,.7); color: #fff;
+  font-size: 10px; line-height: 1; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  z-index: 5;
+}
+.filled-cslot:hover .cslot-remove-btn { display: flex; }
+.cslot-drag-hint {
+  position: absolute; bottom: 3px; right: 3px;
+  font-size: 11px; color: rgba(255,255,255,.2);
+  pointer-events: none;
+}
+
+/* Slot Picker */
+.slot-picker-box { max-height: 88vh; }
+.slot-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  padding: 10px 14px 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+.picker-card {
+  aspect-ratio: 2/3;
+  border-radius: 7px;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  background: #111122;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .12s, transform .12s;
+}
+.picker-card:hover { border-color: #f5c842; transform: scale(1.04); }
+.picker-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* ═══════════════════════════════════════════
+   BINDER VIEW
+═══════════════════════════════════════════ */
+#binderView {
+  position: fixed;
+  inset: 0;
+  background: #0b0b16;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .32s cubic-bezier(.4,0,.2,1);
+}
+#binderView.open { transform: translateX(0); }
+
+.binder-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: #13131f;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.binder-back {
+  padding: 6px 14px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: #eeeef8;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.binder-back:hover { border-color: #f5c842; color: #f5c842; }
+.binder-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #eeeef8;
+  flex: 1;
+  white-space: nowrap;
+}
+.binder-page-info {
+  font-size: 12px;
+  color: #55556a;
+  white-space: nowrap;
+}
+.binder-actions { display: flex; gap: 6px; }
+.binder-action-btn {
+  padding: 5px 11px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: #aaaacc;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s;
+}
+.binder-action-btn:hover { border-color: #f5c842; color: #f5c842; }
+.binder-action-btn.danger:hover { border-color: #e84c2a; color: #e84c2a; }
+
+.binder-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 8px;
+  gap: 8px;
+  overflow: hidden;
+  min-height: 0;
+}
+.binder-nav-btn {
+  width: 36px;
+  min-width: 36px;
+  height: 56px;
+  border: none;
+  background: rgba(255,255,255,0.05);
+  color: #eeeef8;
+  font-size: 26px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all .15s;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.binder-nav-btn:hover:not(:disabled) { background: rgba(245,200,66,0.15); color: #f5c842; }
+.binder-nav-btn:disabled { opacity: 0.15; cursor: default; }
+
+.binder-spread {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  max-width: 860px;
+  height: 100%;
+  max-height: 580px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,.7), 0 0 0 2px #4a3020;
+}
+.binder-page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  padding: 14px;
+  background: #1a1a2e;
+}
+.binder-rings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 28px;
+  min-width: 28px;
+  background: #3a2510;
+  flex-shrink: 0;
+}
+.binder-ring {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e8c870, #a07830);
+  border: 2px solid #6a4820;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.5), 0 1px 2px rgba(255,200,100,.2);
+}
+
+.binder-slot {
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: #111122;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .12s, border-color .12s;
+}
+.binder-slot.filled {
+  border-color: rgba(255,255,255,0.13);
+  cursor: pointer;
+}
+.binder-slot.filled:hover { border-color: #f5c842; transform: scale(1.04); z-index: 1; }
+.binder-slot img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.binder-slot-ghost {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  opacity: 0.1;
+  filter: grayscale(1);
+  display: block;
+}
+.binder-slot-count {
+  position: absolute;
+  bottom: 3px; right: 3px;
+  background: rgba(0,0,0,.78);
+  color: #4ade80;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+.binder-footer {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.binder-page-dots { display: flex; gap: 6px; }
+.binder-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background .15s, transform .15s;
+}
+.binder-dot.active { background: #f5c842; transform: scale(1.3); }
+
+/* Binder sekmeleri */
+.binder-tabs { display: flex; gap: 4px; }
+.binder-tab {
+  padding: 5px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent; color: #aaaacc;
+  font-size: 13px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: all .15s;
+}
+.binder-tab:hover { border-color: #f5c842; color: #f5c842; }
+.binder-tab.active { background: #f5c842; border-color: #f5c842; color: #111; }
+
+/* Liste sekmesi */
+.clist-toolbar {
+  display: flex; gap: 8px; align-items: center;
+  padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.clist-search {
+  flex: 1; padding: 7px 12px;
+  background: #1c1c2a; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9px; color: #eeeef8; font-size: 13px; font-family: inherit;
+  outline: none; transition: border-color .15s;
+}
+.clist-search:focus { border-color: #f5c842; }
+.clist-search::placeholder { color: #44445a; }
+.clist-sort {
+  padding: 7px 10px; background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9px; color: #eeeef8;
+  font-size: 13px; font-family: inherit;
+  cursor: pointer; outline: none;
+}
+.clist-area { flex: 1; overflow-y: auto; padding: 10px 16px 20px; }
+.clist-empty { text-align: center; color: #44445a; padding: 40px 0; font-size: 14px; }
+.clist-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: #13131f; margin-bottom: 6px;
+  transition: border-color .12s;
+}
+.clist-row:hover { border-color: rgba(255,255,255,0.1); }
+.clist-thumb {
+  width: 44px; min-width: 44px; height: 62px;
+  object-fit: contain; border-radius: 4px;
+}
+.clist-thumb-ph {
+  width: 44px; min-width: 44px; height: 62px;
+  border-radius: 4px; background: #1c1c2a;
+}
+.clist-info { flex: 1; min-width: 0; }
+.clist-name { font-size: 12px; color: #ccccee; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clist-sub { font-size: 11px; color: #44445a; margin-top: 2px; }
+.clist-controls { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+
+.binder-slot-dex {
+  position: absolute;
+  bottom: 2px; left: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+  pointer-events: none;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.binder-slot-noimg {
+  font-size: 10px; color: #44445a; text-align: center; padding: 4px;
+}
+/* Slot hover controls */
+.binder-slot-controls {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 3px 2px;
+  background: rgba(0,0,0,0.88);
+  opacity: 0;
+  transition: opacity .12s;
+  pointer-events: none;
+}
+.binder-slot.single:hover .binder-slot-controls { opacity: 1; pointer-events: all; }
+.bsl-btn {
+  width: 20px; height: 20px;
+  border: none; border-radius: 4px;
+  background: rgba(255,255,255,0.13);
+  color: #eee;
+  font-size: 14px; line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+.bsl-btn:hover { background: #f5c842; color: #111; }
+.bsl-btn.rm { background: rgba(232,76,42,0.3); font-size: 10px; }
+.bsl-btn.rm:hover { background: #e84c2a; }
+.bsl-cnt { font-size: 11px; font-weight: 700; color: #4ade80; min-width: 14px; text-align: center; }
+/* Folder badge */
+.binder-folder-badge {
+  position: absolute;
+  top: 3px; right: 3px;
+  background: #f5c842; color: #111;
+  font-size: 9px; font-weight: 800;
+  width: 17px; height: 17px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.binder-slot.folder { cursor: pointer; }
+.binder-slot.folder:hover { border-color: #f5c842; }
+
+/* ── Klasör Overlay ── */
+.binder-folder-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s;
+}
+.binder-folder-overlay.open { opacity: 1; pointer-events: all; }
+.binder-folder-box {
+  background: #1a1a2e;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  width: min(500px, 94vw);
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,.8);
+}
+.binder-folder-header {
+  display: flex;
+  align-items: center;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.binder-folder-title { flex: 1; font-size: 14px; font-weight: 700; color: #eeeef8; }
+.binder-folder-close {
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 7px;
+  background: transparent; color: #aaa;
+  font-size: 13px; cursor: pointer; font-family: inherit;
+}
+.binder-folder-close:hover { border-color: #e84c2a; color: #e84c2a; }
+.binder-folder-grid {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 14px 16px; overflow-y: auto;
+}
+.folder-card {
+  display: flex; gap: 12px;
+  padding: 10px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: #13131f;
+  transition: border-color .12s;
+}
+.folder-card.display { border-color: #f5c842; }
+.folder-card-img {
+  width: 68px; min-width: 68px; height: 96px;
+  border-radius: 6px; overflow: hidden;
+  background: #0e0e1a; position: relative; flex-shrink: 0;
+}
+.folder-card-img img { width: 100%; height: 100%; object-fit: contain; }
+.folder-display-badge {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(245,200,66,.9); color: #111;
+  font-size: 8px; font-weight: 700; text-align: center; padding: 2px 0;
+}
+.folder-card-info { flex: 1; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.folder-card-name { font-size: 11px; color: #bbbbdd; font-weight: 600; word-break: break-word; }
+.folder-card-controls { display: flex; align-items: center; gap: 5px; }
+.folder-show-btn {
+  padding: 4px 12px; border-radius: 7px;
+  border: 1px solid #f5c842; background: transparent;
+  color: #f5c842; font-size: 11px; font-family: inherit;
+  cursor: pointer; align-self: flex-start; transition: all .12s;
+}
+.folder-show-btn:hover { background: #f5c842; color: #111; }
+
+.binder-empty {
+  grid-column: 1 / -1; grid-row: 1 / -1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; color: #33334a;
+}
+.binder-empty-icon { font-size: 48px; opacity: .4; }
+.binder-empty-text { font-size: 14px; }
+
+@media (max-width: 600px) {
+  .binder-spread { max-height: 100%; }
+  .binder-page { gap: 5px; padding: 8px; }
+  .binder-rings { width: 20px; min-width: 20px; }
+  .binder-ring { width: 14px; height: 14px; }
+  .binder-actions { display: none; }
+}
 </style>
 </head>
 <body>
@@ -930,7 +1442,7 @@ html, body {
       <div class="view-toggle">
         <button class="vbtn" id="btnList" onclick="setView('list')">☰ Liste</button>
         <button class="vbtn active" id="btnGrid" onclick="setView('grid')">⊞ Grid</button>
-        <button class="vbtn" id="btnColl" onclick="openCollection()" title="Koleksiyonum">📚</button>
+        <button class="vbtn" id="btnColl" onclick="openBinder()" title="Koleksiyonum">📚</button>
         <button class="vbtn" onclick="openSettings()" title="Ayarlar">⚙️</button>
       </div>
     </div>
@@ -947,8 +1459,8 @@ html, body {
 
     <!-- Tab bar -->
     <div class="tab-bar">
-      <button class="tab-btn active" id="tabCards" onclick="setTab('cards')">🃏 Kartlar</button>
-      <button class="tab-btn" id="tabColl" onclick="setTab('collection')">📚 Koleksiyonum</button>
+      <button class="tab-btn active" id="tabCards">🃏 Kartlar</button>
+      <button class="tab-btn" id="tabColl" onclick="openBinder()">📚 Koleksiyonum</button>
     </div>
 
     <!-- ── CARDS TAB ── -->
@@ -960,12 +1472,8 @@ html, body {
       </div>
     </div>
 
-    <!-- ── COLLECTION TAB ── -->
-    <div id="collTab" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
-      <div class="coll-area" id="collArea">
-        <!-- filled by renderCollection() -->
-      </div>
-    </div>
+    <!-- ── COLLECTION TAB (binder'ı açar) ── -->
+    <div id="collTab" style="display:none;"></div>
 
   </div>
 </div>
@@ -987,7 +1495,7 @@ html, body {
       </div>
       <button class="modal-close" onclick="closeModalBtn()">✕</button>
     </div>
-    <div class="modal-langs" id="modalLangs" style="display:none"></div>
+    <div class="modal-langs" id="modalLangs"></div>
     <div class="modal-search-wrap">
       <input class="modal-search" id="modalCardSearch" placeholder="Set adı, nadir..." autocomplete="off">
     </div>
@@ -1000,21 +1508,69 @@ html, body {
 
 <script>
 /* ═══════════════════════════════════════════
-   CONFIG
+   CONFIG — Yerel Setler
 ═══════════════════════════════════════════ */
 const LANGS = [
-  {code:'en', label:'🇺🇸 EN', name:'İngilizce'},
+  {code:'en', label:'🌐 EN', name:'İngilizce'},
   {code:'ja', label:'🇯🇵 JP', name:'Japonca'},
-  {code:'zh-Hant', label:'🇹🇼 ZH', name:'Çince (Geleneksel)'},
-  {code:'ko', label:'🇰🇷 KO', name:'Korece'},
-  {code:'fr', label:'🇫🇷 FR', name:'Fransızca'},
-  {code:'de', label:'🇩🇪 DE', name:'Almanca'},
-  {code:'it', label:'🇮🇹 IT', name:'İtalyanca'},
-  {code:'es', label:'🇪🇸 ES', name:'İspanyolca'},
-  {code:'pt', label:'🇧🇷 PT', name:'Portekizce'},
+  {code:'zh', label:'🇨🇳 ZH', name:'Çince'},
 ];
 
+const SET_LANG = {
+  'Chinese CSV8C': 'zh',
+  'Pokemon Chinese CSM2aC': 'zh',
+  'Pokemon Chinese CSM2bC': 'zh',
+  'Pokemon Chinese CSV4C': 'zh',
+  'Pokemon Chinese m2F': 'zh',
+  'Pokemon Japanese 10th Movie Commemoration Promo': 'ja',
+  'Pokemon Japanese 25th Anniversary Golden Box': 'ja',
+  'Pokemon Japanese CD Promo': 'ja',
+  'Pokemon Japanese Charizard VMAX Starter Set': 'ja',
+  'Pokemon Japanese Gengar Vmax High-Class': 'ja',
+  'Pokemon Japanese Mega Starter Deck Gengar Ex': 'ja',
+  'Pokemon Japanese SVG Special Set': 'ja',
+  'Pokemon Japanese Southern Islands': 'ja',
+  'Pokemon Japanese Tag Team Starter Set': 'ja',
+  'Pokemon Japanese World Championships 2023': 'ja',
+};
+function setLangOf(setName) {
+  return SET_LANG[setName] || 'en';
+}
+function detectLangFromName(name) {
+  if (!name) return 'en';
+  const n = name.toLowerCase();
+  if (n.includes('korean')) return 'ko';
+  if (n.includes('japanese')) return 'ja';
+  if (n.includes('chinese')) return 'zh';
+  return 'en';
+}
 
+const ALL_SETS = [
+  'Chinese CSV8C','Pokemon Base Set','Pokemon Best of Game','Pokemon Chinese CSM2aC',
+  'Pokemon Chinese CSM2bC','Pokemon Chinese CSV4C','Pokemon Chinese m2F',
+  'Pokemon Destined Rivals','Pokemon EX Latias & Latios',
+  'Pokemon Japanese 10th Movie Commemoration Promo',
+  'Pokemon Japanese 25th Anniversary Golden Box','Pokemon Japanese CD Promo',
+  'Pokemon Japanese Charizard VMAX Starter Set','Pokemon Japanese Gengar Vmax High-Class',
+  'Pokemon Japanese Mega Starter Deck Gengar Ex','Pokemon Japanese SVG Special Set',
+  'Pokemon Japanese Southern Islands','Pokemon Japanese Tag Team Starter Set',
+  'Pokemon Japanese World Championships 2023',
+  'Pokemon McDonalds 2018','Pokemon McDonalds 2019','Pokemon McDonalds 2022',
+  'Pokemon McDonalds 2023','Pokemon McDonalds 2024','Pokemon Mega Evolution',
+  'Pokemon POP Series 1','Pokemon POP Series 9','Pokemon Phantasmal Flames',
+  'Pokemon Promo','Pokemon Rumble','Pokemon Southern Islands',
+  'Pokemon World Championships 2019',
+];
+
+let enabledLangs = (() => {
+  try {
+    const s = JSON.parse(localStorage.getItem('pkbinder_langs'));
+    if (Array.isArray(s) && s.length > 0) return s;
+  } catch {}
+  return ['en','ja','zh'];
+})();
+function saveLangs() { localStorage.setItem('pkbinder_langs', JSON.stringify(enabledLangs)); }
+function getActiveLangs() { return LANGS.filter(l => enabledLangs.includes(l.code)); }
 
 const TYPE_EMOJI = {
   normal:'⚪',fire:'🔥',water:'💧',electric:'⚡',grass:'🍃',ice:'❄️',
@@ -1029,7 +1585,6 @@ const TYPE_COLORS = {
   steel:'#b8b8d0',fairy:'#f0a0c0',
 };
 
-// Gen aralıkları — id dahil her iki uç
 const GENS = [
   { num:1, label:'Kanto',  color:'#e84c2a', from:1,   to:151  },
   { num:2, label:'Johto',  color:'#d4a000', from:152, to:251  },
@@ -1042,16 +1597,38 @@ const GENS = [
   { num:9, label:'Paldea', color:'#d04060', from:906, to:1025 },
 ];
 
-// Her gen için: pokemon listesi ve durum
 let genData = GENS.map(g => ({ loaded: false, pokemon: [], expanded: g.num === 1, loading: false }));
+let allPokemonList = []; // [{id, name, display}] — loadAllPokemon'dan doldurulur
+let _pokeNameMap = null; // uzunluğa göre sıralı, getDexFromCardName için
+
+function buildPokeNameMap() {
+  if (_pokeNameMap) return;
+  _pokeNameMap = [...allPokemonList].sort((a, b) => b.display.length - a.display.length);
+}
+
+function getDexFromCardName(cardName) {
+  buildPokeNameMap();
+  const lower = cardName.toLowerCase();
+  for (const p of _pokeNameMap) {
+    const dn = p.display.toLowerCase();
+    if (lower.startsWith(dn + ' ') || lower.startsWith(dn + '-') ||
+        lower.startsWith(dn + '#') || lower === dn) {
+      return p.id;
+    }
+  }
+  return 9999;
+}
 
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-let viewMode = 'grid';
+let viewMode = 'list';
 let selectedPoke = null;
-let pendingCardId = null; // dil seçimi beklenen kartın ID'si
-let tcgCards = [], cardSearchVal = '';
+let activeLang = 'en';
+let localCards = [];   // tüm yüklü kartlar (tüm setler)
+let setsLoaded = false;
+let setsLoading = false;
+let cardSearchVal = '';
 let typeCache = {};
 let collection = loadCol();
 let activeTab = 'cards';
@@ -1065,35 +1642,24 @@ function loadCol() {
 }
 function saveCol() { localStorage.setItem('pkbinder', JSON.stringify(collection)); }
 
-function toggleOwned(cardId, cardData) {
-  if (collection[cardId]) {
-    delete collection[cardId];
-    pendingCardId = null;
-    saveCol();
-    renderTCGCards();
-    updateOwnedChip();
-  } else {
-    pendingCardId = cardId;
-    renderTCGCards(); // dil seçici overlay'i göster
-  }
-}
-
-function addWithLang(cardId, lang) {
-  const card = tcgCards.find(c => c.id === cardId);
-  if (!card) return;
-  collection[cardId] = { lang, name: card.name, image: card.image, set: card.set, localId: card.localId };
-  pendingCardId = null;
+function addCard(cardKey) {
+  collection[cardKey] = (collection[cardKey] || 0) + 1;
   saveCol();
-  renderTCGCards();
+  renderLocalCards();
   updateOwnedChip();
 }
 
-function cancelLangPick() {
-  pendingCardId = null;
-  renderTCGCards();
+function adjustCount(e, cardKey, delta) {
+  e.stopPropagation();
+  const next = (collection[cardKey] || 0) + delta;
+  if (next <= 0) delete collection[cardKey];
+  else collection[cardKey] = next;
+  saveCol();
+  renderLocalCards();
+  updateOwnedChip();
 }
 
-function ownedCount() { return Object.keys(collection).length; }
+function ownedCount() { return Object.values(collection).reduce((s, v) => s + (v || 0), 0); }
 function updateOwnedChip() {
   const el = document.getElementById('modalOwnedNum');
   if (el) el.textContent = ownedCount();
@@ -1103,8 +1669,7 @@ function updateOwnedChip() {
    BACKUP / RESTORE
 ═══════════════════════════════════════════ */
 function exportCollection() {
-  const data = JSON.stringify(collection, null, 2);
-  const blob = new Blob([data], {type: 'application/json'});
+  const blob = new Blob([JSON.stringify(collection, null, 2)], {type: 'application/json'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -1115,22 +1680,18 @@ function exportCollection() {
 
 function importCollection() {
   const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = '.json';
+  input.type = 'file'; input.accept = '.json';
   input.onchange = e => {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = ev => {
       try {
-        const data = JSON.parse(ev.target.result);
-        collection = data;
-        saveCol();
-        renderCollection();
-        updateOwnedChip();
-        if (selectedPoke) renderTCGCards();
+        collection = JSON.parse(ev.target.result);
+        saveCol(); renderBinder(); updateOwnedChip();
+        if (selectedPoke) renderLocalCards();
         alert(`✅ ${ownedCount()} kart başarıyla yüklendi!`);
-      } catch { alert('❌ Dosya okunamadı. Geçerli bir yedek dosyası seç.'); }
+      } catch { alert('❌ Dosya okunamadı.'); }
     };
     reader.readAsText(file);
   };
@@ -1139,11 +1700,53 @@ function importCollection() {
 
 function clearCollection() {
   if (!confirm(`Tüm koleksiyonu silmek istediğine emin misin? (${ownedCount()} kart)`)) return;
-  collection = {};
-  saveCol();
-  renderCollection();
-  updateOwnedChip();
-  if (selectedPoke) renderTCGCards();
+  collection = {}; saveCol(); renderBinder(); updateOwnedChip();
+  if (selectedPoke) renderLocalCards();
+}
+
+function removeCard(cardKey) {
+  delete collection[cardKey]; saveCol(); renderCollection(); updateOwnedChip();
+  if (selectedPoke) renderLocalCards();
+}
+
+/* ═══════════════════════════════════════════
+   LOCAL DATA LOADING
+═══════════════════════════════════════════ */
+function localImgUrl(imgPath) {
+  if (!imgPath) return null;
+  // Backslash'ları forward slash'a çevir ve her segmenti encode et
+  return imgPath.replace(/\\/g, '/').split('/').map((p, i) => i === 0 ? p : encodeURIComponent(p)).join('/');
+}
+
+async function loadAllSets() {
+  if (setsLoaded || setsLoading) return;
+  setsLoading = true;
+  const results = await Promise.allSettled(
+    ALL_SETS.map(async setName => {
+      const url = 'data/' + encodeURIComponent(setName) + '.json';
+      const r = await fetch(url);
+      if (!r.ok) return [];
+      return r.json();
+    })
+  );
+  localCards = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
+  setsLoaded = true;
+  setsLoading = false;
+}
+
+function getCardsForPoke(displayName, lang) {
+  const nameLower = displayName.toLowerCase();
+  return localCards.filter(card => {
+    const cName = (card.name || '').toLowerCase();
+    // Kart adının Pokemon adıyla başlayıp başlamadığını kontrol et
+    const match = cName.startsWith(nameLower + ' ') ||
+                  cName.startsWith(nameLower + '#') ||
+                  cName === nameLower;
+    if (!match) return false;
+    // Dil filtresi: kartın adındaki karakterlere göre tespit et
+    const cardLang = detectLangFromName(card.name || '');
+    return cardLang === lang;
+  });
 }
 
 /* ═══════════════════════════════════════════
@@ -1153,11 +1756,6 @@ const artUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/s
 const sprUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 const cap = n => n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
 
-function getGenIndex(id) {
-  return GENS.findIndex(g => id >= g.from && id <= g.to);
-}
-
-// Tüm 1025 pokemonu tek istekle yükle, gen'lere dağıt
 async function loadAllPokemon() {
   try {
     const r = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025');
@@ -1165,12 +1763,13 @@ async function loadAllPokemon() {
     const allPokemon = d.results.map((p, i) => ({
       id: i + 1, name: p.name, display: cap(p.name), types: [],
     }));
+    allPokemonList = allPokemon;
+    _pokeNameMap = null; // map'i sıfırla, yeniden oluşturulsun
     GENS.forEach((gen, gi) => {
       genData[gi].pokemon = allPokemon.filter(p => p.id >= gen.from && p.id <= gen.to);
       genData[gi].loaded = true;
     });
     renderPokeList();
-    // Expanded gen'lerin type'larını önce yükle
     const order = [
       ...GENS.map((_,gi) => gi).filter(gi => genData[gi].expanded),
       ...GENS.map((_,gi) => gi).filter(gi => !genData[gi].expanded),
@@ -1187,8 +1786,7 @@ async function fetchTypes(id) {
     const r = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const d = await r.json();
     const t = d.types.map(t => t.type.name);
-    typeCache[id] = t;
-    return t;
+    typeCache[id] = t; return t;
   } catch { return []; }
 }
 
@@ -1206,18 +1804,6 @@ async function batchFetchTypes(gi, list) {
 }
 
 /* ═══════════════════════════════════════════
-   TCGDEX — sadece İngilizce kart çekme
-═══════════════════════════════════════════ */
-async function fetchTCG(pokemonId) {
-  try {
-    const r = await fetch(`https://api.tcgdex.net/v2/en/dex-ids/${pokemonId}`);
-    if (!r.ok) return [];
-    const d = await r.json();
-    return Array.isArray(d.cards) ? d.cards : [];
-  } catch { return []; }
-}
-
-/* ═══════════════════════════════════════════
    RENDER: POKEMON LIST
 ═══════════════════════════════════════════ */
 function primaryColor(types) {
@@ -1225,12 +1811,10 @@ function primaryColor(types) {
   return TYPE_COLORS[t] || '#a8a878';
 }
 
-// Converts a hex type color into a muted lavender/desaturated end for the row gradient
 function adjustToLavender(hex) {
   const r = parseInt(hex.slice(1,3),16);
   const g = parseInt(hex.slice(3,5),16);
   const b = parseInt(hex.slice(5,7),16);
-  // Blend toward a soft lavender (180, 170, 200) with 55% weight
   const lr = Math.round(r * 0.45 + 180 * 0.55);
   const lg = Math.round(g * 0.45 + 170 * 0.55);
   const lb = Math.round(b * 0.45 + 200 * 0.55);
@@ -1259,7 +1843,6 @@ function renderPokeList() {
   const q = document.getElementById('pokeSearch').value.toLowerCase().trim();
   const list = document.getElementById('pokeList');
 
-  // Arama modunda: tüm pokemon arasında ara
   if (q) {
     const all = getAllPokemon();
     if (all.length === 0) {
@@ -1280,7 +1863,6 @@ function renderPokeList() {
     return;
   }
 
-  // Gen bazlı render
   list.innerHTML = GENS.map((gen, gi) => {
     const gd = genData[gi];
     const collapsed = !gd.expanded;
@@ -1317,10 +1899,11 @@ function renderPokeItem(p) {
   const num = '#' + String(p.id).padStart(3, '0');
   const active = selectedPoke?.id === p.id;
   const typeTags = p.types.map(t => `<span class="type-tag" title="${t}">${TYPE_EMOJI[t]||'❓'}</span>`).join('');
+  const sd = p.display.replace(/'/g, '&#39;');
   if (viewMode === 'list') {
-    return `<div class="poke-row ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
+    return `<div class="poke-row ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${sd}')">
       <div class="poke-row-bg" style="background:linear-gradient(105deg,${col} 0%,${col}bb 35%,${adjustToLavender(col)} 100%)"></div>
-      <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy" width="88" height="88">
+      <img src="${sprUrl(p.id)}" alt="${sd}" loading="lazy" width="88" height="88">
       <div class="poke-row-info">
         <div class="poke-row-name">${p.display}</div>
         <div class="type-tags">${typeTags}</div>
@@ -1330,10 +1913,10 @@ function renderPokeItem(p) {
       </div>
     </div>`;
   } else {
-    return `<div class="poke-grid ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${p.display}')">
+    return `<div class="poke-grid ${active ? 'active' : ''}" onclick="selectPoke(${p.id},'${p.name}','${sd}')">
       <div class="poke-grid-bg" style="background:linear-gradient(160deg,${col} 0%,${adjustToLavender(col)} 100%)"></div>
       <div class="poke-grid-num">${num}</div>
-      <img src="${sprUrl(p.id)}" alt="${p.display}" loading="lazy">
+      <img src="${sprUrl(p.id)}" alt="${sd}" loading="lazy">
       <div class="poke-grid-name">${p.display}</div>
       <div class="poke-grid-types">${typeTags}</div>
     </div>`;
@@ -1345,11 +1928,10 @@ function renderPokeItem(p) {
 ═══════════════════════════════════════════ */
 async function selectPoke(id, name, display) {
   selectedPoke = { id, name, display };
-  tcgCards = [];
+  activeLang = getActiveLangs()[0]?.code || 'en';
   cardSearchVal = '';
   document.getElementById('modalCardSearch').value = '';
 
-  // Open modal
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 
@@ -1359,9 +1941,17 @@ async function selectPoke(id, name, display) {
   document.getElementById('modalCount').textContent = 'Yükleniyor...';
   updateOwnedChip();
 
+  renderLangPills();
   renderPokeList();
 
-  await loadTCGCards();
+  // Tüm setleri yükle (ilk açılışta)
+  if (!setsLoaded) {
+    document.getElementById('cardsGrid').innerHTML =
+      `<div class="loading-row" style="grid-column:1/-1"><div class="spinner"></div>&nbsp; Kart veritabanı yükleniyor...</div>`;
+    await loadAllSets();
+  }
+
+  showCardsForLang();
 }
 
 function closeModal(e) {
@@ -1372,185 +1962,552 @@ function closeModalBtn() {
   document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow = '';
   selectedPoke = null;
-  pendingCardId = null;
   renderPokeList();
 }
 
-function openCollection() {
-  document.getElementById('collOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  renderCollection();
+let binderSpread = 0;
+let binderDisplay = (() => {
+  try { return JSON.parse(localStorage.getItem('pkbinder_display') || '{}'); } catch { return {}; }
+})();
+function saveBinderDisplay() { localStorage.setItem('pkbinder_display', JSON.stringify(binderDisplay)); }
+
+const BINDER_TOTAL_SPREADS = Math.ceil(1025 / 18); // 57 spread = 114 sayfa
+
+function getByDex() {
+  const cardMap = {};
+  localCards.forEach(c => { cardMap[c.name] = c; });
+  const byDex = {};
+  Object.keys(collection).filter(k => collection[k] > 0).forEach(name => {
+    const dexNum = getDexFromCardName(name);
+    if (!byDex[dexNum]) byDex[dexNum] = [];
+    byDex[dexNum].push({ name, card: cardMap[name] || null, count: collection[name] });
+  });
+  return byDex;
 }
 
-function closeCollection(e) {
-  if (!e || e.target === document.getElementById('collOverlay')) {
-    document.getElementById('collOverlay').classList.remove('open');
-    document.body.style.overflow = '';
+function openBinder() {
+  const byDex = getByDex();
+  const nums = Object.keys(byDex).map(Number).filter(n => n < 9999);
+  binderSpread = nums.length > 0 ? Math.floor((Math.min(...nums) - 1) / 18) : 0;
+  document.getElementById('binderView').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderBinder();
+}
+function openCollection() { openBinder(); }
+
+function closeBinder() {
+  closeFolder();
+  document.getElementById('binderView').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeCollection(e) { closeBinder(); }
+
+let activeBinderTab = 'binder';
+
+function setBinderTab(tab) {
+  activeBinderTab = tab;
+  document.getElementById('btabBinder').classList.toggle('active', tab === 'binder');
+  document.getElementById('btabList').classList.toggle('active', tab === 'list');
+  document.getElementById('btabCustom').classList.toggle('active', tab === 'custom');
+  document.getElementById('binderTabPane').style.display  = tab === 'binder' ? 'flex' : 'none';
+  document.getElementById('listTabPane').style.display    = tab === 'list'   ? 'flex' : 'none';
+  document.getElementById('customTabPane').style.display  = tab === 'custom' ? 'flex' : 'none';
+  document.getElementById('binderPageInfo').style.display = tab === 'binder' ? '' : 'none';
+  if (tab === 'list')   renderCardList();
+  if (tab === 'custom') renderCustomBinder();
+}
+
+/* ═══════════════════════════════════════════
+   ÖZEL BİNDER
+═══════════════════════════════════════════ */
+let customBinderSlots = (() => {
+  try { return JSON.parse(localStorage.getItem('pkbinder_custom') || '{}'); } catch { return {}; }
+})();
+let customBinderSpread = 0;
+let customGridSize = localStorage.getItem('pkbinder_grid') || '3x3';
+let _dragSrcSlot = null;
+
+const GRID_DEFS = {
+  '3x3': {cols:3, rows:3},
+  '4x3': {cols:4, rows:3},
+  '3x4': {cols:3, rows:4},
+  '4x4': {cols:4, rows:4},
+};
+
+function slotsPerPage() { const g = GRID_DEFS[customGridSize]; return g.cols * g.rows; }
+function slotsPerSpread() { return slotsPerPage() * 2; }
+
+function saveCustomBinder() { localStorage.setItem('pkbinder_custom', JSON.stringify(customBinderSlots)); }
+
+function setCustomGrid(size) {
+  customGridSize = size;
+  localStorage.setItem('pkbinder_grid', size);
+  customBinderSpread = 0;
+  // Buton aktifliği
+  document.querySelectorAll('.cgrid-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.grid === size));
+  renderCustomBinder();
+}
+
+function customTotalSpreads() {
+  const sps = slotsPerSpread();
+  const keys = Object.keys(customBinderSlots).map(Number);
+  const maxSlot = keys.length > 0 ? Math.max(...keys) : -1;
+  return Math.max(1, Math.floor(maxSlot / sps) + 2);
+}
+
+function renderCustomBinder() {
+  const spp  = slotsPerPage();
+  const sps  = slotsPerSpread();
+  const total = customTotalSpreads();
+  if (customBinderSpread >= total) customBinderSpread = total - 1;
+  if (customBinderSpread < 0) customBinderSpread = 0;
+
+  const {cols, rows} = GRID_DEFS[customGridSize];
+  const gridStyle = `grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr)`;
+  document.getElementById('customLeft').style.cssText  = gridStyle;
+  document.getElementById('customRight').style.cssText = gridStyle;
+
+  const cardMap = {};
+  localCards.forEach(c => { cardMap[c.name] = c; });
+
+  const leftStart  = customBinderSpread * sps;
+  const rightStart = leftStart + spp;
+
+  function slotHtml(idx) {
+    const name = customBinderSlots[idx];
+    if (!name) {
+      return `<div class="binder-slot custom-slot empty-cslot" data-cslot="${idx}">
+        <button class="cslot-add-btn" data-cslot="${idx}">+</button>
+      </div>`;
+    }
+    const card = cardMap[name] || null;
+    const imgPath = card ? localImgUrl(card.image_local) : null;
+    const esc = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return `<div class="binder-slot custom-slot filled-cslot" data-cslot="${idx}" draggable="true" title="${esc}">
+      ${imgPath
+        ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">`
+        : `<div class="binder-slot-noimg" style="font-size:8px;padding:2px">${esc}</div>`}
+      <button class="cslot-remove-btn" data-cslot="${idx}">✕</button>
+      <div class="cslot-drag-hint">⠿</div>
+    </div>`;
   }
+
+  document.getElementById('customLeft').innerHTML  = Array.from({length:spp},(_,i)=>slotHtml(leftStart+i)).join('');
+  document.getElementById('customRight').innerHTML = Array.from({length:spp},(_,i)=>slotHtml(rightStart+i)).join('');
+  // cssText sıfırlandı, yeniden uygula
+  document.getElementById('customLeft').style.cssText  = gridStyle;
+  document.getElementById('customRight').style.cssText = gridStyle;
+
+  const WIN = 10;
+  let ds = Math.max(0, customBinderSpread - Math.floor(WIN/2));
+  const de = Math.min(total-1, ds+WIN-1);
+  ds = Math.max(0, de-WIN+1);
+  document.getElementById('customDots').innerHTML =
+    Array.from({length:de-ds+1},(_,i)=>{
+      const s=ds+i;
+      return `<div class="binder-dot ${s===customBinderSpread?'active':''}" data-cspread="${s}"></div>`;
+    }).join('');
+
+  document.getElementById('customPrev').disabled = customBinderSpread === 0;
+  document.getElementById('customNext').disabled = customBinderSpread >= total - 1;
+
+  // Grid butonlarını güncelle
+  document.querySelectorAll('.cgrid-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.grid === customGridSize));
+}
+
+function customBinderPrev() { if (customBinderSpread > 0) { customBinderSpread--; renderCustomBinder(); } }
+function customBinderNext() {
+  if (customBinderSpread < customTotalSpreads() - 1) { customBinderSpread++; renderCustomBinder(); }
+}
+
+/* ── Slot Picker ── */
+let _pickerTargetSlot = null;
+
+function openSlotPicker(slotIdx) {
+  _pickerTargetSlot = slotIdx;
+  document.getElementById('slotPickerSearch').value = '';
+  renderSlotPickerGrid('');
+  document.getElementById('slotPicker').classList.add('open');
+}
+function closeSlotPicker() {
+  document.getElementById('slotPicker').classList.remove('open');
+  _pickerTargetSlot = null;
+}
+
+function renderSlotPickerGrid(q) {
+  const cardMap = {};
+  localCards.forEach(c => { cardMap[c.name] = c; });
+  const ql = q.toLowerCase();
+
+  let entries = Object.keys(collection)
+    .filter(k => collection[k] > 0)
+    .filter(k => !ql || k.toLowerCase().includes(ql))
+    .map(name => ({ name, card: cardMap[name] || null }));
+
+  const grid = document.getElementById('slotPickerGrid');
+  if (entries.length === 0) {
+    grid.innerHTML = `<div style="padding:20px;text-align:center;color:#44445a">Sonuç yok</div>`;
+    return;
+  }
+  grid.innerHTML = entries.map(e => {
+    const imgPath = e.card ? localImgUrl(e.card.image_local) : null;
+    const esc = e.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return `<div class="picker-card" data-pname="${esc}">
+      ${imgPath
+        ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">`
+        : `<div style="font-size:8px;color:#44445a;padding:4px;text-align:center;overflow:hidden">${esc}</div>`}
+    </div>`;
+  }).join('');
+}
+
+/* ── Drag & Drop (event delegation üzerinden, initCustomEvents'te bağlanır) ── */
+function initCustomEvents() {
+  const spread = document.getElementById('customSpread');
+
+  // Click delegation
+  spread.addEventListener('click', e => {
+    // Dot
+    const dot = e.target.closest('[data-cspread]');
+    if (dot) { customBinderSpread = parseInt(dot.dataset.cspread,10); renderCustomBinder(); return; }
+    // + button
+    const addBtn = e.target.closest('.cslot-add-btn');
+    if (addBtn) { openSlotPicker(parseInt(addBtn.dataset.cslot,10)); return; }
+    // ✕ button
+    const rmBtn = e.target.closest('.cslot-remove-btn');
+    if (rmBtn) {
+      delete customBinderSlots[parseInt(rmBtn.dataset.cslot,10)];
+      saveCustomBinder(); renderCustomBinder(); return;
+    }
+  });
+
+  // Drag
+  spread.addEventListener('dragstart', e => {
+    const slot = e.target.closest('.filled-cslot');
+    if (!slot) return;
+    _dragSrcSlot = parseInt(slot.dataset.cslot, 10);
+    slot.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  spread.addEventListener('dragend', e => {
+    spread.querySelectorAll('.dragging,.drag-over').forEach(el => {
+      el.classList.remove('dragging','drag-over');
+    });
+    _dragSrcSlot = null;
+  });
+  spread.addEventListener('dragover', e => {
+    const slot = e.target.closest('.custom-slot');
+    if (!slot || _dragSrcSlot === null) return;
+    e.preventDefault();
+    spread.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    slot.classList.add('drag-over');
+  });
+  spread.addEventListener('dragleave', e => {
+    const slot = e.target.closest('.custom-slot');
+    if (slot) slot.classList.remove('drag-over');
+  });
+  spread.addEventListener('drop', e => {
+    e.preventDefault();
+    const destSlot = e.target.closest('.custom-slot');
+    if (!destSlot || _dragSrcSlot === null) return;
+    const destIdx = parseInt(destSlot.dataset.cslot, 10);
+    if (destIdx === _dragSrcSlot) return;
+    // Swap
+    const srcVal  = customBinderSlots[_dragSrcSlot] || null;
+    const destVal = customBinderSlots[destIdx] || null;
+    if (destVal) customBinderSlots[_dragSrcSlot] = destVal;
+    else delete customBinderSlots[_dragSrcSlot];
+    if (srcVal) customBinderSlots[destIdx] = srcVal;
+    else delete customBinderSlots[destIdx];
+    saveCustomBinder(); renderCustomBinder();
+    _dragSrcSlot = null;
+  });
+
+  // Slot picker events
+  const picker = document.getElementById('slotPicker');
+  document.getElementById('slotPickerSearch').addEventListener('input', e => {
+    renderSlotPickerGrid(e.target.value);
+  });
+  document.getElementById('slotPickerGrid').addEventListener('click', e => {
+    const card = e.target.closest('.picker-card');
+    if (!card || _pickerTargetSlot === null) return;
+    customBinderSlots[_pickerTargetSlot] = card.dataset.pname;
+    saveCustomBinder();
+    closeSlotPicker();
+    renderCustomBinder();
+  });
+
+  // Custom dots (footer)
+  document.getElementById('customDots').addEventListener('click', e => {
+    const dot = e.target.closest('[data-cspread]');
+    if (dot) { customBinderSpread = parseInt(dot.dataset.cspread,10); renderCustomBinder(); }
+  });
+}
+
+function renderCardList() {
+  const area = document.getElementById('clistArea');
+  const q    = (document.getElementById('clistSearch').value || '').toLowerCase().trim();
+  const sort = document.getElementById('clistSort').value;
+
+  const cardMap = {};
+  localCards.forEach(c => { cardMap[c.name] = c; });
+
+  let entries = Object.keys(collection)
+    .filter(k => collection[k] > 0)
+    .map(name => ({
+      name,
+      card: cardMap[name] || null,
+      count: collection[name],
+      dexNum: getDexFromCardName(name),
+    }));
+
+  if (q) entries = entries.filter(e => e.name.toLowerCase().includes(q));
+
+  if (sort === 'dex-asc')   entries.sort((a,b) => a.dexNum - b.dexNum || a.name.localeCompare(b.name));
+  if (sort === 'dex-desc')  entries.sort((a,b) => b.dexNum - a.dexNum || a.name.localeCompare(b.name));
+  if (sort === 'alpha-asc') entries.sort((a,b) => a.name.localeCompare(b.name));
+  if (sort === 'alpha-desc')entries.sort((a,b) => b.name.localeCompare(a.name));
+
+  if (entries.length === 0) {
+    area.innerHTML = `<div class="clist-empty">${q ? 'Sonuç bulunamadı.' : 'Koleksiyonun boş.'}</div>`;
+    return;
+  }
+
+  area.innerHTML = entries.map(e => {
+    const imgPath = e.card ? localImgUrl(e.card.image_local) : null;
+    const price   = e.card?.prices?.ungraded || '';
+    const esc     = e.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return `<div class="clist-row">
+      ${imgPath
+        ? `<img class="clist-thumb" src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">`
+        : '<div class="clist-thumb-ph"></div>'}
+      <div class="clist-info">
+        <div class="clist-name">${e.name}</div>
+        <div class="clist-sub">#${e.dexNum === 9999 ? '?' : e.dexNum}${price ? '  ·  ' + price : ''}</div>
+      </div>
+      <div class="clist-controls">
+        <button class="bsl-btn" data-bkey="${esc}" data-bdelta="-1" data-bctx="list">−</button>
+        <span class="bsl-cnt">${e.count}</span>
+        <button class="bsl-btn" data-bkey="${esc}" data-bdelta="1" data-bctx="list">+</button>
+        <button class="bsl-btn rm" data-bkey="${esc}" data-bdelta="-9999" data-bctx="list">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function binderSlotHtml(dexNum, byDex) {
+  const cards = byDex[dexNum] || [];
+  if (cards.length === 0) {
+    return `<div class="binder-slot empty-slot">
+      <img class="binder-slot-ghost" src="${artUrl(dexNum)}" alt="" loading="lazy" onerror="this.style.display='none'">
+      <div class="binder-slot-dex">#${dexNum}</div>
+    </div>`;
+  }
+  if (cards.length === 1) {
+    const {name, card, count} = cards[0];
+    const imgPath = card ? localImgUrl(card.image_local) : null;
+    const esc = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return `<div class="binder-slot filled single">
+      ${imgPath ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">` : `<div class="binder-slot-noimg">#${dexNum}</div>`}
+      <div class="binder-slot-dex">#${dexNum}</div>
+      <div class="binder-slot-controls">
+        <button class="bsl-btn" data-bkey="${esc}" data-bdelta="-1">−</button>
+        <span class="bsl-cnt">${count}</span>
+        <button class="bsl-btn" data-bkey="${esc}" data-bdelta="1">+</button>
+        <button class="bsl-btn rm" data-bkey="${esc}" data-bdelta="-9999">✕</button>
+      </div>
+    </div>`;
+  }
+  // Folder (birden fazla çeşit)
+  const displayName = binderDisplay[dexNum] || cards[0].name;
+  const disp = cards.find(c => c.name === displayName) || cards[0];
+  const imgPath = disp.card ? localImgUrl(disp.card.image_local) : null;
+  const totalCount = cards.reduce((s, c) => s + c.count, 0);
+  return `<div class="binder-slot filled folder" data-bdex="${dexNum}">
+    ${imgPath ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">` : `<div class="binder-slot-noimg">#${dexNum}</div>`}
+    <div class="binder-slot-dex">#${dexNum}</div>
+    <div class="binder-folder-badge">${cards.length}</div>
+    ${totalCount > 1 ? `<div class="binder-slot-count">×${totalCount}</div>` : ''}
+  </div>`;
+}
+
+function renderBinder() {
+  if (binderSpread < 0) binderSpread = 0;
+  if (binderSpread >= BINDER_TOTAL_SPREADS) binderSpread = BINDER_TOTAL_SPREADS - 1;
+
+  const byDex = getByDex();
+  const leftStart  = binderSpread * 18 + 1;
+  const rightStart = leftStart + 9;
+
+  document.getElementById('binderLeft').innerHTML  =
+    Array.from({length:9}, (_,i) => binderSlotHtml(leftStart+i,  byDex)).join('');
+  document.getElementById('binderRight').innerHTML =
+    Array.from({length:9}, (_,i) => binderSlotHtml(rightStart+i, byDex)).join('');
+
+  const p1 = binderSpread*2+1, p2 = binderSpread*2+2;
+  const totalOwned = Object.values(collection).reduce((s,v)=>s+(v||0),0);
+  document.getElementById('binderPageInfo').textContent =
+    `Sayfa ${p1}–${p2}  ·  #${leftStart}–#${rightStart+8}  ·  ${totalOwned} kart`;
+  document.getElementById('binderPrev').disabled = binderSpread === 0;
+  document.getElementById('binderNext').disabled = binderSpread >= BINDER_TOTAL_SPREADS - 1;
+
+  const WIN = 10;
+  let ds = Math.max(0, binderSpread - Math.floor(WIN/2));
+  const de = Math.min(BINDER_TOTAL_SPREADS-1, ds+WIN-1);
+  ds = Math.max(0, de-WIN+1);
+  document.getElementById('binderDots').innerHTML =
+    Array.from({length: de-ds+1}, (_,i) => {
+      const s = ds+i;
+      return `<div class="binder-dot ${s===binderSpread?'active':''}" data-bspread="${s}"></div>`;
+    }).join('');
+}
+function renderCollection() {
+  if (document.getElementById('binderView').classList.contains('open')) renderBinder();
+}
+
+function binderPrev() { if (binderSpread > 0) { binderSpread--; renderBinder(); } }
+function binderNext() { if (binderSpread < BINDER_TOTAL_SPREADS-1) { binderSpread++; renderBinder(); } }
+
+/* ── Folder (klasör) ── */
+function openFolder(dexNum) {
+  const byDex = getByDex();
+  const cards = byDex[dexNum] || [];
+  if (cards.length === 0) return;
+  const displayName = binderDisplay[dexNum] || cards[0].name;
+  const pokeMatch = cards[0].name.match(/^([^#]+)\s*#/);
+  document.getElementById('folderTitle').textContent =
+    (pokeMatch ? pokeMatch[1].trim() : `#${dexNum}`) + ` — ${cards.length} çeşit`;
+  renderFolderGrid(dexNum, cards, displayName);
+  document.getElementById('binderFolder').classList.add('open');
+}
+
+function renderFolderGrid(dexNum, cards, displayName) {
+  document.getElementById('folderGrid').innerHTML = cards.map(entry => {
+    const imgPath = entry.card ? localImgUrl(entry.card.image_local) : null;
+    const esc = entry.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    const isDisp = entry.name === displayName;
+    return `<div class="folder-card ${isDisp?'display':''}">
+      <div class="folder-card-img">
+        ${imgPath ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">` : `<div class="binder-slot-noimg">#${dexNum}</div>`}
+        ${isDisp ? '<div class="folder-display-badge">Gösteriliyor</div>' : ''}
+      </div>
+      <div class="folder-card-info">
+        <div class="folder-card-name">${esc}</div>
+        <div class="folder-card-controls">
+          <button class="bsl-btn" data-bkey="${esc}" data-bdelta="-1" data-fdex="${dexNum}">−</button>
+          <span class="bsl-cnt">${entry.count}</span>
+          <button class="bsl-btn" data-bkey="${esc}" data-bdelta="1" data-fdex="${dexNum}">+</button>
+          <button class="bsl-btn rm" data-bkey="${esc}" data-bdelta="-9999" data-fdex="${dexNum}">✕</button>
+        </div>
+        ${!isDisp ? `<button class="folder-show-btn" data-fdex="${dexNum}" data-fname="${esc}">▶ Öne Koy</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function closeFolder() {
+  document.getElementById('binderFolder').classList.remove('open');
 }
 
 /* ═══════════════════════════════════════════
    RENDER: LANG PILLS
 ═══════════════════════════════════════════ */
-
-/* ═══════════════════════════════════════════
-   LOAD + RENDER: TCG CARDS
-═══════════════════════════════════════════ */
-async function loadTCGCards() {
-  document.getElementById('cardsGrid').innerHTML =
-    `<div class="loading-row" style="grid-column:1/-1"><div class="spinner"></div>&nbsp; Kartlar yükleniyor...</div>`;
-
-  try {
-    tcgCards = await fetchTCG(selectedPoke.id);
-  } catch { tcgCards = []; }
-
-  document.getElementById('modalCount').textContent = `${tcgCards.length} kart bulundu`;
-  renderTCGCards();
+function renderLangPills() {
+  const langs = getActiveLangs();
+  document.getElementById('modalLangs').innerHTML = langs.map(l =>
+    `<button class="lang-pill ${activeLang === l.code ? 'active' : ''}" onclick="setLang('${l.code}')">${l.label}</button>`
+  ).join('');
+  if (!enabledLangs.includes(activeLang) && langs.length > 0) {
+    activeLang = langs[0].code;
+  }
 }
 
-function renderTCGCards() {
+function setLang(code) {
+  activeLang = code;
+  renderLangPills();
+  if (selectedPoke) showCardsForLang();
+}
+
+/* ═══════════════════════════════════════════
+   SHOW LOCAL CARDS
+═══════════════════════════════════════════ */
+function showCardsForLang() {
+  if (!selectedPoke) return;
+  const cards = getCardsForPoke(selectedPoke.display, activeLang);
+  document.getElementById('modalCount').textContent = `${cards.length} kart bulundu`;
+  renderLocalCards(cards);
+}
+
+function renderLocalCards(cards) {
+  if (!selectedPoke) return;
+  if (cards === undefined) cards = getCardsForPoke(selectedPoke.display, activeLang);
   const grid = document.getElementById('cardsGrid');
   const q = cardSearchVal.toLowerCase().trim();
   const filtered = q
-    ? tcgCards.filter(c =>
+    ? cards.filter(c =>
         (c.name||'').toLowerCase().includes(q) ||
-        (c.set?.name||'').toLowerCase().includes(q) ||
-        (c.rarity||'').toLowerCase().includes(q) ||
-        (c.localId||'').toLowerCase().includes(q))
-    : tcgCards;
+        (c.set||'').toLowerCase().includes(q) ||
+        (c.rarity||'').toLowerCase().includes(q))
+    : cards;
 
   if (filtered.length === 0) {
+    const msg = cards.length === 0
+      ? `<strong>${LANGS.find(l=>l.code===activeLang)?.label||activeLang}</strong> dilinde <strong>${selectedPoke.display}</strong> kartı bulunamadı. Başka bir dil dene.`
+      : 'Arama kriterini değiştir.';
     grid.innerHTML = `<div class="state-center" style="grid-column:1/-1">
-      <div class="si">${tcgCards.length === 0 ? '🌐' : '🔍'}</div>
-      <div class="st">${tcgCards.length === 0 ? 'Bu dilde kart yok' : 'Sonuç bulunamadı'}</div>
-      <div class="ss">${tcgCards.length === 0
-        ? `<strong>${selectedPoke?.display}</strong> için kart bulunamadı.`
-        : 'Arama kriterini değiştir.'}</div>
+      <div class="si">${cards.length === 0 ? '🌐' : '🔍'}</div>
+      <div class="st">${cards.length === 0 ? 'Bu dilde kart yok' : 'Sonuç bulunamadı'}</div>
+      <div class="ss">${msg}</div>
     </div>`;
     return;
   }
 
-  grid.innerHTML = filtered.map(c => {
-    const imgUrl = c.image ? `${c.image}/low.webp` : null;
-    const entry = collection[c.id];
-    const owned = !!entry;
-    const isPending = pendingCardId === c.id;
-    const ownedLang = owned ? (LANGS.find(l => l.code === entry.lang) || LANGS[0]) : null;
-    const sid = 'sk_' + c.id.replace(/[^a-z0-9]/gi, '_');
-    // dex-ids endpoint set objesi dönmüyor — id'den set kodunu çıkar (swsh10.5-001 → swsh10.5)
-    const setId = c.id.replace(/-[^-]+$/, '');
-    const setName = c.set?.name || setId;
-    const rarity = c.rarity || '';
-    const localId = c.localId || '';
+  // Setlere göre grupla
+  const groups = [];
+  const groupMap = {};
+  filtered.forEach(card => {
+    const setKey = card.set || 'Bilinmiyor';
+    if (!groupMap[setKey]) {
+      groupMap[setKey] = [];
+      groups.push(setKey);
+    }
+    groupMap[setKey].push(card);
+  });
 
-    const langOverlay = isPending ? `
-      <div class="lang-pick-overlay" onclick="event.stopPropagation()">
-        <div class="lang-pick-title">Hangi dil?</div>
-        <div class="lang-pick-btns">
-          ${LANGS.map(l => `<button class="lang-pick-btn" onclick="addWithLang('${c.id}','${l.code}')">${l.label}</button>`).join('')}
-        </div>
-        <button class="lang-pick-cancel" onclick="cancelLangPick()">İptal</button>
-      </div>` : '';
-
-    return `<div class="tcg-card ${owned ? 'owned' : ''} ${isPending ? 'pending' : ''}" onclick="toggleOwned('${c.id}')">
-      <div class="tcg-card-img">
-        ${imgUrl
-          ? `<div class="shimmer" id="${sid}"></div>
-             <img src="${imgUrl}" alt="${c.name||''}" loading="lazy"
-                 onload="this.previousElementSibling&&this.previousElementSibling.remove()"
-                 onerror="const s=document.getElementById('${sid}');if(s){s.style.animation='none';s.innerHTML='<div style=\\'display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;padding:8px\\'><div style=\\'font-size:24px;opacity:.3\\'>🃏</div><div style=\\'font-size:9px;color:#55556a;text-align:center\\'>Görsel mevcut değil</div></div>'}">`
-          : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;padding:8px">
-              <div style="font-size:28px;opacity:.3">🃏</div>
-              <div style="font-size:9px;color:#55556a;text-align:center">Görsel mevcut değil</div>
-             </div>`}
-        ${owned ? `<div class="tcg-owned-dot">${ownedLang.label}</div>` : ''}
-        ${langOverlay}
-      </div>
-      <div class="tcg-label">
-        <div class="tcg-label-set">${setName}</div>
-        <div class="tcg-label-id">#${localId}${rarity ? ' · ' + rarity : ''}</div>
+  function cardHtml(card) {
+    const imgPath = localImgUrl(card.image_local);
+    const price = (card.prices && card.prices.ungraded) ? card.prices.ungraded : '';
+    const sid = 'sk_' + (card.name||'').replace(/[^a-z0-9]/gi, '_');
+    const count = collection[card.name] || 0;
+    const esc = (card.name||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return `<div class="tcg-card ${count > 0 ? 'owned' : ''}" data-cardkey="${esc}">
+      <div class="shimmer" id="${sid}"></div>
+      ${imgPath
+        ? `<img src="${imgPath}" alt="" loading="lazy"
+             onload="var s=document.getElementById('${sid}');if(s)s.remove()"
+             onerror="var s=document.getElementById('${sid}');if(s){s.style.animation='none';s.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center\\'>Görsel yok</div>'}">`
+        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center">Görsel yok</div>`}
+      ${count > 0 ? `<div class="tcg-card-controls">
+        <button class="tcg-card-btn" data-cardkey="${esc}" data-delta="-1">−</button>
+        <span class="tcg-card-count">${count}</span>
+        <button class="tcg-card-btn" data-cardkey="${esc}" data-delta="1">+</button>
+      </div>` : ''}
+      <div class="tcg-meta">
+        <div class="tcg-meta-set">${card.name||''}</div>
+        <div>${price ? '<span class="tcg-meta-rar">' + price + '</span>' : ''}</div>
       </div>
     </div>`;
-  }).join('');
+  }
+
+  grid.innerHTML = groups.map(setKey => `
+    <div class="set-group-header">${setKey} <span class="set-group-count">${groupMap[setKey].length}</span></div>
+    ${groupMap[setKey].map(cardHtml).join('')}
+  `).join('');
 
   updateOwnedChip();
 }
 
-/* ═══════════════════════════════════════════
-   RENDER: COLLECTION
-═══════════════════════════════════════════ */
-function renderCollection() {
-  const area = document.getElementById('collArea');
-  const ids = Object.keys(collection).filter(k => collection[k] && typeof collection[k] === 'object');
-  const count = ids.length;
-
-  area.innerHTML = `
-    <div class="coll-summary">
-      <div class="coll-num">${count}</div>
-      <div class="coll-lbl">Sahip Olduğun Kart</div>
-    </div>
-
-    <div class="coll-actions">
-      <button class="coll-btn" onclick="exportCollection()">⬇️ Yedekle</button>
-      <button class="coll-btn" onclick="importCollection()">⬆️ Geri Yükle</button>
-      <button class="coll-btn danger" onclick="clearCollection()">🗑️ Sıfırla</button>
-    </div>
-
-    ${count === 0
-      ? `<div class="state-center">
-          <div class="si">📭</div>
-          <div class="st">Koleksiyonun boş</div>
-          <div class="ss">Kartlar sekmesinden bir Pokémon seç, kartlara tıkla ve koleksiyonunu oluştur</div>
-        </div>`
-      : ids.map(id => {
-          const e = collection[id];
-          const lang = LANGS.find(l => l.code === e.lang) || LANGS[0];
-          const imgUrl = e.image ? `${e.image}/low.webp` : null;
-          return `
-          <div class="coll-card-row">
-            ${imgUrl ? `<img class="coll-thumb" src="${imgUrl}" alt="${e.name||id}" loading="lazy">` : '<div class="coll-dot"></div>'}
-            <div class="coll-info">
-              <div class="coll-card-name">${e.name || id}</div>
-              <div class="coll-card-sub">${e.set?.name || ''} · #${e.localId || ''} · <span class="coll-lang-badge">${lang.label}</span></div>
-            </div>
-            <button class="coll-remove" onclick="removeCard('${id}')">✕</button>
-          </div>`;
-        }).join('')
-    }
-  `;
-}
-
-function removeCard(cardId) {
-  delete collection[cardId];
-  saveCol();
-  renderCollection();
-  updateOwnedChip();
-  if (selectedPoke) renderTCGCards();
-}
-
-/* ═══════════════════════════════════════════
-   TAB SWITCHING
-═══════════════════════════════════════════ */
-function setTab(tab) {
-  activeTab = tab;
-  const collTab = document.getElementById('collTab');
-  if (collTab) collTab.style.display = tab === 'collection' ? 'flex' : 'none';
-  if (tab === 'collection') renderCollection();
-}
-
-/* ═══════════════════════════════════════════
-   SEARCH EVENTS
-═══════════════════════════════════════════ */
-document.getElementById('pokeSearch').addEventListener('input', renderPokeList);
-document.getElementById('modalCardSearch').addEventListener('input', e => {
-  cardSearchVal = e.target.value;
-  renderTCGCards();
-});
-
-// Close modal on Escape key
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModalBtn(); closeCollection(); closeSettings(); }
-});
 
 /* ═══════════════════════════════════════════
    SETTINGS
@@ -1568,47 +2525,263 @@ function closeSettings(e) {
   }
 }
 
+function toggleLang(code) {
+  if (enabledLangs.includes(code)) {
+    if (enabledLangs.length <= 1) return;
+    enabledLangs = enabledLangs.filter(c => c !== code);
+  } else {
+    enabledLangs.push(code);
+  }
+  saveLangs();
+  renderSettings();
+}
+
 function renderSettings() {
   const area = document.getElementById('settingsArea');
   area.innerHTML = `
     <div class="settings-section">
-      <div class="settings-section-title">Dil Versiyonları</div>
-      <div class="settings-section-desc">Kartları eklerken dil seçebilirsin. Kart görselleri her zaman İngilizce gösterilir.</div>
+      <div class="settings-section-title">Kart Dilleri</div>
+      <div class="settings-section-desc">Pokémon kart modalında görünecek dilleri seç.</div>
       <div class="settings-lang-list">
-        ${LANGS.map(l => `
-          <div class="settings-lang-row" style="cursor:default">
+        ${LANGS.map(l => {
+          const on = enabledLangs.includes(l.code);
+          return `<div class="settings-lang-row" onclick="toggleLang('${l.code}')">
             <div class="settings-lang-flag">${l.label.split(' ')[0]}</div>
             <div class="settings-lang-info">
               <div class="settings-lang-name">${l.name}</div>
               <div class="settings-lang-code">${l.code.toUpperCase()}</div>
             </div>
-          </div>`).join('')}
+            <div class="settings-toggle ${on ? 'on' : ''}">
+              <div class="settings-toggle-knob"></div>
+            </div>
+          </div>`;
+        }).join('')}
       </div>
     </div>
   `;
 }
 
 /* ═══════════════════════════════════════════
+   SEARCH EVENTS
+═══════════════════════════════════════════ */
+document.getElementById('cardsGrid').addEventListener('click', e => {
+  const btn = e.target.closest('[data-delta]');
+  if (btn) {
+    e.stopPropagation();
+    const key = btn.dataset.cardkey;
+    const delta = parseInt(btn.dataset.delta, 10);
+    const next = (collection[key] || 0) + delta;
+    if (next <= 0) delete collection[key];
+    else collection[key] = next;
+    saveCol(); renderLocalCards(); updateOwnedChip();
+    return;
+  }
+  const card = e.target.closest('[data-cardkey]');
+  if (card && !e.target.closest('.tcg-card-controls')) {
+    addCard(card.dataset.cardkey);
+  }
+});
+
+/* Binder event delegation — DOM yüklendikten sonra bağlanır (initBinderEvents'te) */
+function initBinderEvents() {
+initCustomEvents();
+document.getElementById('clistSearch').addEventListener('input', renderCardList);
+document.getElementById('binderView').addEventListener('click', e => {
+  // Dot navigation
+  const dot = e.target.closest('[data-bspread]');
+  if (dot) { binderSpread = parseInt(dot.dataset.bspread, 10); renderBinder(); return; }
+
+  // Folder controls (bsl-btn inside folder)
+  const fbtn = e.target.closest('.bsl-btn[data-fdex]');
+  if (fbtn) {
+    const key   = fbtn.dataset.bkey;
+    const delta = parseInt(fbtn.dataset.bdelta, 10);
+    const dex   = parseInt(fbtn.dataset.fdex, 10);
+    const next  = (collection[key] || 0) + delta;
+    if (next <= 0) {
+      delete collection[key];
+      if (binderDisplay[dex] === key) delete binderDisplay[dex];
+      saveBinderDisplay();
+    } else {
+      collection[key] = next;
+    }
+    saveCol(); updateOwnedChip();
+    // Refresh folder or close if empty
+    const byDex = getByDex();
+    const remaining = byDex[dex] || [];
+    if (remaining.length === 0) { closeFolder(); }
+    else if (remaining.length === 1) {
+      closeFolder();
+    } else {
+      const dispName = binderDisplay[dex] || remaining[0].name;
+      renderFolderGrid(dex, remaining, dispName);
+    }
+    renderBinder();
+    return;
+  }
+
+  // "Öne Koy" button
+  const showBtn = e.target.closest('.folder-show-btn');
+  if (showBtn) {
+    const dex  = parseInt(showBtn.dataset.fdex, 10);
+    const name = showBtn.dataset.fname;
+    binderDisplay[dex] = name;
+    saveBinderDisplay();
+    const byDex = getByDex();
+    renderFolderGrid(dex, byDex[dex] || [], name);
+    renderBinder();
+    return;
+  }
+
+  // Binder slot controls (single card) veya liste sekmesi
+  const sbtn = e.target.closest('.bsl-btn');
+  if (sbtn && !sbtn.dataset.fdex) {
+    e.stopPropagation();
+    const key   = sbtn.dataset.bkey;
+    const delta = parseInt(sbtn.dataset.bdelta, 10);
+    const next  = (collection[key] || 0) + delta;
+    if (next <= 0) delete collection[key];
+    else collection[key] = next;
+    saveCol(); updateOwnedChip();
+    if (sbtn.dataset.bctx === 'list') renderCardList();
+    else renderBinder();
+    return;
+  }
+
+  // Folder slot click
+  const folder = e.target.closest('.binder-slot.folder');
+  if (folder) { openFolder(parseInt(folder.dataset.bdex, 10)); return; }
+});
+} // initBinderEvents
+
+document.getElementById('pokeSearch').addEventListener('input', renderPokeList);
+document.getElementById('modalCardSearch').addEventListener('input', e => {
+  cardSearchVal = e.target.value;
+  if (selectedPoke) renderLocalCards();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModalBtn(); closeBinder(); closeSettings(); }
+});
+
+/* ═══════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', initBinderEvents);
+
 (async function init() {
   setView('list');
   renderPokeList();
+  // Arka planda tüm set verilerini yükle
+  loadAllSets();
   await loadAllPokemon();
 })();
 </script>
 
-<!-- ══ COLLECTION MODAL ══ -->
-<div id="collOverlay" class="modal-overlay" onclick="closeCollection(event)">
-  <div class="modal-box" id="collBox">
-    <div class="modal-header" style="padding:12px 16px;">
-      <div class="modal-info">
-        <div class="modal-name">📚 Koleksiyonum</div>
-      </div>
-      <button class="modal-close" onclick="closeCollection()">✕</button>
+
+<!-- ══ BINDER VIEW ══ -->
+<div id="binderView">
+  <div class="binder-header">
+    <button class="binder-back" onclick="closeBinder()">← Geri</button>
+    <div class="binder-title">📚 Koleksiyonum</div>
+    <div class="binder-tabs">
+      <button class="binder-tab active" id="btabBinder" onclick="setBinderTab('binder')">Binder</button>
+      <button class="binder-tab" id="btabList" onclick="setBinderTab('list')">Liste</button>
+      <button class="binder-tab" id="btabCustom" onclick="setBinderTab('custom')">Özel Binder</button>
     </div>
-    <div class="modal-cards-scroll">
-      <div class="coll-area" id="collArea"></div>
+    <span class="binder-page-info" id="binderPageInfo"></span>
+    <div class="binder-actions">
+      <button class="binder-action-btn" onclick="exportCollection()">⬇️ Yedekle</button>
+      <button class="binder-action-btn" onclick="importCollection()">⬆️ Geri Yükle</button>
+      <button class="binder-action-btn danger" onclick="clearCollection()">🗑️ Sıfırla</button>
+    </div>
+  </div>
+
+  <!-- Binder sekmesi -->
+  <div id="binderTabPane" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+    <div class="binder-body">
+      <button class="binder-nav-btn" id="binderPrev" onclick="binderPrev()">‹</button>
+      <div class="binder-spread">
+        <div class="binder-page" id="binderLeft"></div>
+        <div class="binder-rings">
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+        </div>
+        <div class="binder-page" id="binderRight"></div>
+      </div>
+      <button class="binder-nav-btn" id="binderNext" onclick="binderNext()">›</button>
+    </div>
+    <div class="binder-footer">
+      <div class="binder-page-dots" id="binderDots"></div>
+    </div>
+  </div>
+
+  <!-- Liste sekmesi -->
+  <div id="listTabPane" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+    <div class="clist-toolbar">
+      <input class="clist-search" id="clistSearch" placeholder="Kart ara..." autocomplete="off">
+      <select class="clist-sort" id="clistSort" onchange="renderCardList()">
+        <option value="dex-asc">Pokédex ↑</option>
+        <option value="dex-desc">Pokédex ↓</option>
+        <option value="alpha-asc">A → Z</option>
+        <option value="alpha-desc">Z → A</option>
+      </select>
+    </div>
+    <div class="clist-area" id="clistArea"></div>
+  </div>
+
+  <!-- Özel Binder sekmesi -->
+  <div id="customTabPane" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+    <div class="cgrid-toolbar">
+      <span class="cgrid-label">Grid:</span>
+      <button class="cgrid-btn" data-grid="3x3" onclick="setCustomGrid('3x3')">3×3</button>
+      <button class="cgrid-btn" data-grid="4x3" onclick="setCustomGrid('4x3')">4×3</button>
+      <button class="cgrid-btn" data-grid="3x4" onclick="setCustomGrid('3x4')">3×4</button>
+      <button class="cgrid-btn" data-grid="4x4" onclick="setCustomGrid('4x4')">4×4</button>
+    </div>
+    <div class="binder-body">
+      <button class="binder-nav-btn" id="customPrev" onclick="customBinderPrev()">‹</button>
+      <div class="binder-spread" id="customSpread">
+        <div class="binder-page" id="customLeft"></div>
+        <div class="binder-rings">
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+        </div>
+        <div class="binder-page" id="customRight"></div>
+      </div>
+      <button class="binder-nav-btn" id="customNext" onclick="customBinderNext()">›</button>
+    </div>
+    <div class="binder-footer">
+      <div class="binder-page-dots" id="customDots"></div>
+    </div>
+  </div>
+
+  <!-- Slot Picker overlay -->
+  <div id="slotPicker" class="binder-folder-overlay" onclick="if(event.target===this)closeSlotPicker()">
+    <div class="binder-folder-box slot-picker-box">
+      <div class="binder-folder-header">
+        <span class="binder-folder-title">Kart Seç</span>
+        <button class="binder-folder-close" onclick="closeSlotPicker()">✕</button>
+      </div>
+      <div style="padding:10px 14px 6px;flex-shrink:0;">
+        <input class="clist-search" id="slotPickerSearch" placeholder="Kart ara..." autocomplete="off">
+      </div>
+      <div class="slot-picker-grid" id="slotPickerGrid"></div>
+    </div>
+  </div>
+
+  <!-- Klasör overlay -->
+  <div id="binderFolder" class="binder-folder-overlay" onclick="if(event.target===this)closeFolder()">
+    <div class="binder-folder-box">
+      <div class="binder-folder-header">
+        <span class="binder-folder-title" id="folderTitle"></span>
+        <button class="binder-folder-close" onclick="closeFolder()">✕</button>
+      </div>
+      <div class="binder-folder-grid" id="folderGrid"></div>
     </div>
   </div>
 </div>

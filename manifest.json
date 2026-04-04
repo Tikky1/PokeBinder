@@ -1,0 +1,21 @@
+{
+  "name": "Pokémon Binder",
+  "short_name": "PokéBinder",
+  "description": "Pokémon TCG kart koleksiyonu takip uygulaması",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f0f17",
+  "theme_color": "#f5c842",
+  "orientation": "portrait",
+  "lang": "tr",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "img.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

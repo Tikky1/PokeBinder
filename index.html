@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Pokémon Binder</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f5c842">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PokéBinder">
+<link rel="apple-touch-icon" href="img.png">
+<link rel="icon" type="image/png" href="img.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -85,6 +96,22 @@ html, body {
   text-transform: uppercase;
   margin-top: 2px;
 }
+
+.search-nav-link {
+  display: block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: #55556a;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+  text-align: center;
+}
+.search-nav-link:hover { border-color: #f5c842; color: #f5c842; }
 
 .search-box {
   position: relative;
@@ -824,12 +851,14 @@ html, body {
 .settings-toggle.on .settings-toggle-knob { transform: translateX(18px); }
 
 /* ═══════════════════════════════════════════
-   MODAL POPUP
+   MODAL POPUP (Settings için overlay, kartlar için slide-in)
 ═══════════════════════════════════════════ */
+
+/* Settings overlay — klasik karanlık popup */
 .modal-overlay {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   z-index: 200;
   background: rgba(0,0,0,.75);
   backdrop-filter: blur(4px);
@@ -855,6 +884,7 @@ html, body {
   box-shadow: 0 24px 80px rgba(0,0,0,.8);
 }
 @keyframes slideUp { from{transform:translateY(24px);opacity:0} to{transform:translateY(0);opacity:1} }
+
 
 .modal-header {
   display: flex;
@@ -950,6 +980,14 @@ html, body {
   .modal-art { width: 52px; height: 52px; }
 }
 
+/* Desktop: kart gridini biraz daha geniş yap */
+@media (min-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .modal-name { font-size: 30px; }
+}
+
 /* ═══════════════════════════════════════════
    ÖZEL BİNDER SLOTS
 ═══════════════════════════════════════════ */
@@ -1037,7 +1075,7 @@ html, body {
 ═══════════════════════════════════════════ */
 #binderView {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   background: #0b0b16;
   z-index: 200;
   display: flex;
@@ -1201,10 +1239,11 @@ html, body {
   pointer-events: none;
 }
 .binder-footer {
-  padding: 10px;
+  padding: 8px 10px 12px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
   flex-shrink: 0;
 }
 .binder-page-dots { display: flex; gap: 6px; }
@@ -1215,6 +1254,31 @@ html, body {
   transition: background .15s, transform .15s;
 }
 .binder-dot.active { background: #f5c842; transform: scale(1.3); }
+
+.binder-page-jump {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #55556a;
+}
+.binder-page-jump span { color: #55556a; }
+.binder-page-input {
+  width: 52px;
+  background: #1c1c2a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 7px;
+  padding: 4px 6px;
+  color: #eeeef8;
+  font-size: 13px;
+  font-family: inherit;
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.binder-page-input::-webkit-outer-spin-button,
+.binder-page-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.binder-page-input:focus { border-color: #f5c842; }
 
 /* Binder sekmeleri */
 .binder-tabs { display: flex; gap: 4px; }
@@ -1414,11 +1478,40 @@ html, body {
 .binder-empty-text { font-size: 14px; }
 
 @media (max-width: 600px) {
-  .binder-spread { max-height: 100%; }
-  .binder-page { gap: 5px; padding: 8px; }
-  .binder-rings { width: 20px; min-width: 20px; }
-  .binder-ring { width: 14px; height: 14px; }
+  .binder-body {
+    padding: 6px 2px;
+    gap: 2px;
+  }
+  .binder-spread {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  #binderRight, #customRight, .binder-rings {
+    display: none !important;
+  }
+  .binder-page {
+    gap: 5px;
+    padding: 8px;
+  }
   .binder-actions { display: none; }
+  .binder-nav-btn {
+    width: 28px;
+    min-width: 28px;
+    height: 44px;
+    font-size: 20px;
+  }
+  .binder-footer {
+    padding: 5px 10px 8px;
+    gap: 5px;
+  }
+  .binder-header {
+    padding: 7px 10px;
+    gap: 8px;
+  }
+  .binder-title { font-size: 14px; }
+  .binder-page-info { font-size: 11px; }
+  .binder-tab { font-size: 11px; padding: 4px 10px; }
 }
 </style>
 </head>
@@ -1433,6 +1526,8 @@ html, body {
     <div class="sidebar-top">
       <div class="logo">Pokémon <span>Binder</span></div>
       <div class="logo-sub">Card Collection</div>
+
+      <a href="search.html" class="search-nav-link">🔍 Kart & Set Ara</a>
 
       <div class="search-box">
         <span class="search-icon">🔍</span>
@@ -1514,6 +1609,7 @@ const LANGS = [
   {code:'en', label:'🌐 EN', name:'İngilizce'},
   {code:'ja', label:'🇯🇵 JP', name:'Japonca'},
   {code:'zh', label:'🇨🇳 ZH', name:'Çince'},
+  {code:'ko', label:'🇰🇷 KO', name:'Korece'},
 ];
 
 const SET_LANG = {
@@ -1546,20 +1642,147 @@ function detectLangFromName(name) {
 }
 
 const ALL_SETS = [
-  'Chinese CSV8C','Pokemon Base Set','Pokemon Best of Game','Pokemon Chinese CSM2aC',
-  'Pokemon Chinese CSM2bC','Pokemon Chinese CSV4C','Pokemon Chinese m2F',
-  'Pokemon Destined Rivals','Pokemon EX Latias & Latios',
+  'Chinese CSV8C',
+  'Japanese Ninja Spinner',
+  'Pokemon 1999 Topps Movie Evolution',
+  'Pokemon 2020 Battle Academy',
+  'Pokemon Base Set',
+  'Pokemon Base Set 2',
+  'Pokemon Best of Game',
+  'Pokemon Celebrations',
+  'Pokemon Champion\'s Path',
+  'Pokemon Chinese CS4aC',
+  'Pokemon Chinese CS4bC',
+  'Pokemon Chinese CSM2aC',
+  'Pokemon Chinese CSM2bC',
+  'Pokemon Chinese CSM2cC',
+  'Pokemon Chinese CSV4C',
+  'Pokemon Chinese Gem Pack',
+  'Pokemon Chinese Gem Pack 2',
+  'Pokemon Chinese Gem Pack 3',
+  'Pokemon Chinese Promo',
+  'Pokemon Chinese m2F',
+  'Pokemon Destined Rivals',
+  'Pokemon Detective Pikachu',
+  'Pokemon Double Crisis',
+  'Pokemon Dragon Majesty',
+  'Pokemon Dragon Vault',
+  'Pokemon EX Latias & Latios',
   'Pokemon Japanese 10th Movie Commemoration Promo',
-  'Pokemon Japanese 25th Anniversary Golden Box','Pokemon Japanese CD Promo',
-  'Pokemon Japanese Charizard VMAX Starter Set','Pokemon Japanese Gengar Vmax High-Class',
-  'Pokemon Japanese Mega Starter Deck Gengar Ex','Pokemon Japanese SVG Special Set',
-  'Pokemon Japanese Southern Islands','Pokemon Japanese Tag Team Starter Set',
+  'Pokemon Japanese 2002 McDonald\'s',
+  'Pokemon Japanese 2005 Gift Box',
+  'Pokemon Japanese 20th Anniversary',
+  'Pokemon Japanese 25th Anniversary Collection',
+  'Pokemon Japanese 25th Anniversary Golden Box',
+  'Pokemon Japanese 25th Anniversary Promo',
+  'Pokemon Japanese Alter Genesis',
+  'Pokemon Japanese Ancient Roar',
+  'Pokemon Japanese Awakening Legends',
+  'Pokemon Japanese Battle Partners',
+  'Pokemon Japanese Battle Region',
+  'Pokemon Japanese Blue Sky Stream',
+  'Pokemon Japanese CD Promo',
+  'Pokemon Japanese Challenge from the Darkness',
+  'Pokemon Japanese Charizard VMAX Starter Set',
+  'Pokemon Japanese Classic- Blastoise',
+  'Pokemon Japanese Classic- Charizard',
+  'Pokemon Japanese Classic- Venusaur',
+  'Pokemon Japanese Clay Burst',
+  'Pokemon Japanese Crimson Haze',
+  'Pokemon Japanese Crossing the Ruins',
+  'Pokemon Japanese Cyber Judge',
+  'Pokemon Japanese Darkness, and to Light',
+  'Pokemon Japanese Double Blaze',
+  'Pokemon Japanese Double Crisis',
+  'Pokemon Japanese Dream League',
+  'Pokemon Japanese Dream Shine Collection',
+  'Pokemon Japanese Eevee Heroes',
+  'Pokemon Japanese Fusion Arts',
+  'Pokemon Japanese Future Flash',
+  'Pokemon Japanese GG End',
+  'Pokemon Japanese Gengar Vmax High-Class',
+  'Pokemon Japanese Glory of Team Rocket',
+  'Pokemon Japanese Go',
+  'Pokemon Japanese Gold, Silver, New World',
+  'Pokemon Japanese Heat Wave Arena',
+  'Pokemon Japanese Holon Phantom',
+  'Pokemon Japanese Inferno X',
+  'Pokemon Japanese Jungle',
+  'Pokemon Japanese Legendary Shine Collection',
+  'Pokemon Japanese Lost Abyss',
+  'Pokemon Japanese Mask of Change',
+  'Pokemon Japanese Matchless Fighter',
+  'Pokemon Japanese Mega Brave',
+  'Pokemon Japanese Mega Starter Deck Gengar Ex',
+  'Pokemon Japanese Mega Symphonia',
+  'Pokemon Japanese Miracle Twins',
+  'Pokemon Japanese Mystery of the Fossils',
+  'Pokemon Japanese Neo Premium File',
+  'Pokemon Japanese Night Unison',
+  'Pokemon Japanese Night Wanderer',
+  'Pokemon Japanese Nihil Zero',
+  'Pokemon Japanese Offense and Defense of the Furthest Ends',
+  'Pokemon Japanese Old Maid',
+  'Pokemon Japanese Paradigm Trigger',
+  'Pokemon Japanese Paradise Dragona',
+  'Pokemon Japanese Player\'s Club',
+  'Pokemon Japanese PokeKyun Collection',
+  'Pokemon Japanese Raging Surf',
+  'Pokemon Japanese Remix Bout',
+  'Pokemon Japanese Rocket Gang',
+  'Pokemon Japanese Ruler of the Black Flame',
+  'Pokemon Japanese SVG Special Set',
+  'Pokemon Japanese Scarlet Ex',
+  'Pokemon Japanese Shining Legends',
+  'Pokemon Japanese Shiny Collection',
+  'Pokemon Japanese Sky Legend',
+  'Pokemon Japanese Snow Hazard',
+  'Pokemon Japanese Southern Islands',
+  'Pokemon Japanese Star Birth',
+  'Pokemon Japanese Stellar Miracle',
+  'Pokemon Japanese Super Electric Breaker',
+  'Pokemon Japanese Tag Bolt',
+  'Pokemon Japanese Tag Team Starter Set',
+  'Pokemon Japanese Time Gazer',
+  'Pokemon Japanese Triplet Beat',
+  'Pokemon Japanese Vending',
+  'Pokemon Japanese Violet Ex',
+  'Pokemon Japanese Web',
+  'Pokemon Japanese Wild Force',
   'Pokemon Japanese World Championships 2023',
-  'Pokemon McDonalds 2018','Pokemon McDonalds 2019','Pokemon McDonalds 2022',
-  'Pokemon McDonalds 2023','Pokemon McDonalds 2024','Pokemon Mega Evolution',
-  'Pokemon POP Series 1','Pokemon POP Series 9','Pokemon Phantasmal Flames',
-  'Pokemon Promo','Pokemon Rumble','Pokemon Southern Islands',
+  'Pokemon Japanese Yamabuki City Gym',
+  'Pokemon Korean Eevee Heroes',
+  'Pokemon Korean Glory Of Team Rocket',
+  'Pokemon McDonalds 2018',
+  'Pokemon McDonalds 2019',
+  'Pokemon McDonalds 2021',
+  'Pokemon McDonalds 2022',
+  'Pokemon McDonalds 2023',
+  'Pokemon McDonalds 2024',
+  'Pokemon Mega Evolution',
+  'Pokemon Neo Discovery',
+  'Pokemon Neo Revelation',
+  'Pokemon POP Series 1',
+  'Pokemon POP Series 2',
+  'Pokemon POP Series 3',
+  'Pokemon POP Series 4',
+  'Pokemon POP Series 5',
+  'Pokemon POP Series 6',
+  'Pokemon POP Series 9',
+  'Pokemon Phantasmal Flames',
+  'Pokemon Pikachu Libre & Suicune',
+  'Pokemon Promo',
+  'Pokemon Rumble',
+  'Pokemon Scarlet & Violet Energy',
+  'Pokemon Southern Islands',
+  'Pokemon TCG Classic- Blastoise Deck',
+  'Pokemon TCG Classic- Charizard Deck',
+  'Pokemon TCG Classic- Venusaur Deck',
+  'Pokemon Trick or Trade 2022',
+  'Pokemon Trick or Trade 2023',
+  'Pokemon Trick or Trade 2024',
   'Pokemon World Championships 2019',
+  'Pokemon World Championships 2023',
 ];
 
 let enabledLangs = (() => {
@@ -1567,7 +1790,7 @@ let enabledLangs = (() => {
     const s = JSON.parse(localStorage.getItem('pkbinder_langs'));
     if (Array.isArray(s) && s.length > 0) return s;
   } catch {}
-  return ['en','ja','zh'];
+  return ['en','ja','zh','ko'];
 })();
 function saveLangs() { localStorage.setItem('pkbinder_langs', JSON.stringify(enabledLangs)); }
 function getActiveLangs() { return LANGS.filter(l => enabledLangs.includes(l.code)); }
@@ -1659,10 +1882,16 @@ function adjustCount(e, cardKey, delta) {
   updateOwnedChip();
 }
 
-function ownedCount() { return Object.values(collection).reduce((s, v) => s + (v || 0), 0); }
+function ownedCount() { return Object.values(collection).reduce((s, v) => s + (parseInt(v) || 0), 0); }
 function updateOwnedChip() {
   const el = document.getElementById('modalOwnedNum');
-  if (el) el.textContent = ownedCount();
+  if (!el) return;
+  if (selectedPoke) {
+    const cards = getCardsForPoke(selectedPoke.display, activeLang);
+    el.textContent = cards.reduce((s, c) => s + (parseInt(collection[c.name]) || 0), 0);
+  } else {
+    el.textContent = ownedCount();
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -1965,7 +2194,7 @@ function closeModalBtn() {
   renderPokeList();
 }
 
-let binderSpread = 0;
+let binderPage = 0; // 0-indexed, her sayfa = 9 slot (mobil: 1 sayfa, desktop: 2 sayfa = 1 spread)
 let binderDisplay = (() => {
   try { return JSON.parse(localStorage.getItem('pkbinder_display') || '{}'); } catch { return {}; }
 })();
@@ -1988,7 +2217,7 @@ function getByDex() {
 function openBinder() {
   const byDex = getByDex();
   const nums = Object.keys(byDex).map(Number).filter(n => n < 9999);
-  binderSpread = nums.length > 0 ? Math.floor((Math.min(...nums) - 1) / 18) : 0;
+  binderPage = nums.length > 0 ? Math.floor((Math.min(...nums) - 1) / 9) : 0;
   document.getElementById('binderView').classList.add('open');
   document.body.style.overflow = 'hidden';
   renderBinder();
@@ -2057,21 +2286,21 @@ function customTotalSpreads() {
 }
 
 function renderCustomBinder() {
+  const mobile = isMobileBinder();
   const spp  = slotsPerPage();
   const sps  = slotsPerSpread();
-  const total = customTotalSpreads();
-  if (customBinderSpread >= total) customBinderSpread = total - 1;
+  const totalSpreads = customTotalSpreads();
+  const total = mobile ? totalSpreads * 2 : totalSpreads;
+  if (customBinderSpread >= total) customBinderSpread = Math.max(0, total - 1);
   if (customBinderSpread < 0) customBinderSpread = 0;
 
   const {cols, rows} = GRID_DEFS[customGridSize];
   const gridStyle = `grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr)`;
-  document.getElementById('customLeft').style.cssText  = gridStyle;
-  document.getElementById('customRight').style.cssText = gridStyle;
 
   const cardMap = {};
   localCards.forEach(c => { cardMap[c.name] = c; });
 
-  const leftStart  = customBinderSpread * sps;
+  const leftStart = mobile ? customBinderSpread * spp : customBinderSpread * sps;
   const rightStart = leftStart + spp;
 
   function slotHtml(idx) {
@@ -2093,11 +2322,13 @@ function renderCustomBinder() {
     </div>`;
   }
 
-  document.getElementById('customLeft').innerHTML  = Array.from({length:spp},(_,i)=>slotHtml(leftStart+i)).join('');
-  document.getElementById('customRight').innerHTML = Array.from({length:spp},(_,i)=>slotHtml(rightStart+i)).join('');
-  // cssText sıfırlandı, yeniden uygula
-  document.getElementById('customLeft').style.cssText  = gridStyle;
-  document.getElementById('customRight').style.cssText = gridStyle;
+  document.getElementById('customLeft').innerHTML = Array.from({length:spp},(_,i)=>slotHtml(leftStart+i)).join('');
+  document.getElementById('customLeft').style.cssText = gridStyle;
+
+  if (!mobile) {
+    document.getElementById('customRight').innerHTML = Array.from({length:spp},(_,i)=>slotHtml(rightStart+i)).join('');
+    document.getElementById('customRight').style.cssText = gridStyle;
+  }
 
   const WIN = 10;
   let ds = Math.max(0, customBinderSpread - Math.floor(WIN/2));
@@ -2119,7 +2350,8 @@ function renderCustomBinder() {
 
 function customBinderPrev() { if (customBinderSpread > 0) { customBinderSpread--; renderCustomBinder(); } }
 function customBinderNext() {
-  if (customBinderSpread < customTotalSpreads() - 1) { customBinderSpread++; renderCustomBinder(); }
+  const total = isMobileBinder() ? customTotalSpreads() * 2 : customTotalSpreads();
+  if (customBinderSpread < total - 1) { customBinderSpread++; renderCustomBinder(); }
 }
 
 /* ── Slot Picker ── */
@@ -2332,42 +2564,87 @@ function binderSlotHtml(dexNum, byDex) {
   </div>`;
 }
 
+function isMobileBinder() { return window.innerWidth <= 600; }
+
 function renderBinder() {
-  if (binderSpread < 0) binderSpread = 0;
-  if (binderSpread >= BINDER_TOTAL_SPREADS) binderSpread = BINDER_TOTAL_SPREADS - 1;
+  const mobile = isMobileBinder();
+  const TOTAL_PAGES = BINDER_TOTAL_SPREADS * 2;
+  if (binderPage < 0) binderPage = 0;
+  if (binderPage >= TOTAL_PAGES) binderPage = TOTAL_PAGES - 1;
+  if (!mobile) binderPage = Math.floor(binderPage / 2) * 2; // desktop: çift sayfaya sabitle
 
+  const spread = Math.floor(binderPage / 2);
   const byDex = getByDex();
-  const leftStart  = binderSpread * 18 + 1;
-  const rightStart = leftStart + 9;
-
-  document.getElementById('binderLeft').innerHTML  =
-    Array.from({length:9}, (_,i) => binderSlotHtml(leftStart+i,  byDex)).join('');
-  document.getElementById('binderRight').innerHTML =
-    Array.from({length:9}, (_,i) => binderSlotHtml(rightStart+i, byDex)).join('');
-
-  const p1 = binderSpread*2+1, p2 = binderSpread*2+2;
   const totalOwned = Object.values(collection).reduce((s,v)=>s+(v||0),0);
-  document.getElementById('binderPageInfo').textContent =
-    `Sayfa ${p1}–${p2}  ·  #${leftStart}–#${rightStart+8}  ·  ${totalOwned} kart`;
-  document.getElementById('binderPrev').disabled = binderSpread === 0;
-  document.getElementById('binderNext').disabled = binderSpread >= BINDER_TOTAL_SPREADS - 1;
+
+  const rightEl = document.getElementById('binderRight');
+  const ringsEl = document.querySelector('.binder-rings');
+
+  if (mobile) {
+    rightEl.style.display = 'none';
+    ringsEl.style.display = 'none';
+    const start = binderPage * 9 + 1;
+    document.getElementById('binderLeft').innerHTML =
+      Array.from({length:9}, (_,i) => binderSlotHtml(start+i, byDex)).join('');
+    document.getElementById('binderPageInfo').textContent =
+      `Sayfa ${binderPage+1}  ·  #${start}–#${start+8}  ·  ${totalOwned} kart`;
+  } else {
+    rightEl.style.display = '';
+    ringsEl.style.display = '';
+    const leftStart  = binderPage * 9 + 1;
+    const rightStart = leftStart + 9;
+    document.getElementById('binderLeft').innerHTML =
+      Array.from({length:9}, (_,i) => binderSlotHtml(leftStart+i, byDex)).join('');
+    document.getElementById('binderRight').innerHTML =
+      Array.from({length:9}, (_,i) => binderSlotHtml(rightStart+i, byDex)).join('');
+    document.getElementById('binderPageInfo').textContent =
+      `Sayfa ${binderPage+1}–${binderPage+2}  ·  #${leftStart}–#${rightStart+8}  ·  ${totalOwned} kart`;
+  }
+
+  document.getElementById('binderPrev').disabled = binderPage === 0;
+  document.getElementById('binderNext').disabled = mobile
+    ? binderPage >= TOTAL_PAGES - 1
+    : binderPage >= (BINDER_TOTAL_SPREADS - 1) * 2;
+
+  const inp = document.getElementById('binderPageInput');
+  if (inp && document.activeElement !== inp) inp.value = binderPage + 1;
+  const totEl = document.getElementById('binderPageTotal');
+  if (totEl) totEl.textContent = mobile ? TOTAL_PAGES : BINDER_TOTAL_SPREADS;
 
   const WIN = 10;
-  let ds = Math.max(0, binderSpread - Math.floor(WIN/2));
+  let ds = Math.max(0, spread - Math.floor(WIN/2));
   const de = Math.min(BINDER_TOTAL_SPREADS-1, ds+WIN-1);
   ds = Math.max(0, de-WIN+1);
   document.getElementById('binderDots').innerHTML =
     Array.from({length: de-ds+1}, (_,i) => {
       const s = ds+i;
-      return `<div class="binder-dot ${s===binderSpread?'active':''}" data-bspread="${s}"></div>`;
+      return `<div class="binder-dot ${s===spread?'active':''}" data-bspread="${s}"></div>`;
     }).join('');
 }
 function renderCollection() {
   if (document.getElementById('binderView').classList.contains('open')) renderBinder();
 }
 
-function binderPrev() { if (binderSpread > 0) { binderSpread--; renderBinder(); } }
-function binderNext() { if (binderSpread < BINDER_TOTAL_SPREADS-1) { binderSpread++; renderBinder(); } }
+function binderPrev() {
+  const step = isMobileBinder() ? 1 : 2;
+  if (binderPage > 0) { binderPage = Math.max(0, binderPage - step); renderBinder(); }
+}
+function binderNext() {
+  const mobile = isMobileBinder();
+  const step = mobile ? 1 : 2;
+  const max = mobile ? BINDER_TOTAL_SPREADS * 2 - 1 : (BINDER_TOTAL_SPREADS - 1) * 2;
+  if (binderPage < max) { binderPage = Math.min(max, binderPage + step); renderBinder(); }
+}
+function jumpToBinderPage() {
+  const mobile = isMobileBinder();
+  const inp = document.getElementById('binderPageInput');
+  if (!inp) return;
+  let n = parseInt(inp.value, 10) - 1;
+  if (isNaN(n)) return;
+  if (!mobile) n = Math.floor(n / 2) * 2;
+  binderPage = Math.max(0, Math.min(n, BINDER_TOTAL_SPREADS * 2 - 1));
+  renderBinder();
+}
 
 /* ── Folder (klasör) ── */
 function openFolder(dexNum) {
@@ -2589,7 +2866,7 @@ document.getElementById('clistSearch').addEventListener('input', renderCardList)
 document.getElementById('binderView').addEventListener('click', e => {
   // Dot navigation
   const dot = e.target.closest('[data-bspread]');
-  if (dot) { binderSpread = parseInt(dot.dataset.bspread, 10); renderBinder(); return; }
+  if (dot) { binderPage = parseInt(dot.dataset.bspread, 10) * 2; renderBinder(); return; }
 
   // Folder controls (bsl-btn inside folder)
   const fbtn = e.target.closest('.bsl-btn[data-fdex]');
@@ -2652,6 +2929,23 @@ document.getElementById('binderView').addEventListener('click', e => {
   const folder = e.target.closest('.binder-slot.folder');
   if (folder) { openFolder(parseInt(folder.dataset.bdex, 10)); return; }
 });
+  /* ── Mobil swipe desteği ── */
+  let _tx = 0, _ty = 0;
+  const binderEl = document.getElementById('binderView');
+  binderEl.addEventListener('touchstart', e => {
+    _tx = e.touches[0].clientX;
+    _ty = e.touches[0].clientY;
+  }, {passive: true});
+  binderEl.addEventListener('touchend', e => {
+    if (!isMobileBinder()) return;
+    const dx = e.changedTouches[0].clientX - _tx;
+    const dy = e.changedTouches[0].clientY - _ty;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    const activeTab = document.getElementById('binderTabPane').style.display !== 'none' ? 'binder'
+                    : document.getElementById('customTabPane').style.display !== 'none' ? 'custom' : null;
+    if (activeTab === 'binder') { if (dx < 0) binderNext(); else binderPrev(); }
+    else if (activeTab === 'custom') { if (dx < 0) customBinderNext(); else customBinderPrev(); }
+  }, {passive: true});
 } // initBinderEvents
 
 document.getElementById('pokeSearch').addEventListener('input', renderPokeList);
@@ -2676,6 +2970,13 @@ document.addEventListener('DOMContentLoaded', initBinderEvents);
   loadAllSets();
   await loadAllPokemon();
 })();
+
+/* ── Service Worker kaydı ── */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
 </script>
 
 
@@ -2715,6 +3016,11 @@ document.addEventListener('DOMContentLoaded', initBinderEvents);
     </div>
     <div class="binder-footer">
       <div class="binder-page-dots" id="binderDots"></div>
+      <div class="binder-page-jump">
+        <input class="binder-page-input" id="binderPageInput" type="number" min="1" value="1"
+               onchange="jumpToBinderPage()" onkeydown="if(event.key==='Enter')jumpToBinderPage()">
+        <span>/ <span id="binderPageTotal">114</span></span>
+      </div>
     </div>
   </div>
 

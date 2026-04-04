@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kart & Set Ara — PokéBinder</title>
+  <link rel="icon" type="image/png" href="img.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #0f0f17;
+      color: #eeeef8;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 4px; }
+
+    /* ── Layout ── */
+    .search-app {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ── Header ── */
+    .s-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .s-back-btn {
+      padding: 7px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: #aaaacc;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .s-back-btn:hover { border-color: #f5c842; color: #f5c842; }
+    .s-logo { display: flex; flex-direction: column; gap: 1px; }
+    .s-logo-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #f5c842;
+      letter-spacing: .5px;
+      line-height: 1.1;
+    }
+    .s-logo-text span { color: #e84c2a; }
+    .s-logo-sub {
+      font-size: 10px;
+      color: #55556a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .s-header-spacer { flex: 1; }
+    .s-db-status {
+      font-size: 11px;
+      color: #44445a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .s-db-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #33334a;
+      transition: background .3s;
+    }
+    .s-db-dot.loading { background: #f5c842; animation: db-pulse 1s infinite; }
+    .s-db-dot.ready { background: #4ade80; }
+    @keyframes db-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* ── Search section ── */
+    .s-search-section {
+      padding: 18px 0 10px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #0f0f17;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .s-search-wrap {
+      position: relative;
+      margin-bottom: 10px;
+    }
+    .s-search-icon {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .s-search-input {
+      width: 100%;
+      background: #13131e;
+      border: 1.5px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
+      padding: 14px 44px 14px 46px;
+      font-size: 16px;
+      color: #eeeef8;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .s-search-input:focus {
+      border-color: #f5c842;
+      box-shadow: 0 0 0 3px rgba(245,200,66,.12);
+    }
+    .s-search-input::placeholder { color: #44445a; }
+    .s-search-clear {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: #55556a; font-size: 16px;
+      cursor: pointer; padding: 4px 6px;
+      display: none;
+      transition: color .12s;
+      z-index: 2;
+      line-height: 1;
+    }
+    .s-search-clear:hover { color: #e84c2a; }
+    .s-search-clear.visible { display: block; }
+
+    /* Recent searches dropdown */
+    .s-recent-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: #13131e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.6);
+      z-index: 100;
+      overflow: hidden;
+      display: none;
+    }
+    .s-recent-dropdown.open { display: block; }
+    .s-recent-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px 7px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .s-recent-label {
+      font-size: 11px;
+      color: #55556a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .s-recent-clear-all {
+      background: none; border: none;
+      color: #55556a; font-size: 11px;
+      cursor: pointer; padding: 2px 7px;
+      border-radius: 6px;
+      transition: color .12s, background .12s;
+      font-family: inherit;
+    }
+    .s-recent-clear-all:hover { color: #e84c2a; background: rgba(232,76,42,.1); }
+    .s-recent-empty {
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #44445a;
+    }
+    .s-recent-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .s-recent-item:hover { background: rgba(255,255,255,0.04); }
+    .s-recent-item-icon { font-size: 14px; color: #44445a; flex-shrink: 0; }
+    .s-recent-item-text { flex: 1; font-size: 14px; color: #aaaacc; }
+    .s-recent-item-remove {
+      background: none; border: none;
+      color: #33334a; font-size: 13px;
+      cursor: pointer; padding: 2px 6px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity .12s, color .12s;
+      font-family: inherit;
+    }
+    .s-recent-item:hover .s-recent-item-remove { opacity: 1; }
+    .s-recent-item-remove:hover { color: #e84c2a; }
+
+    /* Type filter pills */
+    .s-type-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .s-type-pill {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: #55556a;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .s-type-pill:hover { border-color: #f5c842; color: #eeeef8; }
+    .s-type-pill.active { background: #f5c842; border-color: #f5c842; color: #111; }
+
+    /* ── Results area ── */
+    .s-results-area { flex: 1; padding-top: 22px; }
+
+    /* Empty / loading states */
+    .s-state {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; padding: 80px 20px;
+      color: #44445a; text-align: center;
+    }
+    .s-state-icon { font-size: 52px; }
+    .s-state-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #666688;
+      font-family: 'Nunito', sans-serif;
+    }
+    .s-state-sub { font-size: 14px; line-height: 1.7; max-width: 320px; }
+
+    /* Section headers */
+    .s-section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: #f5c842;
+      letter-spacing: .5px;
+      padding: 4px 0 10px;
+      border-bottom: 1px solid rgba(245,200,66,.2);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .s-section-count {
+      font-size: 11px;
+      font-weight: 500;
+      color: #55556a;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 8px;
+      border-radius: 10px;
+    }
+    .s-section-block { margin-bottom: 30px; }
+
+    /* Cards grid (same as index.html) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .set-group-header {
+      grid-column: 1 / -1;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f5c842;
+      padding: 10px 4px 6px;
+      border-bottom: 1px solid rgba(245,200,66,0.2);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .set-group-header:first-child { margin-top: 0; }
+    .set-group-count {
+      font-size: 11px;
+      font-weight: 500;
+      color: #55556a;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+
+    /* TCG Card (same as index.html) */
+    .tcg-card {
+      position: relative;
+      border-radius: 11px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      background: #1c1c2a;
+      transition: transform .18s, border-color .18s, box-shadow .18s;
+      display: flex;
+      flex-direction: column;
+    }
+    .tcg-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,.6); }
+    .tcg-card-img {
+      position: relative;
+      border-radius: 9px;
+      overflow: hidden;
+      aspect-ratio: 2/3;
+      background: #1c1c2a;
+      flex-shrink: 0;
+    }
+    .tcg-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .tcg-label {
+      padding: 5px 4px 4px;
+      font-size: 10px;
+      color: #6666aa;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .tcg-label-name {
+      font-size: 10px;
+      font-weight: 600;
+      color: #9999cc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tcg-meta {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 22px 8px 8px;
+      background: linear-gradient(transparent, rgba(0,0,0,.9));
+      font-size: 10px;
+      color: rgba(255,255,255,.7);
+      opacity: 0;
+      transition: opacity .2s;
+      z-index: 2;
+    }
+    .tcg-card:hover .tcg-meta { opacity: 1; }
+    .tcg-meta-set { font-size: 11px; font-weight: 700; color: #fff; }
+    .tcg-meta-rar { color: #f5c842; font-size: 9px; }
+
+    /* Shimmer */
+    .shimmer {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, #1c1c2a 25%, #2a2a3c 50%, #1c1c2a 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.3s infinite;
+      border-radius: 9px;
+      z-index: 1;
+    }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* Spinner */
+    .spinner {
+      width: 28px; height: 28px;
+      border: 2.5px solid #1c1c2a;
+      border-top-color: #f5c842;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Sets grid */
+    .s-sets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+    .s-set-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: #13131e;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, transform .12s;
+    }
+    .s-set-card:hover {
+      border-color: #f5c842;
+      background: #1c1c2a;
+      transform: translateY(-2px);
+    }
+    .s-set-icon { font-size: 28px; flex-shrink: 0; }
+    .s-set-info { flex: 1; min-width: 0; }
+    .s-set-name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: #eeeef8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s-set-meta {
+      font-size: 11px;
+      color: #55556a;
+      margin-top: 3px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .s-set-lang-badge {
+      padding: 1px 7px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .s-set-lang-en { background: rgba(100,150,255,.15); color: #6496ff; }
+    .s-set-lang-ja { background: rgba(232,76,42,.15); color: #e84c2a; }
+    .s-set-lang-zh { background: rgba(245,200,66,.15); color: #f5c842; }
+    .s-set-lang-ko { background: rgba(74,222,128,.15); color: #4ade80; }
+    .s-set-arrow { color: #33334a; font-size: 16px; flex-shrink: 0; }
+
+    /* Set overlay (bottom sheet modal) */
+    .s-set-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(4px);
+      z-index: 300;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+    }
+    .s-set-overlay.open {
+      display: flex;
+      animation: s-fade-in .15s ease;
+    }
+    @keyframes s-fade-in { from{opacity:0} to{opacity:1} }
+    .s-set-modal {
+      background: #13131e;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-width: 960px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: s-slide-up .22s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes s-slide-up { from{transform:translateY(32px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .s-set-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .s-set-modal-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: #eeeef8;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s-set-modal-meta { font-size: 12px; color: #55556a; white-space: nowrap; }
+    .s-set-modal-close {
+      background: none; border: none;
+      color: #55556a; font-size: 20px;
+      cursor: pointer; padding: 4px 8px;
+      transition: color .12s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .s-set-modal-close:hover { color: #e84c2a; }
+    .s-set-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px 24px;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .search-app { padding: 0 12px 40px; }
+      .s-header { padding: 10px 0 8px; }
+      .s-logo-text { font-size: 18px; }
+      .s-search-input { font-size: 15px; padding: 12px 40px 12px 44px; }
+      .s-type-pills { gap: 4px; }
+      .s-type-pill { font-size: 12px; padding: 5px 12px; }
+      .s-sets-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .s-db-status { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="search-app">
+
+    <!-- HEADER -->
+    <header class="s-header">
+      <a href="index.html" class="s-back-btn">← Binder</a>
+      <div class="s-logo">
+        <div class="s-logo-text">Pokémon <span>Binder</span></div>
+        <div class="s-logo-sub">Kart & Set Arama</div>
+      </div>
+      <div class="s-header-spacer"></div>
+      <div class="s-db-status" id="dbStatus">
+        <div class="s-db-dot loading" id="dbDot"></div>
+        <span id="dbLabel">Yükleniyor...</span>
+      </div>
+    </header>
+
+    <!-- SEARCH BAR -->
+    <div class="s-search-section">
+      <div class="s-search-wrap" id="searchWrap">
+        <span class="s-search-icon">🔍</span>
+        <input
+          class="s-search-input"
+          id="mainSearchInput"
+          placeholder="Kart veya set ara..."
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button class="s-search-clear" id="searchClear" aria-label="Temizle">✕</button>
+
+        <!-- RECENT SEARCHES DROPDOWN -->
+        <div class="s-recent-dropdown" id="recentDropdown">
+          <div class="s-recent-header">
+            <span class="s-recent-label">Son Aramalar</span>
+            <button class="s-recent-clear-all" id="clearRecentBtn">Tümünü temizle</button>
+          </div>
+          <div id="recentList"></div>
+        </div>
+      </div>
+
+      <!-- TYPE FILTER PILLS -->
+      <div class="s-type-pills">
+        <button class="s-type-pill active" data-type="all">Tümü</button>
+        <button class="s-type-pill" data-type="cards">🃏 Kartlar</button>
+        <button class="s-type-pill" data-type="sets">📦 Setler</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <main class="s-results-area" id="resultsArea"></main>
+
+  </div>
+
+  <!-- SET DETAIL OVERLAY -->
+  <div class="s-set-overlay" id="setOverlay">
+    <div class="s-set-modal">
+      <div class="s-set-modal-header">
+        <div class="s-set-modal-title" id="setModalTitle"></div>
+        <div class="s-set-modal-meta" id="setModalMeta"></div>
+        <button class="s-set-modal-close" id="setModalClose">✕</button>
+      </div>
+      <div class="s-set-modal-body">
+        <div class="cards-grid" id="setModalGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ══════════════════════════════════════════════
+       SET / LANG DATA  (index.html'den kopyalandı)
+    ══════════════════════════════════════════════ */
+    const SET_LANG = {
+      'Chinese CSV8C': 'zh',
+      'Pokemon Chinese CSM2aC': 'zh',
+      'Pokemon Chinese CSM2bC': 'zh',
+      'Pokemon Chinese CSV4C': 'zh',
+      'Pokemon Chinese m2F': 'zh',
+      'Pokemon Japanese 10th Movie Commemoration Promo': 'ja',
+      'Pokemon Japanese 25th Anniversary Golden Box': 'ja',
+      'Pokemon Japanese CD Promo': 'ja',
+      'Pokemon Japanese Charizard VMAX Starter Set': 'ja',
+      'Pokemon Japanese Gengar Vmax High-Class': 'ja',
+      'Pokemon Japanese Mega Starter Deck Gengar Ex': 'ja',
+      'Pokemon Japanese SVG Special Set': 'ja',
+      'Pokemon Japanese Southern Islands': 'ja',
+      'Pokemon Japanese Tag Team Starter Set': 'ja',
+      'Pokemon Japanese World Championships 2023': 'ja',
+    };
+
+    function setLangOf(setName) {
+      if (SET_LANG[setName]) return SET_LANG[setName];
+      const n = setName.toLowerCase();
+      if (n.includes('japanese')) return 'ja';
+      if (n.includes('chinese')) return 'zh';
+      if (n.includes('korean')) return 'ko';
+      return 'en';
+    }
+
+    const ALL_SETS = [
+      'Chinese CSV8C',
+      'Japanese Ninja Spinner',
+      'Pokemon 1999 Topps Movie Evolution',
+      'Pokemon 2020 Battle Academy',
+      'Pokemon Base Set',
+      'Pokemon Base Set 2',
+      'Pokemon Best of Game',
+      'Pokemon Celebrations',
+      "Pokemon Champion's Path",
+      'Pokemon Chinese CS4aC',
+      'Pokemon Chinese CS4bC',
+      'Pokemon Chinese CSM2aC',
+      'Pokemon Chinese CSM2bC',
+      'Pokemon Chinese CSM2cC',
+      'Pokemon Chinese CSV4C',
+      'Pokemon Chinese Gem Pack',
+      'Pokemon Chinese Gem Pack 2',
+      'Pokemon Chinese Gem Pack 3',
+      'Pokemon Chinese Promo',
+      'Pokemon Chinese m2F',
+      'Pokemon Destined Rivals',
+      'Pokemon Detective Pikachu',
+      'Pokemon Double Crisis',
+      'Pokemon Dragon Majesty',
+      'Pokemon Dragon Vault',
+      'Pokemon EX Latias & Latios',
+      'Pokemon Japanese 10th Movie Commemoration Promo',
+      "Pokemon Japanese 2002 McDonald's",
+      'Pokemon Japanese 2005 Gift Box',
+      'Pokemon Japanese 20th Anniversary',
+      'Pokemon Japanese 25th Anniversary Collection',
+      'Pokemon Japanese 25th Anniversary Golden Box',
+      'Pokemon Japanese 25th Anniversary Promo',
+      'Pokemon Japanese Alter Genesis',
+      'Pokemon Japanese Ancient Roar',
+      'Pokemon Japanese Awakening Legends',
+      'Pokemon Japanese Battle Partners',
+      'Pokemon Japanese Battle Region',
+      'Pokemon Japanese Blue Sky Stream',
+      'Pokemon Japanese CD Promo',
+      'Pokemon Japanese Challenge from the Darkness',
+      'Pokemon Japanese Charizard VMAX Starter Set',
+      'Pokemon Japanese Classic- Blastoise',
+      'Pokemon Japanese Classic- Charizard',
+      'Pokemon Japanese Classic- Venusaur',
+      'Pokemon Japanese Clay Burst',
+      'Pokemon Japanese Crimson Haze',
+      'Pokemon Japanese Crossing the Ruins',
+      'Pokemon Japanese Cyber Judge',
+      'Pokemon Japanese Darkness, and to Light',
+      'Pokemon Japanese Double Blaze',
+      'Pokemon Japanese Double Crisis',
+      'Pokemon Japanese Dream League',
+      'Pokemon Japanese Dream Shine Collection',
+      'Pokemon Japanese Eevee Heroes',
+      'Pokemon Japanese Fusion Arts',
+      'Pokemon Japanese Future Flash',
+      'Pokemon Japanese GG End',
+      'Pokemon Japanese Gengar Vmax High-Class',
+      'Pokemon Japanese Glory of Team Rocket',
+      'Pokemon Japanese Go',
+      'Pokemon Japanese Gold, Silver, New World',
+      'Pokemon Japanese Heat Wave Arena',
+      'Pokemon Japanese Holon Phantom',
+      'Pokemon Japanese Inferno X',
+      'Pokemon Japanese Jungle',
+      'Pokemon Japanese Legendary Shine Collection',
+      'Pokemon Japanese Lost Abyss',
+      'Pokemon Japanese Mask of Change',
+      'Pokemon Japanese Matchless Fighter',
+      'Pokemon Japanese Mega Brave',
+      'Pokemon Japanese Mega Starter Deck Gengar Ex',
+      'Pokemon Japanese Mega Symphonia',
+      'Pokemon Japanese Miracle Twins',
+      'Pokemon Japanese Mystery of the Fossils',
+      'Pokemon Japanese Neo Premium File',
+      'Pokemon Japanese Night Unison',
+      'Pokemon Japanese Night Wanderer',
+      'Pokemon Japanese Nihil Zero',
+      'Pokemon Japanese Offense and Defense of the Furthest Ends',
+      'Pokemon Japanese Old Maid',
+      'Pokemon Japanese Paradigm Trigger',
+      'Pokemon Japanese Paradise Dragona',
+      "Pokemon Japanese Player's Club",
+      'Pokemon Japanese PokeKyun Collection',
+      'Pokemon Japanese Raging Surf',
+      'Pokemon Japanese Remix Bout',
+      'Pokemon Japanese Rocket Gang',
+      'Pokemon Japanese Ruler of the Black Flame',
+      'Pokemon Japanese SVG Special Set',
+      'Pokemon Japanese Scarlet Ex',
+      'Pokemon Japanese Shining Legends',
+      'Pokemon Japanese Shiny Collection',
+      'Pokemon Japanese Sky Legend',
+      'Pokemon Japanese Snow Hazard',
+      'Pokemon Japanese Southern Islands',
+      'Pokemon Japanese Star Birth',
+      'Pokemon Japanese Stellar Miracle',
+      'Pokemon Japanese Super Electric Breaker',
+      'Pokemon Japanese Tag Bolt',
+      'Pokemon Japanese Tag Team Starter Set',
+      'Pokemon Japanese Time Gazer',
+      'Pokemon Japanese Triplet Beat',
+      'Pokemon Japanese Vending',
+      'Pokemon Japanese Violet Ex',
+      'Pokemon Japanese Web',
+      'Pokemon Japanese Wild Force',
+      'Pokemon Japanese World Championships 2023',
+      'Pokemon Japanese Yamabuki City Gym',
+      'Pokemon Korean Eevee Heroes',
+      'Pokemon Korean Glory Of Team Rocket',
+      'Pokemon McDonalds 2018',
+      'Pokemon McDonalds 2019',
+      'Pokemon McDonalds 2021',
+      'Pokemon McDonalds 2022',
+      'Pokemon McDonalds 2023',
+      'Pokemon McDonalds 2024',
+      'Pokemon Mega Evolution',
+      'Pokemon Neo Discovery',
+      'Pokemon Neo Revelation',
+      'Pokemon POP Series 1',
+      'Pokemon POP Series 2',
+      'Pokemon POP Series 3',
+      'Pokemon POP Series 4',
+      'Pokemon POP Series 5',
+      'Pokemon POP Series 6',
+      'Pokemon POP Series 9',
+      'Pokemon Phantasmal Flames',
+      'Pokemon Pikachu Libre & Suicune',
+      'Pokemon Promo',
+      'Pokemon Rumble',
+      'Pokemon Scarlet & Violet Energy',
+      'Pokemon Southern Islands',
+      'Pokemon TCG Classic- Blastoise Deck',
+      'Pokemon TCG Classic- Charizard Deck',
+      'Pokemon TCG Classic- Venusaur Deck',
+      'Pokemon Trick or Trade 2022',
+      'Pokemon Trick or Trade 2023',
+      'Pokemon Trick or Trade 2024',
+      'Pokemon World Championships 2019',
+      'Pokemon World Championships 2023',
+    ];
+
+    /* ══════════════════════════════════════════════
+       UTILITIES
+    ══════════════════════════════════════════════ */
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function escAttr(s) {
+      return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    function localImgUrl(imgPath) {
+      if (!imgPath) return null;
+      return imgPath.replace(/\\/g, '/').split('/').map((p, i) => i === 0 ? p : encodeURIComponent(p)).join('/');
+    }
+
+    /* ══════════════════════════════════════════════
+       RECENT SEARCHES
+    ══════════════════════════════════════════════ */
+    const RECENT_KEY = 'pkbinder_searches';
+    const RECENT_MAX = 5;
+
+    function loadRecent() {
+      try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); }
+      catch { return []; }
+    }
+    function saveRecent(list) {
+      localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+    }
+    function addRecent(term) {
+      if (!term.trim()) return;
+      let list = loadRecent().filter(s => s.toLowerCase() !== term.toLowerCase());
+      list.unshift(term);
+      if (list.length > RECENT_MAX) list = list.slice(0, RECENT_MAX);
+      saveRecent(list);
+    }
+    function removeRecent(term) {
+      saveRecent(loadRecent().filter(s => s !== term));
+      renderRecentDropdown();
+    }
+    function clearAllRecent() {
+      saveRecent([]);
+      renderRecentDropdown();
+    }
+
+    function renderRecentDropdown() {
+      const list = loadRecent();
+      const el = document.getElementById('recentList');
+      if (list.length === 0) {
+        el.innerHTML = '<div class="s-recent-empty">Henüz arama yapılmadı</div>';
+        return;
+      }
+      el.innerHTML = list.map(term => `
+        <div class="s-recent-item" data-term="${escAttr(term)}">
+          <span class="s-recent-item-icon">🕐</span>
+          <span class="s-recent-item-text">${escHtml(term)}</span>
+          <button class="s-recent-item-remove" data-remove="${escAttr(term)}" tabindex="-1">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function showRecentDropdown() {
+      renderRecentDropdown();
+      document.getElementById('recentDropdown').classList.add('open');
+    }
+    function hideRecentDropdown() {
+      document.getElementById('recentDropdown').classList.remove('open');
+    }
+
+    /* ══════════════════════════════════════════════
+       DATA LOADING
+    ══════════════════════════════════════════════ */
+    let allCards = [];
+    let setsLoaded = false;
+    let setsLoading = false;
+
+    async function loadAllSets() {
+      if (setsLoaded || setsLoading) return;
+      setsLoading = true;
+      updateDbStatus('loading');
+      const results = await Promise.allSettled(
+        ALL_SETS.map(async setName => {
+          const url = 'data/' + encodeURIComponent(setName) + '.json';
+          const r = await fetch(url);
+          if (!r.ok) return [];
+          return r.json();
+        })
+      );
+      allCards = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
+      setsLoaded = true;
+      setsLoading = false;
+      updateDbStatus('ready');
+      // If there's a pending search, run it
+      const q = document.getElementById('mainSearchInput').value.trim();
+      if (q) runSearch(q);
+    }
+
+    function updateDbStatus(state) {
+      const dot = document.getElementById('dbDot');
+      const label = document.getElementById('dbLabel');
+      if (state === 'loading') {
+        dot.className = 's-db-dot loading';
+        label.textContent = 'Yükleniyor...';
+      } else {
+        dot.className = 's-db-dot ready';
+        label.textContent = allCards.length.toLocaleString() + ' kart';
+      }
+    }
+
+    /* ══════════════════════════════════════════════
+       SEARCH
+    ══════════════════════════════════════════════ */
+    let currentQuery = '';
+    let currentType = 'all';
+    let debounceTimer = null;
+
+    function onSearchInput(value) {
+      const q = value.trim();
+      document.getElementById('searchClear').classList.toggle('visible', value.length > 0);
+
+      clearTimeout(debounceTimer);
+
+      if (q.length === 0) {
+        currentQuery = '';
+        hideRecentDropdown();
+        renderEmptyState();
+        return;
+      }
+
+      hideRecentDropdown();
+
+      debounceTimer = setTimeout(() => {
+        currentQuery = q;
+        if (!setsLoaded) {
+          renderLoadingState();
+        } else {
+          runSearch(q);
+        }
+      }, 280);
+    }
+
+    function runSearch(q) {
+      addRecent(q);
+      const lower = q.toLowerCase();
+
+      const cardResults = (currentType !== 'sets')
+        ? allCards.filter(c => (c.name || '').toLowerCase().includes(lower)).slice(0, 200)
+        : [];
+
+      const setResults = (currentType !== 'cards')
+        ? ALL_SETS.filter(s => s.toLowerCase().includes(lower))
+        : [];
+
+      renderResults(cardResults, setResults, q);
+    }
+
+    /* ══════════════════════════════════════════════
+       RENDERING
+    ══════════════════════════════════════════════ */
+    function renderEmptyState() {
+      document.getElementById('resultsArea').innerHTML = `
+        <div class="s-state">
+          <div class="s-state-icon">🃏</div>
+          <div class="s-state-title">Kart veya set ara</div>
+          <div class="s-state-sub">Bir Pokémon adı yazarak tüm kartlarını bul, ya da set adı yazarak seti tara.</div>
+        </div>`;
+    }
+
+    function renderLoadingState() {
+      document.getElementById('resultsArea').innerHTML = `
+        <div class="s-state">
+          <div class="spinner"></div>
+          <div class="s-state-title">Veritabanı yükleniyor...</div>
+          <div class="s-state-sub">Tüm setler getiriliyor, bu yalnızca bir kez olur.</div>
+        </div>`;
+    }
+
+    function renderResults(cardResults, setResults, q) {
+      const area = document.getElementById('resultsArea');
+
+      if (cardResults.length === 0 && setResults.length === 0) {
+        area.innerHTML = `
+          <div class="s-state">
+            <div class="s-state-icon">🔍</div>
+            <div class="s-state-title">Sonuç bulunamadı</div>
+            <div class="s-state-sub">"<strong>${escHtml(q)}</strong>" için kart veya set bulunamadı.</div>
+          </div>`;
+        return;
+      }
+
+      let html = '';
+
+      // Sets section
+      if (setResults.length > 0) {
+        html += `
+          <div class="s-section-block">
+            <div class="s-section-title">
+              📦 Setler
+              <span class="s-section-count">${setResults.length}</span>
+            </div>
+            <div class="s-sets-grid">
+              ${setResults.map(s => renderSetCard(s)).join('')}
+            </div>
+          </div>`;
+      }
+
+      // Cards section
+      if (cardResults.length > 0) {
+        // Group by set
+        const groups = {};
+        const groupOrder = [];
+        cardResults.forEach(card => {
+          const s = card.set || 'Bilinmiyor';
+          if (!groups[s]) { groups[s] = []; groupOrder.push(s); }
+          groups[s].push(card);
+        });
+
+        const capped = cardResults.length >= 200;
+        html += `
+          <div class="s-section-block">
+            <div class="s-section-title">
+              🃏 Kartlar
+              <span class="s-section-count">${capped ? '200+' : cardResults.length}</span>
+            </div>
+            <div class="cards-grid">
+              ${groupOrder.map(setKey => `
+                <div class="set-group-header">${escHtml(setKey)}<span class="set-group-count">${groups[setKey].length}</span></div>
+                ${groups[setKey].map(c => renderCardTile(c)).join('')}
+              `).join('')}
+            </div>
+          </div>`;
+      }
+
+      area.innerHTML = html;
+    }
+
+    function renderSetCard(setName) {
+      const langCode = setLangOf(setName);
+      const langIcon = { en: '🌐', ja: '🇯🇵', zh: '🇨🇳', ko: '🇰🇷' }[langCode] || '🌐';
+      return `
+        <div class="s-set-card" data-setname="${escAttr(setName)}" role="button" tabindex="0">
+          <div class="s-set-icon">${langIcon}</div>
+          <div class="s-set-info">
+            <div class="s-set-name">${escHtml(setName)}</div>
+            <div class="s-set-meta">
+              <span class="s-set-lang-badge s-set-lang-${langCode}">${langCode.toUpperCase()}</span>
+            </div>
+          </div>
+          <span class="s-set-arrow">›</span>
+        </div>`;
+    }
+
+    function renderCardTile(card) {
+      const imgPath = localImgUrl(card.image_local);
+      const price = card.prices && card.prices.ungraded ? card.prices.ungraded : '';
+      const sid = 'sh' + Math.random().toString(36).slice(2, 9);
+      const nameEsc = escHtml(card.name || '');
+      return `
+        <div class="tcg-card" title="${escAttr(card.name || '')}">
+          <div class="tcg-card-img">
+            <div class="shimmer" id="${sid}"></div>
+            ${imgPath
+              ? `<img src="${imgPath}" alt="${nameEsc}" loading="lazy"
+                   onload="var s=document.getElementById('${sid}');if(s)s.remove()"
+                   onerror="var s=document.getElementById('${sid}');if(s){s.style.animation='none';s.style.background='#1c1c2a'}">`
+              : ''}
+          </div>
+          <div class="tcg-label">
+            <div class="tcg-label-name">${nameEsc}</div>
+            ${price ? `<div style="color:#f5c842;font-size:10px">${escHtml(price)}</div>` : ''}
+          </div>
+          <div class="tcg-meta">
+            <div class="tcg-meta-set">${escHtml(card.set || '')}</div>
+            ${card.rarity ? `<div class="tcg-meta-rar">${escHtml(card.rarity)}</div>` : ''}
+          </div>
+        </div>`;
+    }
+
+    /* ══════════════════════════════════════════════
+       SET OVERLAY
+    ══════════════════════════════════════════════ */
+    function openSetOverlay(setName) {
+      const langCode = setLangOf(setName);
+      const langLabel = { en: 'EN', ja: 'JP', zh: 'ZH', ko: 'KO' }[langCode] || 'EN';
+
+      if (!setsLoaded) {
+        // Show overlay with loading state, data will render when ready
+        document.getElementById('setModalTitle').textContent = setName;
+        document.getElementById('setModalMeta').textContent = 'Yükleniyor...';
+        document.getElementById('setModalGrid').innerHTML = '<div class="spinner" style="margin:40px auto;display:block"></div>';
+        document.getElementById('setOverlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        loadAllSets().then(() => populateSetOverlay(setName, langLabel));
+        return;
+      }
+      populateSetOverlay(setName, langLabel);
+      document.getElementById('setOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function populateSetOverlay(setName, langLabel) {
+      const cards = allCards.filter(c => (c.set || '') === setName);
+      document.getElementById('setModalTitle').textContent = setName;
+      document.getElementById('setModalMeta').textContent = `${cards.length} kart · ${langLabel}`;
+      document.getElementById('setModalGrid').innerHTML = cards.length
+        ? cards.map(c => renderCardTile(c)).join('')
+        : '<div style="color:#44445a;padding:20px">Bu sette kart bulunamadı.</div>';
+    }
+
+    function closeSetOverlay() {
+      document.getElementById('setOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* ══════════════════════════════════════════════
+       EVENTS
+    ══════════════════════════════════════════════ */
+    const inp = document.getElementById('mainSearchInput');
+
+    inp.addEventListener('input', e => onSearchInput(e.target.value));
+
+    inp.addEventListener('focus', () => {
+      if (!inp.value.trim()) showRecentDropdown();
+    });
+
+    inp.addEventListener('blur', () => {
+      setTimeout(() => {
+        const dropdown = document.getElementById('recentDropdown');
+        if (!dropdown.contains(document.activeElement)) {
+          hideRecentDropdown();
+        }
+      }, 160);
+    });
+
+    document.getElementById('searchClear').addEventListener('click', () => {
+      inp.value = '';
+      inp.focus();
+      document.getElementById('searchClear').classList.remove('visible');
+      currentQuery = '';
+      renderEmptyState();
+      showRecentDropdown();
+    });
+
+    // Recent dropdown clicks
+    document.getElementById('recentList').addEventListener('mousedown', e => {
+      const removeBtn = e.target.closest('[data-remove]');
+      if (removeBtn) {
+        e.preventDefault();
+        removeRecent(removeBtn.dataset.remove);
+        return;
+      }
+      const item = e.target.closest('.s-recent-item');
+      if (item) {
+        e.preventDefault();
+        const term = item.dataset.term;
+        inp.value = term;
+        hideRecentDropdown();
+        document.getElementById('searchClear').classList.add('visible');
+        currentQuery = term;
+        if (!setsLoaded) {
+          renderLoadingState();
+        } else {
+          runSearch(term);
+        }
+      }
+    });
+
+    document.getElementById('clearRecentBtn').addEventListener('mousedown', e => {
+      e.preventDefault();
+      clearAllRecent();
+    });
+
+    // Type pills
+    document.querySelectorAll('.s-type-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.s-type-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentType = btn.dataset.type;
+        if (currentQuery) {
+          if (!setsLoaded) renderLoadingState();
+          else runSearch(currentQuery);
+        }
+      });
+    });
+
+    // Results area: set card click
+    document.getElementById('resultsArea').addEventListener('click', e => {
+      const setCard = e.target.closest('[data-setname]');
+      if (setCard) openSetOverlay(setCard.dataset.setname);
+    });
+
+    // Keyboard on set cards in results
+    document.getElementById('resultsArea').addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const setCard = e.target.closest('[data-setname]');
+        if (setCard) openSetOverlay(setCard.dataset.setname);
+      }
+    });
+
+    // Set overlay close
+    document.getElementById('setModalClose').addEventListener('click', closeSetOverlay);
+    document.getElementById('setOverlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('setOverlay')) closeSetOverlay();
+    });
+
+    // ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeSetOverlay();
+    });
+
+    /* ══════════════════════════════════════════════
+       INIT
+    ══════════════════════════════════════════════ */
+    renderEmptyState();
+    loadAllSets();
+  </script>
+</body>
+</html>

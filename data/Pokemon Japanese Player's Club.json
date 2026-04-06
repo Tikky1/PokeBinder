@@ -239,92 +239,308 @@
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/cyclone-energy-15play",
-    "name": "Cyclone Energy #15/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Cyclone Energy #15/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/a3reb7meul7ynxzr/240.jpg",
+    "prices": {
+      "$33.80 $0.00": "-",
+      "volume:  2 sales per year": "volume:  rare",
+      "ungraded": "$33.80 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Cyclone Energy #15-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/boost-energy-16play",
-    "name": "Boost Energy #16/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Boost Energy #16/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/tbaqhh44yyglz4i2/240.jpg",
+    "prices": {
+      "$18.21 +$3.07": "-",
+      "volume:  2 sales per year": "volume:  rare",
+      "ungraded": "$18.21 +$3.07",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Boost Energy #16-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/warp-energy-17play",
-    "name": "Warp Energy #17/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Warp Energy #17/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/w2cfuip2rk366hi4/240.jpg",
+    "prices": {
+      "$14.99 $0.00": "-",
+      "volume:  1 sale per year": "volume:  rare",
+      "ungraded": "$14.99 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Warp Energy #17-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/master-ball-18play",
-    "name": "Master Ball #18/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Master Ball #18/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/lt2bfzoju4nv5fzx/240.jpg",
+    "prices": {
+      "$75.00 $0.00": "-",
+      "volume:  1 sale per year": "volume:  rare",
+      "ungraded": "$75.00 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Master Ball #18-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/_____%27s-kyogre-19play",
-    "name": "_____'s Kyogre #19/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "_____'S Kyogre #19/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/taieytjsxx226bmr/240.jpg",
+    "prices": {
+      "$69.43 -$0.21": "-",
+      "volume:  6 sales per year": "volume:  rare",
+      "ungraded": "$69.43 -$0.21",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\_____'S Kyogre #19-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/_____%27s-groudon-20play",
-    "name": "_____'s Groudon #20/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "_____'S Groudon #20/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/lh5m6ict6nmetjwx/240.jpg",
+    "prices": {
+      "$84.95 +$0.06": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$84.95 +$0.06",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\_____'S Groudon #20-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/_____%27s-rayquaza-21play",
-    "name": "_____'s Rayquaza #21/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "_____'S Rayquaza #21/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/agqewixd5a45ymia/240.jpg",
+    "prices": {
+      "$185.57 -$2.91": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$185.57 -$2.91",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\_____'S Rayquaza #21-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/vaporeon-22play",
-    "name": "Vaporeon #22/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Vaporeon #22/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/unnfc3iyle2ayfez/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Vaporeon #22-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/jolteon-gold-star-23play",
-    "name": "Jolteon Gold Star #23/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Jolteon Gold Star #23/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/mcfwa3hk6w2f6nmw/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Jolteon Gold Star #23-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/flareon-gold-star-24play",
-    "name": "Flareon Gold Star #24/PLAY",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x3ecdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x3ecf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x1d1f5e]\n\tundetected_chromedriver!(No symbol) [0x20f4b7]\n\tundetected_chromedriver!(No symbol) [0x23d9c6]\n\tundetected_chromedriver!(No symbol) [0x238e42]\n\tundetected_chromedriver!(No symbol) [0x238462]\n\tundetected_chromedriver!(No symbol) [0x1a534e]\n\tundetected_chromedriver!(No symbol) [0x1a58ee]\n\tundetected_chromedriver!(No symbol) [0x1a5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x6548b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x64feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x66e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x405cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x40d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x1a4ee9]\n\tundetected_chromedriver!(No symbol) [0x1a4530]\n\tundetected_chromedriver!GetHandleVerifier [0x7a2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Flareon Gold Star #24/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/4t45gnkxufynitup/240.jpg",
+    "prices": {
+      "-": "$2,217.09 $0.00",
+      "volume:  rare": "volume:  1 sale per year",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Flareon Gold Star #24-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/espeon-gold-star-25play",
-    "name": "Espeon Gold Star #25/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Espeon Gold Star #25/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/qkjc63alstuxwq5h/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Espeon Gold Star #25-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/umbreon-gold-star-26play",
-    "name": "Umbreon Gold Star #26/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Umbreon Gold Star #26/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/lz3rq7lt6eiibbwy/240.jpg",
+    "prices": {
+      "-": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "-",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Umbreon Gold Star #26-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/kyogre-ex-27play",
-    "name": "Kyogre EX #27/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Kyogre EX #27/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/r3qmhdmqij4gboe6/240.jpg",
+    "prices": {
+      "$88.53 +$0.20": "-",
+      "volume:  5 sales per year": "volume:  rare",
+      "ungraded": "$88.53 +$0.20",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Kyogre EX #27-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/groudon-ex-28play",
-    "name": "Groudon EX #28/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Groudon EX #28/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/uzd7pobkfco63cur/240.jpg",
+    "prices": {
+      "$104.85 $0.00": "-",
+      "volume:  5 sales per year": "volume:  rare",
+      "ungraded": "$104.85 $0.00",
+      "grade_10": "$94.99 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Groudon EX #28-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/rayquaza-ex-29play",
-    "name": "Rayquaza EX #29/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Rayquaza EX #29/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/vbhy6tpfuo25rxmb/240.jpg",
+    "prices": {
+      "$222.50 $0.00": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$222.50 $0.00",
+      "grade_10": "$405.80 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Rayquaza EX #29-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/ho-oh-ex-30play",
-    "name": "Ho-Oh EX #30/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Ho-Oh EX #30/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/ekf2pcg76q4g4flt/240.jpg",
+    "prices": {
+      "$199.54 +$38.98": "-",
+      "volume:  2 sales per month": "volume:  rare",
+      "ungraded": "$199.54 +$38.98",
+      "grade_10": "$148.00 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Ho-Oh EX #30-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/lugia-ex-31play",
-    "name": "Lugia EX #31/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Lugia EX #31/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/mawgu5imv42ebqhp/240.jpg",
+    "prices": {
+      "$518.72 +$24.96": "-",
+      "volume:  2 sales per month": "volume:  rare",
+      "ungraded": "$518.72 +$24.96",
+      "grade_10": "$253.00 $0.00"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Lugia EX #31-PLAY Pokemon Japanese Player'S Club.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-player%27s-club/jirachi-ex-32play",
-    "name": "Jirachi EX #32/PLAY",
-    "error": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=146.0.7680.165)\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x9fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x9fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x7e2120]\n\tundetected_chromedriver!(No symbol) [0x7c0c53]\n\tundetected_chromedriver!(No symbol) [0x85431b]\n\tundetected_chromedriver!(No symbol) [0x86a309]\n\tundetected_chromedriver!(No symbol) [0x84d8a6]\n\tundetected_chromedriver!(No symbol) [0x820229]\n\tundetected_chromedriver!(No symbol) [0x820fe4]\n\tundetected_chromedriver!GetHandleVerifier [0xc648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0xc5feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0xc7e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0xa15cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa1d9fd+3170d]\n\tundetected_chromedriver!GetHandleVerifier [0xa058c8+195d8]\n\tundetected_chromedriver!GetHandleVerifier [0xa05a92+197a2]\n\tundetected_chromedriver!GetHandleVerifier [0x9eee9a+2baa]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Jirachi EX #32/PLAY Pokemon Japanese Player'S Club",
+    "number": "",
+    "set": "Pokemon Japanese Player%27S Club",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/w4oena5i5sc5bqdp/240.jpg",
+    "prices": {
+      "$140.94 -$1.16": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$140.94 -$1.16",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Player's Club\\Jirachi EX #32-PLAY Pokemon Japanese Player'S Club.jpg"
   }
 ]

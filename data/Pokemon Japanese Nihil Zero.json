@@ -239,8 +239,20 @@
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-nihil-zero/salandit-15",
-    "name": "Salandit #15",
-    "error": "Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tundetected_chromedriver!GetHandleVerifier [0x6fcdf3+10b03]\n\tundetected_chromedriver!GetHandleVerifier [0x6fcf24+10c34]\n\tundetected_chromedriver!(No symbol) [0x4e1f5e]\n\tundetected_chromedriver!(No symbol) [0x51f4b7]\n\tundetected_chromedriver!(No symbol) [0x54d9c6]\n\tundetected_chromedriver!(No symbol) [0x548e42]\n\tundetected_chromedriver!(No symbol) [0x548462]\n\tundetected_chromedriver!(No symbol) [0x4b534e]\n\tundetected_chromedriver!(No symbol) [0x4b58ee]\n\tundetected_chromedriver!(No symbol) [0x4b5dcd]\n\tundetected_chromedriver!GetHandleVerifier [0x9648b9+2785c9]\n\tundetected_chromedriver!GetHandleVerifier [0x95feb5+273bc5]\n\tundetected_chromedriver!GetHandleVerifier [0x97e06b+291d7b]\n\tundetected_chromedriver!GetHandleVerifier [0x715cc8+299d8]\n\tundetected_chromedriver!GetHandleVerifier [0x71d9fd+3170d]\n\tundetected_chromedriver!(No symbol) [0x4b4ee9]\n\tundetected_chromedriver!(No symbol) [0x4b4530]\n\tundetected_chromedriver!GetHandleVerifier [0xab2e9f+3c6baf]\n\tKERNEL32!BaseThreadInitThunk [0x75d35d49+19]\n\tntdll!RtlInitializeExceptionChain [0x76f2d5db+6b]\n\tntdll!RtlGetAppContainerNamedObjectPath [0x76f2d561+231]\n"
+    "name": "Salandit #15 Pokemon Japanese Nihil Zero",
+    "number": "",
+    "set": "Pokemon Japanese Nihil Zero",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/xvqfsdwwjkvwtlx2/240.jpg",
+    "prices": {
+      "$0.25 $0.00": "-",
+      "volume:  rare": "volume:  rare",
+      "ungraded": "$0.25 $0.00",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Japanese Nihil Zero\\Salandit #15 Pokemon Japanese Nihil Zero.jpg"
   },
   {
     "url": "https://www.pricecharting.com/game/pokemon-japanese-nihil-zero/salazzle-ex-16",

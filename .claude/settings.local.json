@@ -15,7 +15,35 @@
       "Bash(python:*)",
       "Bash(python3:*)",
       "Bash(awk:*)",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "Bash(powershell -Command \"Clear-Content 'C:\\\\Users\\\\efeka\\\\Desktop\\\\PokeBinder\\\\claude_log.txt'\")"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Read|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$json = [Console]::In.ReadToEnd() | ConvertFrom-Json; $tool = $json.tool_name; $fp = if ($json.tool_input.file_path) { $json.tool_input.file_path } elseif ($json.tool_input.command) { $json.tool_input.command } else { '-' }; Add-Content -Path 'C:\\Users\\efeka\\Desktop\\PokeBinder\\claude_log.txt' -Value \"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | $tool | $fp\"",
+            "shell": "powershell",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$json = [Console]::In.ReadToEnd() | ConvertFrom-Json; $msg = $json.prompt; Add-Content -Path 'C:\\Users\\efeka\\Desktop\\PokeBinder\\claude_log.txt' -Value \"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | USER | $msg\"",
+            "shell": "powershell",
+            "async": true
+          }
+        ]
+      }
     ]
   }
 }

@@ -16,7 +16,8 @@
       "Bash(python3:*)",
       "Bash(awk:*)",
       "Skill(update-config)",
-      "Bash(powershell -Command \"Clear-Content 'C:\\\\Users\\\\efeka\\\\Desktop\\\\PokeBinder\\\\claude_log.txt'\")"
+      "Bash(powershell -Command \"Clear-Content 'C:\\\\Users\\\\efeka\\\\Desktop\\\\PokeBinder\\\\claude_log.txt'\")",
+      "Bash(sed 's/\\\\.json$//')"
     ]
   },
   "hooks": {

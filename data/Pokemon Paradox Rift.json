@@ -8821,5 +8821,39 @@
     "card_type": "",
     "description": "",
     "image_local": "img\\Pokemon Paradox Rift\\Booster Pack Pokemon Paradox Rift.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-paradox-rift/doublade-reverse-holo-133",
+    "name": "Doublade [Reverse Holo] #133 Pokemon Paradox Rift",
+    "number": "",
+    "set": "Pokemon Paradox Rift",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/21eb7dd7993fc8917dbe127fa6f9bf101372ba8bdaf0af762d1d75f07278f569/240.jpg",
+    "prices": {
+      "$0.25 +$0.12": "-",
+      "volume:  1 sale per week": "volume:  rare",
+      "ungraded": "$0.25 +$0.12",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Paradox Rift\\Doublade [Reverse Holo] #133 Pokemon Paradox Rift.jpg"
+  },
+  {
+    "url": "https://www.pricecharting.com/game/pokemon-paradox-rift/shauntal-174",
+    "name": "Shauntal #174 Pokemon Paradox Rift",
+    "number": "",
+    "set": "Pokemon Paradox Rift",
+    "image_url": "https://storage.googleapis.com/images.pricecharting.com/9769e02d85eb027779b6eacac2fadebb4bb2e35a26ae6119f81cf0a10ce41597/240.jpg",
+    "prices": {
+      "$0.08 -$0.01": "-",
+      "volume:  1 sale per month": "volume:  rare",
+      "ungraded": "$0.08 -$0.01",
+      "grade_10": "-"
+    },
+    "rarity": "",
+    "card_type": "",
+    "description": "",
+    "image_local": "img\\Pokemon Paradox Rift\\Shauntal #174 Pokemon Paradox Rift.jpg"
   }
 ]

@@ -2618,7 +2618,8 @@ function renderLocalCards(cards) {
 
   function cardHtml(card) {
     const imgPath = localImgUrl(card.image_local);
-    const price = (card.prices && card.prices.ungraded) ? card.prices.ungraded : '';
+    const priceRaw = (card.prices && card.prices.ungraded) ? card.prices.ungraded : '';
+    const price = priceRaw ? priceRaw.split(' ')[0] : '';  // "$1.99 $0.00" → "$1.99"
     const sid = 'sk_' + (card.name||'').replace(/[^a-z0-9]/gi, '_');
     const count = collection[card.name] || 0;
     const esc = (card.name||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
@@ -2636,7 +2637,7 @@ function renderLocalCards(cards) {
       </div>` : ''}
       <div class="tcg-meta">
         <div class="tcg-meta-set">${card.name||''}</div>
-        <div>${price ? '<span class="tcg-meta-rar">' + price + '</span>' : ''}</div>
+        <div>${price && price !== '-' ? '<span class="tcg-meta-rar">' + price + '</span>' : ''}</div>
       </div>
     </div>`;
   }

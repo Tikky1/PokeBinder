@@ -1,4 +1,4 @@
-const CACHE = 'pokebinder-v1';
+const CACHE = 'pokebinder-v10';
 const PRECACHE = ['./index.html', './search.html', './img.png', './manifest.json'];
 
 /* ── Install: sadece kritik dosyaları önceden cache'le ── */

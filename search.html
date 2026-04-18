@@ -276,9 +276,10 @@
     /* Cards grid (same as index.html) */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
     }
+    .cards-grid .tcg-label { display: none; }
     .set-group-header {
       grid-column: 1 / -1;
       font-size: 13px;
@@ -554,9 +555,9 @@
       /* Header */
       .s-header { padding: 10px 0 8px; gap: 10px; }
       .s-logo-text { font-size: 18px; }
-      .s-logo-sub { display: none; }
+      .s-logo-sub { font-size: 8px; letter-spacing: 1.5px; }
       .s-back-btn { padding: 8px 12px; font-size: 12px; }
-      .s-db-status { display: none; }
+      .s-db-status { font-size: 10px; gap: 4px; }
 
       /* Search section — no longer needs sticky since layout is fixed */
       .s-search-section {
@@ -594,7 +595,7 @@
       .s-set-name { font-size: 13px; }
 
       /* Cards grid — matches index.html mobile */
-      .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .cards-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; }
 
       /* Empty / loading states */
       .s-state { padding: 40px 16px; }
@@ -605,16 +606,16 @@
       .s-set-modal { border-radius: 16px 16px 0 0; max-height: 92dvh; }
       .s-set-modal-header { padding: 12px 14px; gap: 8px; }
       .s-set-modal-title { font-size: 15px; }
-      .s-set-modal-meta { display: none; }
+      .s-set-modal-meta { font-size: 10px; white-space: nowrap; }
       .s-set-modal-body { padding: 12px 12px 20px; }
     }
 
     @media (max-width: 400px) {
-      .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .cards-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; }
     }
 
     @media (min-width: 900px) {
-      .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .cards-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
     }
   </style>
 </head>

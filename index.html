@@ -516,9 +516,10 @@ html, body {
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
 }
+.cards-grid .tcg-label { display: none; }
 .set-group-header {
   grid-column: 1 / -1;
   font-size: 13px;
@@ -777,7 +778,7 @@ html, body {
   .poke-header-art { width: 56px; height: 56px; }
   .poke-header-name { font-size: 26px; }
 
-  .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .cards-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
 
   .toolbar { padding: 8px 12px; }
   .card-search { width: 140px; }
@@ -786,7 +787,7 @@ html, body {
 }
 
 @media (max-width: 400px) {
-  .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .cards-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; }
   .lang-pills { gap: 4px; }
   .lang-pill { padding: 4px 8px; font-size: 11px; }
 }
@@ -983,7 +984,8 @@ html, body {
 /* Desktop: kart gridini biraz daha geniş yap */
 @media (min-width: 900px) {
   .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
   }
   .modal-name { font-size: 30px; }
 }
@@ -1049,26 +1051,16 @@ html, body {
 }
 
 /* Slot Picker */
-.slot-picker-box { max-height: 88vh; }
+.slot-picker-box { max-height: 88vh; height: 88vh; }
 .slot-picker-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 8px;
-  padding: 10px 14px 16px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 12px 14px 20px;
   overflow-y: auto;
   flex: 1;
+  min-height: 0;
 }
-.picker-card {
-  aspect-ratio: 2/3;
-  border-radius: 7px;
-  border: 1.5px solid rgba(255,255,255,0.08);
-  background: #111122;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color .12s, transform .12s;
-}
-.picker-card:hover { border-color: #f5c842; transform: scale(1.04); }
-.picker-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 /* ═══════════════════════════════════════════
    BINDER VIEW
@@ -1494,7 +1486,16 @@ html, body {
     gap: 5px;
     padding: 8px;
   }
-  .binder-actions { display: none; }
+  .binder-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .binder-actions .binder-action-btn {
+    flex: 1;
+    font-size: 11px;
+    padding: 4px 6px;
+    text-align: center;
+  }
   .binder-nav-btn {
     width: 28px;
     min-width: 28px;
@@ -2247,15 +2248,39 @@ function renderSlotPickerGrid(q) {
     grid.innerHTML = `<div style="padding:20px;text-align:center;color:#44445a">Sonuç yok</div>`;
     return;
   }
-  grid.innerHTML = entries.map(e => {
-    const imgPath = e.card ? localImgUrl(e.card.image_local) : null;
-    const esc = e.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-    return `<div class="picker-card" data-pname="${esc}">
-      ${imgPath
-        ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">`
-        : `<div style="font-size:8px;color:#44445a;padding:4px;text-align:center;overflow:hidden">${esc}</div>`}
-    </div>`;
-  }).join('');
+  // Set'e göre grupla
+  const groups = {};
+  entries.forEach(e => {
+    const setKey = (e.card && e.card._setFile) ? e.card._setFile : 'Diğer';
+    if (!groups[setKey]) groups[setKey] = [];
+    groups[setKey].push(e);
+  });
+
+  let html = '';
+  Object.entries(groups).forEach(([setName, cards]) => {
+    html += `<div class="set-group-header">${setName.replace(/&/g,'&amp;')} <span class="set-group-count">${cards.length}</span></div>`;
+    html += cards.map(e => {
+      const imgPath = e.card ? localImgUrl(e.card.image_local) : null;
+      const esc = e.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      const cnt = collection[e.name] || 0;
+      const priceRaw = (e.card && e.card.prices && e.card.prices.ungraded) ? e.card.prices.ungraded : '';
+      const price = priceRaw ? priceRaw.split(' ')[0] : '';
+      return `<div class="tcg-card" data-pname="${esc}">
+        <div class="tcg-card-img">
+          ${imgPath
+            ? `<img src="${imgPath}" alt="" loading="lazy" onerror="this.style.display='none'">`
+            : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#44445a;font-size:10px;padding:6px;text-align:center">Görsel yok</div>`}
+        </div>
+        ${cnt > 1 ? `<div class="tcg-owned-dot">${cnt}</div>` : ''}
+        <div class="tcg-label"><div class="tcg-label-name">${e.name.replace(/&/g,'&amp;')}</div>${price && price !== '-' ? `<span style="color:#f5c842;font-size:9px">${price}</span>` : ''}</div>
+        <div class="tcg-meta">
+          <div class="tcg-meta-set">${e.name.replace(/&/g,'&amp;')}</div>
+          ${price && price !== '-' ? `<div><span class="tcg-meta-rar">${price}</span></div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  });
+  grid.innerHTML = html;
 }
 
 /* ── Drag & Drop (event delegation üzerinden, initCustomEvents'te bağlanır) ── */
@@ -2326,7 +2351,7 @@ function initCustomEvents() {
     renderSlotPickerGrid(e.target.value);
   });
   document.getElementById('slotPickerGrid').addEventListener('click', e => {
-    const card = e.target.closest('.picker-card');
+    const card = e.target.closest('.tcg-card');
     if (!card || _pickerTargetSlot === null) return;
     customBinderSlots[_pickerTargetSlot] = card.dataset.pname;
     saveCustomBinder();

@@ -1757,7 +1757,11 @@ function updateOwnedChip() {
    BACKUP / RESTORE
 ═══════════════════════════════════════════ */
 function exportCollection() {
-  const blob = new Blob([JSON.stringify(collection, null, 2)], {type: 'application/json'});
+  const data = {
+    collection,
+    customBinder: { slots: customBinderSlots, grid: customGridSize }
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -1775,7 +1779,17 @@ function importCollection() {
     const reader = new FileReader();
     reader.onload = ev => {
       try {
-        collection = JSON.parse(ev.target.result);
+        const parsed = JSON.parse(ev.target.result);
+        /* Yeni format: {collection, customBinder} — eski format: düz koleksiyon objesi */
+        if (parsed.collection && typeof parsed.collection === 'object' && !Array.isArray(parsed.collection)) {
+          collection = parsed.collection;
+          if (parsed.customBinder) {
+            if (parsed.customBinder.slots) { customBinderSlots = parsed.customBinder.slots; saveCustomBinder(); }
+            if (parsed.customBinder.grid)  { setCustomGrid(parsed.customBinder.grid); }
+          }
+        } else {
+          collection = parsed;
+        }
         saveCol(); renderBinder(); updateOwnedChip();
         if (selectedPoke) renderLocalCards();
         alert(`✅ ${ownedCount()} kart başarıyla yüklendi!`);
